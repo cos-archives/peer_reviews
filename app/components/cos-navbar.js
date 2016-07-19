@@ -1,4 +1,51 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+
+  username : null,
+
+  activate: function() {
+
+    var self = this;
+    Ember.$.ajax({
+      url: "http://localhost:8000/api/username",
+      dataType: 'json',
+      contentType: 'text/plain',
+      xhrFields: {
+        withCredentials: true
+      }
+    }).then(function(resp) {
+      if (resp.data === 'false') {
+        console.log('not logged in');
+
+      }else{
+
+        self.set('username',resp.data);
+
+      }
+    });
+  },
+  actions:{
+    sendLogout(){
+      var self = this;
+      Ember.$.ajax({
+        url: "http://localhost:8000/api/userlogout",
+        dataType: 'json',
+        contentType: 'text/plain',
+        xhrFields: {
+          withCredentials: true
+        }
+      }).then(function(response) {
+        if (response.data === 'false') {
+          console.log('not logged in');
+
+        } else{
+
+          self.sendAction('navigate');
+        }
+      });
+    }
+
+
+  }
 });

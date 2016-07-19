@@ -133,7 +133,7 @@ export default Ember.Controller.extend({
     showassign(d) {
       this.set('isshowingassign', true);
       this.set('docid',d);
-      console.log(this.get('loadCurrentUser()'));
+      
 
     },
 

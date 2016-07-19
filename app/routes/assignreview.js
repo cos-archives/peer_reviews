@@ -23,6 +23,8 @@ model(){
   },
   activate: function() {
 
+
+
     var self = this;
     Ember.$.ajax({
       url: "http://localhost:8000/api/checklogin",
@@ -39,6 +41,10 @@ model(){
     });
   },
   actions: {
+
+    navigate() {
+      this.transitionTo('index');
+    },
     filterdata(){
 
       Ember.$('#filter').keyup(function () {

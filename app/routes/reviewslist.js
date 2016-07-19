@@ -36,7 +36,9 @@ export default Ember.Route.extend({
   
    actions: {
 
-
+     navigate() {
+       this.transitionTo('index');
+     },
 
 
      filterdata(){
