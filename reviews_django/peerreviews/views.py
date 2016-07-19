@@ -41,6 +41,18 @@ class logoutUser(APIView):
         else:
             return Response('false')
 
+
+class getUsername(APIView):
+
+    def get(self, request, fomrat=None):
+        if request.user.is_authenticated():
+
+            return Response(request.user.username)
+
+        else:
+            return Response('false')
+
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.

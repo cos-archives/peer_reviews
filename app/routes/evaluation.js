@@ -25,6 +25,9 @@ export default Ember.Route.extend({
     // total: Ember.computed.sum('submission.sda', submission.asd',)
 
     actions: {
+      navigate() {
+        this.transitionTo('index');
+      },
         saveEvaluation(newEval) {
             let router = this;
             if ((parseInt(document.getElementById('premise').value) >= 0) &&
