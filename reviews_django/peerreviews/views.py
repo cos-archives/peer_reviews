@@ -36,8 +36,10 @@ class logoutUser(APIView):
     def get(self, request, fomrat=None):
         if request.user.is_authenticated():
             logout(request)
+            return Response('true')
 
-
+        else:
+            return Response('false')
 
 class UserViewSet(viewsets.ModelViewSet):
     """
