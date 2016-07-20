@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 
   username : null,
+  profile_url: null,
 
   activate: function() {
 
@@ -21,10 +22,12 @@ export default Ember.Component.extend({
       }else{
 
         self.set('username',resp.data);
+        self.set('profile_url',"https://staging.osf.io/"+self.get('username')+"/");
+        console.log(self.get('profile_url'));
 
       }
     });
-  },
+  }.on("init"),
   actions:{
     sendLogout(){
       var self = this;
