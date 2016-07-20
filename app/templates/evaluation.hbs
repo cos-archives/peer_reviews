@@ -1,61 +1,78 @@
-{{cos-navbar navigate='navigate'}}
+{{cos-navbar}}
 
 
 <div class="container-fluid big">
   <div class="row title">
      <div class="col-md-8 col-md-offset-1">
          <div class="page-header">
-              <h1>Peer Review Feedback</h1>
+              <h1>Submission Evaluation<</h1>
          </div>
     </div>
   </div>
   <form method="post">
-    <div class="row step2">
+
+
       <div class="col-md-8 col-md-offset-1">
-        <h3><label>Step 1: Select Grade Based on Rubric</label></h3>
-        <h3><b>Submission Evaluation</b></h3>
+        <h3><b>Step 1: Select Grade Based on Rubric</b></h3>
+
+
         <div class="form-group row">
             <div class="col-md-2 col-md-offset-1">
               <label>Premise <font style='color: #ff0000'>*</font></label>
             </div>
           <span class="glyphicon glyphicon-ok form-control-feedback" ></span>
-          <div class="col-md-6">
+          <div class="col-md-6" style="width: 10%">
             {{input id="premise" type="integer" value=model.premise class="form-control"}}
-            /15
+
             <div style="color:#FF0000">
                         {{if this.premiseError "Please assign a valid value" ""}}
             </div>
           </div>
+            <div>
+                <label  style='color: yellowgreen'>/15 </label>
+            </div>
         </div>
+
+
         <div class="form-group row">
           <div class="col-md-2 col-md-offset-1">
             <label>Research <font style='color: #ff0000'>*</font></label>
           </div>
           <span class="glyphicon glyphicon-ok form-control-feedback" ></span>
-          <div class="col-md-6">
+          <div class="col-md-6" style="width: 10%">
             {{input id="research" type="integer" value=model.research class="form-control"}}
-            /15
+
             <div style="color:#FF0000">
                         {{if this.researchError "Please assign a valid value" ""}}
             </div>
+
           </div>
+            <div>
+                <label  style='color: yellowgreen'>/15 </label>
+            </div>
         </div>
+
+
         <div class="form-group row">
           <div class="col-md-2 col-md-offset-1">
             <label>Style <font style='color: #ff0000'>*</font></label>
           </div>
           <span class="glyphicon glyphicon-ok form-control-feedback" ></span>
-          <div class="col-md-6">
+          <div class="col-md-6" style="width: 10%">
             {{input id="style" type="integer" value=model.style class="form-control"}}
-            /15
             <div style="color:#FF0000">
                         {{if this.StyleError "Please assign a valid value" ""}}
             </div>
           </div>
+            <div>
+                <label  style='color: yellowgreen'>/15 </label>
+            </div>
         </div>
+
+
         <div class="row total">
           <div class="col-md-8 col-md-offset-1">
-            <h4>TOTAL: {{model.total}}/45 </h4>
+            <h4 style="color: yellowgreen">TOTAL: {{model.total}}/45 </h4>
           </div>
         </div>
         <div class="form-group row">
@@ -63,20 +80,23 @@
               <h6><font style="color: #ff0000">*</font> denotes required field</h6>
           </div>
         </div>
-        <div class="form-group row step2">
-          <div class="col-md-8 col-md-offset-1">
-            <h3><b>Step 2: Comment Below</b></h3>
-            {{textarea value=model.comment cols="80" rows="10"}}
-          </div>
+
+
+
+              <div class="form-group row">
+
+                  <h3><b>Step 2: Comment Below</b></h3>
+                <div style="color: black">{{textarea value=model.comment cols="80" rows="10"}}</div>
+
+              <h4><b>File Attachment (optional) </b></h4>
+              <input id="filebutton" name="filebutton" class="input-file" type="file">
         </div>
         <div class="form-group row step3">
-          <div class="col-md-4 col-md-offset-1">
             <h3><b>Step 3: Submit</b></h3>
 
                   <a style = "height: 40px; width: 100px" {{action "saveEvaluation" model}} class="btn btn-success" type="submit">Submit</a>
                   <a style = "height: 40px; width: 100px" {{action "cancel"}} class="btn btn-danger">Cancel</a>
 
-          </div>
         </div>
         <div id="errorAlert" class="alert alert-danger hide fade in" style = "width: 250px">
             Please recheck your values.
@@ -85,6 +105,6 @@
             Success! Feedback submitted.
         </div>
       </div>
-    </div>
+
   </form>
 </div>

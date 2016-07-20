@@ -29,7 +29,6 @@ class reviewslists(models.Model):
     conference = models.TextField(null=True)
     title = models.TextField(null=True)
     reviewdeadline = models.DateField(default=None)
-    reviewer = models.ForeignKey(Reviewer,null=True)
     author_name = models.TextField(null=True)
     author_email = models.TextField(null=True)
     status = models.CharField(max_length=100)
@@ -45,6 +44,10 @@ class emails(models.Model):
     subject = models.TextField(default=None)
 
 
+class reviewerassignments(models.Model):
+    reviewer = models.CharField(max_length=200)
+    submission = models.CharField(max_length=200)
+    status = models.CharField(max_length=200)
 
 
 class submissionevals(models.Model):

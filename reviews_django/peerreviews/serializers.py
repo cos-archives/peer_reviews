@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User, Group
-from models import Reviewer, reviewslists, submissionevals, emails
+from models import Reviewer, reviewslists, submissionevals, emails, reviewerassignments
 from rest_framework import serializers as ser
 
 class UserSerializer(ser.HyperlinkedModelSerializer):
@@ -31,7 +31,7 @@ class EmailSerializer(serializers.ModelSerializer):
 class ReviewslistSerializer(serializers.ModelSerializer):
     class Meta:
         model = reviewslists
-        fields = ('conference', 'title','reviewdeadline', 'reviewer',  'author_name','author_email', 'status', 'link', 'attachment')
+        fields = ('conference', 'title','reviewdeadline',  'author_name','author_email', 'status', 'link', 'attachment')
 
 class ReviewslistSerializerUpdate(serializers.ModelSerializer):
 
@@ -39,6 +39,10 @@ class ReviewslistSerializerUpdate(serializers.ModelSerializer):
         model = reviewslists
         fields = ('conference', 'title','reviewdeadline', 'status', 'link')
 
+class assignmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = reviewerassignments
+        fileds = ('reviewer','submisison','status')
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
