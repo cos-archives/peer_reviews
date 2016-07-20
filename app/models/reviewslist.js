@@ -6,7 +6,6 @@ export default Model.extend({
   conference: attr('string'),
   title: attr('string'),
   reviewdeadline: attr('string'),
-  reviewer: attr('string'),
   author_name: attr('string'),
   author_email: attr('string'),
   status: attr('string'),

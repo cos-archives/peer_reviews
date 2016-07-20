@@ -33,6 +33,14 @@ export default Ember.Controller.extend({
          emailrecord.subject  = 'Review Invitation';
          var self = this;
          emailrecord.save().then(function() {
+           let assignrecord = self.store.createRecord('reviewerassignment');
+           assignrecord.submission = self.get('submission_id');
+           assignrecord.reviewer = self.get('reviewerInfo.id');
+           assignrecord.status = 'assigned';
+           assignrecord.save();
+
+
+         }).then(function(){
 
            self.set('isshowingInvite', false);
            document.getElementById('submitAlert').className = "alert-success alert fade in";
@@ -41,9 +49,12 @@ export default Ember.Controller.extend({
 
              self.transitionToRoute('peerdashboard');
            }, 2000);
+
          });
 
        },
+
+
 
     showdata(name) {
        var self = this;
