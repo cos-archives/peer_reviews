@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from models import Reviewer, reviewslists, submissionevals, emails
-from serializers import ReviewerSerializer, ReviewslistSerializer, AuthenticationSerializer, evalSerializer, EmailSerializer, UserSerializer, ReviewslistSerializerUpdate
+from models import Reviewer, reviewslists, submissionevals, emails, reviewerassignments
+from serializers import ReviewerSerializer, ReviewslistSerializer, AuthenticationSerializer, evalSerializer, EmailSerializer, UserSerializer, ReviewslistSerializerUpdate, assignmentSerializer
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 from rest_framework.views import APIView
@@ -13,8 +13,7 @@ from django.contrib.auth import logout
 
 
 from rest_framework import status
-import json
-import sys
+
 
 USER_STORAGE = {}
 CLIENT_ID  = 'f720c20605e84d52ad24cc97e03ed3a8'
@@ -51,6 +50,29 @@ class getUsername(APIView):
 
         else:
             return Response('false')
+
+
+class submisisonAssignmentViewSet(viewsets.ModelViewSet):
+    queryset = reviewerassignments.objects.all()
+    serializer_class = assignmentSerializer
+
+    def post(self, request, format=None):
+        serializer = assignmentSerializer(data=request.DATA)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def partial_update(self, request, *args, **kwargs):
+        serializer = assignmentSerializer(data=request.data)
+        if serializer.is_valid():
+            print serializer.validated_data
+            serializer.update(self.get_object(), serializer.validated_data)
+
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -127,8 +149,6 @@ class ReviewslistIdViewSet(viewsets.ModelViewSet):
     serializer_class = ReviewslistSerializer
 
 
-    print "get and update"
-
     def partial_update(self, request, *args, **kwargs):
         serializer = ReviewslistSerializerUpdate(data=request.data)
         if serializer.is_valid():
@@ -137,16 +157,7 @@ class ReviewslistIdViewSet(viewsets.ModelViewSet):
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        # instance = self.get_object()
-        # instance.status = request.data.get("status")
-        # print "update"
-        # instance.save()
-        #
-        # serializer = self.get_serializer(instance)
-        # serializer.is_valid(raise_exception=True)
-        # self.perform_update(serializer)
-        #
-        # return Response(serializer.data)
+
 
 class ReviewslistViewSet(APIView):
     """
@@ -155,10 +166,6 @@ class ReviewslistViewSet(APIView):
     queryset = reviewslists.objects.all()
     serializer_class = ReviewslistSerializerUpdate
 
-    # def get(self, request, pk=None, format=None):
-    #     rl = reviewslists.objects.all()
-    #     ss = ReviewslistSerializer(rl, context={'request': request}, many=True)
-    #     return Response(ss.data)
 
 
     def post(self, request, format=None):
@@ -209,7 +216,7 @@ class EmailViewSet(ListCreateAPIView):
         serializer = EmailSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            send_mail(serializer.data['subject'], serializer.data['message'], serializer.data['from_email'], [serializer.data['to_email']], fail_silently=False)
+            #send_mail(serializer.data['subject'], serializer.data['message'], serializer.data['from_email'], [serializer.data['to_email']], fail_silently=False)
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
