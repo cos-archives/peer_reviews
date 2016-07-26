@@ -16,11 +16,11 @@ export default Ember.Controller.extend({
     'By agreeing to review, you are also committing to a confidential review process.\n'+
     'Please do not share this manuscript with anyone who is not directly involved in the review process, including colleagues and other experts in the field.\n'+
     'Reviewers may not share or act upon any confidential information gained in the review process.\n'+
-    'After publication, reviewers may only use publicly published data (i.e. the contents of the published article) and not information from any earlier drafts, unless they have obtained permission from the authors.\n'+
-    'If you ACCEPT to review this paper, please click the following link: I would appreciate receiving your review within 7 calendar days of your acceptance.\n'+
-    'If you decline to review this paper, please click the following link Decline to Review\n'+
-     'If you have any questions or concerns, please contact us at reviews@osf.io\n\n'+
+    'The new manuscript will be shown in your reviews list at OSF Peer Reviews ({osfp}). You can accept or decline the review using the accept/decline buttons in front of the manuscript.\n' +
+    'I would appreciate receiving your review within 7 calendar days of your acceptance.\n'+
+    'If you have any questions or concerns, please contact us at reviews@osf.io\n\n'+
      'Academic Editor',
+
    emailbody: '',
 
      actions: {
@@ -32,15 +32,7 @@ export default Ember.Controller.extend({
          emailrecord.message = this.get('emailbody');
          emailrecord.subject  = 'Review Invitation';
          var self = this;
-         emailrecord.save().then(function() {
-           let assignrecord = self.store.createRecord('reviewerassignment');
-           assignrecord.submission = self.get('submission_id');
-           assignrecord.reviewer = self.get('reviewerInfo.id');
-           assignrecord.status = 'assigned';
-           assignrecord.save();
-
-
-         }).then(function(){
+         emailrecord.save().then(function(){
 
            self.set('isshowingInvite', false);
            document.getElementById('submitAlert').className = "alert-success alert fade in";
@@ -50,22 +42,44 @@ export default Ember.Controller.extend({
              self.transitionToRoute('peerdashboard');
            }, 2000);
 
+         }).then(function() {
+           let assignrecord = self.store.createRecord('reviewerassignment');
+           assignrecord.submission = self.get('submission_id');
+           assignrecord.reviewer = self.get('reviewerInfo.id');
+           assignrecord.status = 'assigned';
+           assignrecord.save();
+
          });
 
        },
 
+       showdata2(name){
+         var self = this;
+         self.store.findAll('submissionslist', {reload: true}).then(function (response) {
+           console.log(self.get('submission_id'));
+           let tyrion= response.filterBy('id',self.get('submission_id'));
+           console.log(tyrion[0].get('data'));
+           self.set('ptitle',tyrion[0].get('title'));
+           self.set('cname',tyrion[0].get('conference'));
+           self.set('isshowingInvite', true);
+           self.set('emailbody',self.get('msgtemplate'));
+           self.set('emailbody',self.get('msgtemplate').replace("{cname}",self.get('cname')).replace('{ptitle}',self.get('ptitle')).replace('{rname}',name).replace('{osfp}',"http://localhost:4200/reviewslist/"));
+         });
+
+
+       },
 
 
     showdata(name) {
        var self = this;
       this.store.findRecord('reviewslist', this.get('submission_id')).then(function(tyrion) {
-         console.log(name);
-         self.set('ptitle',tyrion.get('title'));
+
+        self.set('ptitle',tyrion.get('title'));
         self.set('cname',tyrion.get('conference'));
-        console.log(self.get('cname'));
         self.set('isshowingInvite', true);
         self.set('emailbody',self.get('msgtemplate'));
-        self.set('emailbody',self.get('msgtemplate').replace("{cname}",self.get('cname')).replace('{ptitle}',self.get('ptitle')).replace('{rname}',name));
+        var str = "OSF Peer Reviews";
+        self.set('emailbody',self.get('msgtemplate').replace("{cname}",self.get('cname')).replace('{ptitle}',self.get('ptitle')).replace('{rname}',name).replace('{osfp}',str.link("http://localhost:4200/reviewslist/")));
       });
 
 
