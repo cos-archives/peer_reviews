@@ -18,10 +18,12 @@ class Reviewer(models.Model):
     osfreviews = models.IntegerField(default=0)
     avatar = models.ImageField(blank=True, null=True, upload_to='media/avatars')
 
-class Author(models.Model):
 
-    name = models.CharField(max_length=200)
-    email = models.EmailField(default=None)
+class Editor(models.Model):
+        user = models.OneToOneField(User, default=None)
+        name = models.CharField(max_length=200)
+        email = models.EmailField(default=None)
+
 
 
 class reviewslists(models.Model):
@@ -34,7 +36,8 @@ class reviewslists(models.Model):
     status = models.CharField(max_length=100)
     link = models.URLField(blank=True, null=True)
     attachment = models.FileField(null=True, upload_to='media/files')
-
+    reviewer = models.ManyToManyField(Reviewer)
+    editor  = models.ForeignKey(Editor, null=True)
 
 class emails(models.Model):
 

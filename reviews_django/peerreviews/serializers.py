@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User, Group
-from models import Reviewer, reviewslists, submissionevals, emails, reviewerassignments
+from models import Reviewer, reviewslists, submissionevals, emails, reviewerassignments, Editor
 from rest_framework import serializers as ser
 
 class UserSerializer(ser.HyperlinkedModelSerializer):
@@ -19,7 +19,7 @@ class ReviewerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reviewer
 
-        fields = ('name', 'affiliation', 'email', 'bio', 'research', 'website', 'osfreviews', 'avatar')
+        fields = ('user','name', 'affiliation', 'email', 'bio', 'research', 'website', 'osfreviews', 'avatar')
 
 
 class EmailSerializer(serializers.ModelSerializer):
