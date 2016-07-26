@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from models import Reviewer, reviewslists, submissionevals, emails, reviewerassignments
+from models import Reviewer, reviewslists, submissionevals, emails, reviewerassignments, Editor
 from serializers import ReviewerSerializer, ReviewslistSerializer, AuthenticationSerializer, evalSerializer, EmailSerializer, UserSerializer, ReviewslistSerializerUpdate, assignmentSerializer
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
@@ -10,6 +10,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, Up
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import logout
+from django.core import serializers
 
 
 from rest_framework import status
@@ -47,6 +48,20 @@ class getUsername(APIView):
         if request.user.is_authenticated():
 
             return Response(request.user.username)
+
+        else:
+            return Response('false')
+
+
+class getReviewerid(APIView):
+
+
+    def get(self, request, fomrat=None):
+        if request.user.is_authenticated():
+
+            rl = Reviewer.objects.filter(user__username=request.user.username)
+            ss = ReviewerSerializer(rl, context={'request': request}, many=True)
+            return Response(ss.data)
 
         else:
             return Response('false')
@@ -137,14 +152,16 @@ class ReviewerDetailsViewSet(viewsets.ModelViewSet):
         return Response(rs.data)
 
 
-class ReviewslistIdViewSet(viewsets.ModelViewSet):
+
+
+
+
+class ReviewslistIdViewSet(ListCreateAPIView):
     """
       API endpoint that returns all submissions
+
       """
-
-
     queryset = reviewslists.objects.all()
-
 
     serializer_class = ReviewslistSerializer
 
@@ -170,7 +187,6 @@ class ReviewslistViewSet(APIView):
 
     def post(self, request, format=None):
         serializer = ReviewslistSerializerUpdate(data=request.DATA)
-        print "post"
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -180,16 +196,58 @@ class ReviewslistViewSet(APIView):
 
 
 
-class ReviewslistFilteredViewSet(ListCreateAPIView):
-    serializer_class = ReviewslistSerializer
+class reviewslist(viewsets.ViewSet):
 
-    queryset= reviewslists.objects.all()
 
-    def get(self, request, rid=None, format=None):
-        rl = reviewslists.objects.filter(reviewer_id=rid)
-        ss = ReviewslistSerializer(rl, context={'request': request}, many=True)
-        return Response(ss.data)
+    def getreview(self, request,pk = None, format=None):
+            print 'getreview'
 
+            rl = reviewslists.objects.filter(id=pk)
+            ss = ReviewslistSerializer(rl, context={'request': request}, many=True)
+            return Response(ss.data)
+
+    def getmyreviews(self, request, pk= None, format =None):
+
+            print 'b'
+            rl = reviewslists.objects.filter(reviewer__user__username=request.user.username)
+            ss = ReviewslistSerializer(rl, context={'request': request}, many=True)
+            return Response(ss.data)
+
+
+
+# class submissionslist(viewsets.ViewSet):
+#     serializer_class = ReviewslistSerializer
+#     queryset = reviewslists.objects.all()
+#
+#     def getmysubmissions(self, request, pk=None, format=None):
+#
+#         rl = reviewslists.objects.filter(editor__user__username=request.user.username)
+#         ss = ReviewslistSerializer(rl, context={'request': request}, many=True)
+#
+#         return Response(ss.data)
+
+
+
+
+class submissionslist(viewsets.ViewSet):
+
+
+
+    def getsubmission(self, request,pk = None, format=None):
+            print 'c'
+
+            rl = reviewslists.objects.filter(id=1)
+            ss = ReviewslistSerializer(rl, context={'request': request}, many=True)
+            return Response(ss.data)
+
+    def getmysubmissions(self, request, pk= None, format =None):
+
+
+            print 'd'
+
+            rl = reviewslists.objects.filter(editor__user__username=request.user.username)
+            ss = ReviewslistSerializer(rl, context={'request': request}, many=True)
+            return Response(ss.data)
 
 
 class SubmissionEvallistViewSet(viewsets.ModelViewSet):
