@@ -22,6 +22,8 @@ td img
   max-width: 100%;
 }
 
+
+
 html, body .fullscreen
 {
   width: 100%;
@@ -36,18 +38,20 @@ html, body .fullscreen
 .big
 {
   height: 100vh;
-  background-image: linear-gradient(to bottom left, #000305, #0E4364, #4A8DB0);
+  background-image: linear-gradient(to bottom left, #000305, #0E4364, #4A8DB0) ;
   background-size: contain;
   color: white;
 }
 .big .background
 {
   position: absolute;
-  top: 50%;
+  top: 55%;
   transform: translateY(-50%);
   opacity: 0.3;
   max-width: 100%;
   z-index: 2;
+
+
 }
 .big .logo
 {
@@ -536,6 +540,7 @@ background-color: rgba(12, 12, 12, 0.1);
 .cos-about {
   text-align: center;
   margin-top: 20px;
+
 }
 
 .navbar a:hover {

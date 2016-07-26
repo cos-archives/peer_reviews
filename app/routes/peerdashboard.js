@@ -4,32 +4,35 @@ export default Ember.Route.extend({
   queryParams: {isauthenticated: false},
   isauthenticated:false,
   statusc : 0,
+  mylist: null,
+
   model(){
 
     return Ember.RSVP.hash({
-      reviewsall: this.store.findAll('reviewslist'),
-      reviewsdate: this.store.findAll('reviewslist', {reload: true}).then(function (reviewslist) {
-        return reviewslist.sortBy('reviewdeadline').reverse();
+
+      reviewsall: this.store.findAll('submissionslist'),
+      reviewsdate: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
+        return reviewslist.sortBy('submissionslist').reverse();
       }),
-      nlength: this.store.findAll('reviewslist', {reload: true}).then(function (reviewslist) {
+      nlength: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
         return reviewslist.get('length');
       }),
-      ncomplete: this.store.findAll('reviewslist', {reload: true}).then(function (reviewslist) {
+      ncomplete: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
         return reviewslist.filterBy('status','Completed').get('length')/reviewslist.get('length')*100;
       }),
-      napprove: this.store.findAll('reviewslist', {reload: true}).then(function (reviewslist) {
+      napprove: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
         return reviewslist.filterBy('status','Approved').get('length')/reviewslist.get('length')*100;
       }),
-      nprogress: this.store.findAll('reviewslist', {reload: true}).then(function (reviewslist) {
+      nprogress: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
         return reviewslist.filterBy('status','In-progress').get('length')/reviewslist.get('length')*100;
       }),
-      nrejected: this.store.findAll('reviewslist', {reload: true}).then(function (reviewslist) {
+      nrejected: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
         return reviewslist.filterBy('status','Rejected').get('length')/reviewslist.get('length')*100;
       }),
-      npast: this.store.findAll('reviewslist', {reload: true}).then(function (reviewslist) {
+      npast: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
         return reviewslist.filterBy('status','Past due').get('length')/reviewslist.get('length')*100;
       }),
-      nsubmit: this.store.findAll('reviewslist', {reload: true}).then(function (reviewslist) {
+      nsubmit: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
         return reviewslist.filterBy('status','Submitted').get('length')/reviewslist.get('length')*100;
       })
 
@@ -37,9 +40,12 @@ export default Ember.Route.extend({
 
   },
 
-  activate: function() {
 
-      var self = this;
+  activate: function() {
+    var self = this;
+
+
+
       Ember.$.ajax({
         url: "http://localhost:8000/api/checklogin",
         dataType: 'json',

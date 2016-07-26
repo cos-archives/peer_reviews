@@ -1,88 +1,79 @@
 {{#if this.visited}}
   {{auto-scroll}}
 {{/if}}
+
+
     <div id="indexTop" class="container-fluid big osf-standard-background">
         <a href="https://staging.osf.io/"><img class="logo" src="https://osf.io/static/img/cos-white2.png"> </a>
-        <div class="cos-about">
+
+        <div class="cos-about" >
             <h1>OSF for Peer Review</h1>
             <h2></h2>
-            <h5>We began with one infrastructure project, the Open Science Framework,</h5>
+            <h5 >We began with one infrastructure project, the Open Science Framework,</h5>
             <h5>one research project, Reproducibility Project: Psychology,</h5>
             <h5>and a mission: to increase openness, integrity, and reproducibility of scientific research.</h5>
             <!-- <h5>Broaden your impact, create an open scholar environment</h5> -->
             <!-- <button {{action 'scrollit'}} type="button" value="continue" class="btn btn-success">Begin Sharing</button> -->
+
         </div>
+
 <br><br>
         <div id="hero-signup" class="container">
                   <div class="row">
 
-                    <div class="col-sm-6">
-                      <h2>Free and open source. Start now.</h2>
 
-                     <div id="signUp" class="anchor"></div>
-                        <div id="signUpScope">
-                            <form data-bind="submit: submit">
-                                <div class="form-group" data-bind="css: {'has-error': fullName() &amp;&amp; !fullName.isValid(), 'has-success': fullName() &amp;&amp; fullName.isValid()}">
-                                      <label class="placeholder-replace" style="display:none">Full name</label>
-                                      <input class="form-control" placeholder="Full Name" data-bind=" value: fullName, disable: submitted(), event: { blur: trim.bind($data, fullName)}">
-                                      <p class="help-block osf-box-lt" data-bind="validationMessage: fullName" style="display: none;"></p>
-                                  </div>
-                                  <div class="form-group" data-bind="css: {'has-error': email1() &amp;&amp; !email1.isValid(), 'has-success': email1() &amp;&amp; email1.isValid()}">
-                                      <label class="placeholder-replace" style="display:none">Contact email</label>
-                                      <input class="form-control" placeholder="Contact Email" data-bind=" value: email1, disable: submitted(), event: { blur: trim.bind($data, email1)}">
-                                      <p class="help-block osf-box-lt" data-bind="validationMessage: email1" style="display: none;"></p>
-                                  </div>
-                                  <div class="form-group" data-bind="css: {'has-error': email2() &amp;&amp; !email2.isValid(),'has-success': email2() &amp;&amp; email2.isValid()}">
-                                      <label class="placeholder-replace" style="display:none">Confirm email</label>
-                                      <input class="form-control" placeholder="Confirm Email" data-bind="value: email2, disable: submitted(), event: { blur: trim.bind($data, email2)}">
-                                      <p class="help-block osf-box-lt" data-bind="validationMessage: email2" style="display: none;"></p>
-                                  </div>
-                                  <div class="form-group" data-bind="css: {'has-error': password() &amp;&amp; !password.isValid(), 'has-success': password() &amp;&amp; password.isValid()}">
-                                      <label class="placeholder-replace" style="display:none">Password</label>
-                                      <input type="password" class="form-control" placeholder="Password (Must be 6 to 256 characters)" data-bind=" value: password, disable: submitted(), event: {blur: trim.bind($data, password)}">
-                                        <p class="help-block osf-box-lt" data-bind="validationMessage: password" style="display: none;"></p>
+                      <div class="item content" id="content_section1">
+
+                          <div class="container">
+
+                              <div class="row">
+
+                                  <div class="col-sm-6">
+                                      <h2>Already have an OSF account? Sign in.</h2>
+                                      <div id="signUp" class="anchor"></div>
+                                      <div id="signUpScope">
+                                          <form data-bind="submit: submit">
+
+
+                                              <div>
+                                                  <button type="submit" class="btn btn-warning" data-bind="visible: !submitted() " id="signupSubmit" {{action 'gotoLogin'}}>Sign In</button>
+                                              </div>
+
+                                          </form>
+
+                                      </div><!-- end #signUpScope -->
                                   </div>
 
-                                  <!-- Flashed Messages -->
-                                  <div class="help-block osf-box-lt">
-                                      <p data-bind="html: flashMessage, attr: {class: flashMessageClass}" class=""></p>
-                                  </div>
-                                  <!-- ko ifnot: submitted -->
-                                  <div>
-                                      <small> By clicking "Sign up free", you agree to our <a style="color:#5BC0DE" href="https://github.com/CenterForOpenScience/centerforopenscience.org/blob/master/TERMS_OF_USE.md">Terms</a> and that you have read our <a style="color:#5BC0DE" href="https://github.com/CenterForOpenScience/centerforopenscience.org/blob/master/PRIVACY_POLICY.md">Privacy Policy</a>, including our information on <a style="color:#5BC0DE" href="https://github.com/CenterForOpenScience/centerforopenscience.org/blob/master/PRIVACY_POLICY.md#f-cookies">Cookie Use</a>.</small>
-                                  </div>
-                                  <!-- /ko -->
-                                  <div>
-                                      <button type="submit" class="btn btn-warning" data-bind="visible: !submitted()" id="signupSubmit">Sign up free</button>
-                                  </div>
+                                  <div class="col-md-6">
 
-                          </form>
+                                      <br>
 
-                        </div><!-- end #signUpScope -->
+                                      <div class="videoWrapper">
+                                          <iframe src="//player.vimeo.com/video/92205016?title=0&amp;byline=0&amp;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                                          <div class="frameCover" data-type="video"></div>
+                                      </div>
 
+                                  </div><!-- /.col-md-6 -->
 
-                    </div>
-<div class="col-sm-6">
-  <h2>Already have an account? Sign in.</h2>
-  <div id="signUp" class="anchor"></div>
-     <div id="signUpScope">
-         <form data-bind="submit: submit">
+                              </div><!-- /.row -->
+
+                          </div><!-- /.container -->
+
+                      </div><!-- /.item -->
 
 
-               <div>
-                   <button type="submit" class="btn btn-warning" data-bind="visible: !submitted() " id="signupSubmit" {{action 'gotoLogin'}}>Sign In</button>
-               </div>
 
-       </form>
-
-     </div><!-- end #signUpScope -->
-   </div>
                   </div>
 
                 </div>
 
-        <!-- <img class="background" src="https://osf.io/static/img/front-page/bg-web.png"> -->
+     <img class="background" src="https://osf.io/static/img/front-page/bg-web.png">
+
+
+
     </div> <!-- end container & splash page -->
 
+
+<
 
 {{yield}}

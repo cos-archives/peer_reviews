@@ -2,10 +2,10 @@
 
 from django.contrib import admin
 
-from .models import Reviewer,Author,reviewslists, submissionevals, emails, reviewerassignments
+from .models import Reviewer,reviewslists, submissionevals, emails, reviewerassignments, Editor
 
 admin.site.register(Reviewer)
-admin.site.register(Author)
+admin.site.register(Editor)
 admin.site.register(reviewslists)
 admin.site.register(submissionevals)
 admin.site.register(emails)

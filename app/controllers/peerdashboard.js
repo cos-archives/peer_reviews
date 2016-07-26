@@ -5,7 +5,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
-  
+
   loadCurrentUser() {
     return new Ember.RSVP.Promise((resolve, reject) => {
       const token =
@@ -102,10 +102,11 @@ export default Ember.Controller.extend({
     hidedata()  {
       this.set('isshowingcontact', false);
     },
+    
     showapprove(d) {
 
 
-     this.store.findRecord('reviewslist', d.id).then(function(record) {
+     this.store.findRecord('submissionslist', d.id).then(function(record) {
 
          let title = record.get('title');
          let conference = record.get('conference');
@@ -121,7 +122,7 @@ export default Ember.Controller.extend({
        record.set('link',link);
 
 
-        record.save();
+       record.save();
 
 
       });
@@ -133,7 +134,7 @@ export default Ember.Controller.extend({
     showassign(d) {
       this.set('isshowingassign', true);
       this.set('docid',d);
-      
+
 
     },
 
