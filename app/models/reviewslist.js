@@ -1,5 +1,7 @@
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
+import Ember from 'ember';
+
 
 export default Model.extend({
 
@@ -10,6 +12,7 @@ export default Model.extend({
   author_email: attr('string'),
   status: attr('string'),
   link: attr('string'),
-  attachment: attr('string')
+  attachment: attr('string'),
+  iswaiting: Ember.computed.equal('status', 'Awaiting review')
 
   });
