@@ -11,6 +11,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import logout
 from django.core import serializers
+from django.db import models
 
 
 from rest_framework import status
@@ -71,12 +72,36 @@ class submisisonAssignmentViewSet(viewsets.ModelViewSet):
     queryset = reviewerassignments.objects.all()
     serializer_class = assignmentSerializer
 
-    def post(self, request, format=None):
-        serializer = assignmentSerializer(data=request.DATA)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+
+        rv = Reviewer.objects.get(id=serializer.data['reviewer'])
+
+
+
+        s = reviewerassignments.objects.filter(models.Q(reviewer=serializer.data['reviewer']) | models.Q(submission=serializer.data['submission']))
+
+        if len(s) == 1:
+            rv.osfreviews = rv.osfreviews + 1
+            rv.save()
+
+            s = reviewslists.objects.get(id=serializer.data['submission'])
+
+            s.reviewer.add(rv)
+
+            s.status = "Awaiting review"
+
+            s.save()
+
+            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        else:
+
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
     def partial_update(self, request, *args, **kwargs):
         serializer = assignmentSerializer(data=request.data)
@@ -200,7 +225,7 @@ class reviewslist(viewsets.ViewSet):
 
 
     def getreview(self, request,pk = None, format=None):
-            print 'getreview'
+
 
             rl = reviewslists.objects.filter(id=pk)
             ss = ReviewslistSerializer(rl, context={'request': request}, many=True)
@@ -208,7 +233,6 @@ class reviewslist(viewsets.ViewSet):
 
     def getmyreviews(self, request, pk= None, format =None):
 
-            print 'b'
             rl = reviewslists.objects.filter(reviewer__user__username=request.user.username)
             ss = ReviewslistSerializer(rl, context={'request': request}, many=True)
             return Response(ss.data)
@@ -234,7 +258,6 @@ class submissionslist(viewsets.ViewSet):
 
 
     def getsubmission(self, request,pk = None, format=None):
-            print 'c'
 
             rl = reviewslists.objects.filter(id=1)
             ss = ReviewslistSerializer(rl, context={'request': request}, many=True)
@@ -243,7 +266,6 @@ class submissionslist(viewsets.ViewSet):
     def getmysubmissions(self, request, pk= None, format =None):
 
 
-            print 'd'
 
             rl = reviewslists.objects.filter(editor__user__username=request.user.username)
             ss = ReviewslistSerializer(rl, context={'request': request}, many=True)

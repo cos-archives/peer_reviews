@@ -36,7 +36,7 @@ class reviewslists(models.Model):
     status = models.CharField(max_length=100)
     link = models.URLField(blank=True, null=True)
     attachment = models.FileField(null=True, upload_to='media/files')
-    reviewer = models.ManyToManyField(Reviewer)
+    reviewer = models.ManyToManyField(Reviewer, blank=True, default=None)
     editor  = models.ForeignKey(Editor, null=True)
 
 class emails(models.Model):
