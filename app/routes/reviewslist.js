@@ -4,7 +4,11 @@ export default Ember.Route.extend({
   statusc : 0,
   model(){
 
+
+
+
     return Ember.RSVP.hash({
+
       reviewsall: this.store.findAll('reviewslist'),
       reviewsdate: this.store.findAll('reviewslist', {reload: true}).then(function (reviewslist) {
         return reviewslist.sortBy('reviewdeadline').reverse();
@@ -12,7 +16,7 @@ export default Ember.Route.extend({
       reviewsfilter: this.store.findAll('reviewslist', {reload: true}).then(function (reviewslist) {
         return reviewslist.filterBy('status','Completed').get('length');
       })
-      
+
     });
 
   },
@@ -33,7 +37,7 @@ export default Ember.Route.extend({
       }
     });
   },
-  
+
    actions: {
 
      navigate() {
@@ -60,7 +64,7 @@ export default Ember.Route.extend({
      dateColor(d){
        var today = new Date();
        var dd = today.getDate();
-       var mm = today.getMonth()+1; 
+       var mm = today.getMonth()+1;
        var yyyy = today.getFullYear();
 
        if(dd<10) {
