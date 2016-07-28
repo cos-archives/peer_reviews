@@ -26,30 +26,51 @@ export default Ember.Controller.extend({
      actions: {
 
        sendemail(){
-         let emailrecord =  this.store.createRecord('email');
-         emailrecord.from_email = 'sherif_hany@hotmail.com';
-         emailrecord.to_email = 'sherief@vbi.vt.edu';
-         emailrecord.message = this.get('emailbody');
-         emailrecord.subject  = 'Review Invitation';
+
          var self = this;
-         emailrecord.save().then(function(){
+
+         let assignrecord = self.store.createRecord('reviewerassignment');
+         assignrecord.submission = self.get('submission_id');
+         assignrecord.reviewer = self.get('reviewerInfo.id');
+         assignrecord.status = 'assigned';
+
+         assignrecord.save().then(function () {
 
            self.set('isshowingInvite', false);
            document.getElementById('submitAlert').className = "alert-success alert fade in";
 
-           setTimeout(function() {
+           setTimeout(function () {
+
 
              self.transitionToRoute('peerdashboard');
            }, 2000);
 
-         }).then(function() {
-           let assignrecord = self.store.createRecord('reviewerassignment');
-           assignrecord.submission = self.get('submission_id');
-           assignrecord.reviewer = self.get('reviewerInfo.id');
-           assignrecord.status = 'assigned';
-           assignrecord.save();
+           let emailrecord = self.store.createRecord('email');
+           emailrecord.from_email = 'sherif_hany@hotmail.com';
+           emailrecord.to_email = 'sherief@vbi.vt.edu';
+           emailrecord.message = self.get('emailbody');
+           emailrecord.subject = 'Review Invitation';
+           emailrecord.save();
+
+
+
+         },function () {
+           self.set('isshowingInvite', false);
+           document.getElementById('submitAlert2').className = "alert-danger alert fade in";
+
+           setTimeout(function () {
+
+             Ember.$('#submitAlert2').hide();
+
+           }, 2000);
 
          });
+
+
+
+
+
+
 
        },
 
