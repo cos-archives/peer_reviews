@@ -6,9 +6,28 @@
     <div id="indexTop" class="container-fluid big osf-standard-background">
         <a href="https://staging.osf.io/"><img class="logo" src="https://osf.io/static/img/cos-white2.png"> </a>
 
+
+
+            <div id="logo">
+
+                <div class="circle" id="circle-1"><span></span></div>
+                <div class="circle" id="circle-2"><span></span></div>
+                <div class="circle" id="circle-3"><span></span></div>
+                <div class="circle" id="circle-4"><span></span></div>
+                <div class="circle" id="circle-5"><span></span></div>
+                <div class="circle" id="circle-6"><span></span></div>
+                <div class="circle" id="circle-7"><span></span></div>
+                <div class="circle" id="circle-8"><span></span></div>
+            </div>
+
+
+
+
+
         <div class="cos-about" >
+
             <h1>OSF for Peer Review</h1>
-            <h2></h2>
+            <h3></h3>
             <h5 >We began with one infrastructure project, the Open Science Framework,</h5>
             <h5>one research project, Reproducibility Project: Psychology,</h5>
             <h5>and a mission: to increase openness, integrity, and reproducibility of scientific research.</h5>
@@ -17,8 +36,7 @@
 
         </div>
 
-<br><br>
-        <div id="hero-signup" class="container">
+        <div id="hero-signup" class="container" >
                   <div class="row">
 
 
@@ -26,7 +44,7 @@
 
                           <div class="container">
 
-                              <div class="row">
+                              <div class="row" >
 
                                   <div class="col-sm-6">
                                       <h2>Already have an OSF account? Sign in.</h2>
@@ -35,8 +53,8 @@
                                           <form data-bind="submit: submit">
 
 
-                                              <div>
-                                                  <button type="submit" class="btn btn-warning" data-bind="visible: !submitted() " id="signupSubmit" {{action 'gotoLogin'}}>Sign In</button>
+                                              <div class="sign" style="z-index: 5; position: absolute">
+                                                  <button type="submit" class="btn btn-warning" data-bind="visible: !submitted() " id="signupSubmit"  {{action 'gotoLogin'}}>Sign In</button>
                                               </div>
 
                                           </form>
@@ -48,8 +66,9 @@
 
                                       <br>
 
-                                      <div class="videoWrapper">
-                                          <iframe src="//player.vimeo.com/video/92205016?title=0&amp;byline=0&amp;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                                      <div class="videoWrapper" style="z-index: 5; position: absolute">
+                                          <iframe src="//player.vimeo.com/video/92205016?title=0&amp;byline=0&amp;portrait=0" width="600" height="381" frameborder="2"  webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                                          <!--<iframe width="700" height="481" src="https://www.youtube.com/embed/rOCQZ7QnoN0" frameborder="0" allowfullscreen></iframe>-->
                                           <div class="frameCover" data-type="video"></div>
                                       </div>
 
@@ -67,13 +86,13 @@
 
                 </div>
 
-     <img class="background" src="https://osf.io/static/img/front-page/bg-web.png">
+     <img class="background" src="https://osf.io/static/img/front-page/bg-web.png" style="z-index: 0; position: absolute; index: 80%">
 
 
 
     </div> <!-- end container & splash page -->
 
 
-<
+
 
 {{yield}}

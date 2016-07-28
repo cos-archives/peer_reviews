@@ -73,22 +73,27 @@
                     <td>
 
 
-                        <a class="btn btn-primary" {{action 'openreview'}} >View</a>
+                        <a class="btn btn-primary" {{action 'openreview'}} >Review </a>
+
+                    </td>
+
+
+
+                {{#if d.iswaiting}}
+                    <td>
+
+
+                        <a class="btn btn-success" {{action 'acceptsubmission'}}>Accept </a>
+
 
                     </td>
                     <td>
 
 
-                        <a class="btn btn-success" {{action 'acceptsubmission'}}>Accept</a>
-
-
-                    </td>
-                    <td>
-
-
-                        <a class="btn btn-danger" {{action 'declinesubmision'}} >Decline</a>
+                        <a class="btn btn-danger" {{action 'declinesubmision'}} >Decline </a>
 
                     </td>
+                {{/if}}
 
                 </tr>
             {{/each}}
@@ -114,14 +119,17 @@
                                           {{d.reviewdeadline}}</p>
                                     </div>
                                     <div class="col-xs-12 col-md-6">
-                                        <a class="btn btn-primary" {{action 'openreview'}} >View</a>
+                                        <a class="btn btn-primary" {{action 'openreview'}} >Review </a>
+                                    </div>
+
+                                    <div class="col-xs-12 col-md-6">
+                                        <a class="btn btn-success" {{action 'openreview'}} >Accept </a>
                                     </div>
                                     <div class="col-xs-12 col-md-6">
-                                        <a class="btn btn-success" {{action 'openreview'}} >Accept</a>
+                                        <a class="btn btn-danger" {{action 'openreview'}} >Decline </a>
                                     </div>
-                                    <div class="col-xs-12 col-md-6">
-                                        <a class="btn btn-danger" {{action 'openreview'}} >Decline</a>
-                                    </div>
+
+
                                 </div>
                             </div>
                         </div>

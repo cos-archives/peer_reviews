@@ -38,26 +38,29 @@
             <div class="container">
 
                 <div class="progress">
+
+                    <div class="progress-bar progress-bar-danger" role="progressbar" style={{safeEmberstyle dimgrey model.nreceived}}  >
+                      {{truncate model.nreceived model.nlength}} Received
+                    </div>
+
+                    <div class="progress-bar progress-bar-warning" role="progressbar" style={{safeEmberstyle blue model.nawaitingr}} >
+                      {{truncate model.nawaitingr model.nlength}} Awaiting review
+                    </div>
+
+                    <div class="progress-bar progress-bar-success" role="progressbar" style={{safeEmberstyle orange model.nreview}}>
+                      {{truncate model.nreview model.nlength}} Under review
+
+                    </div>
+
+                    <div class="progress-bar progress-bar-warning" role="progressbar" style={{safeEmberstyle  sienna model.nawaitingd}}>
+                      {{truncate model.nawaitingd model.nlength}} Awaiting decision
+                    </div>
+
                     <div class="progress-bar progress-bar-success" role="progressbar" style={{safeEmberstyle green model.ncomplete}} >
                       {{truncate model.ncomplete model.nlength}} Completed
 
                     </div>
-                    <div class="progress-bar progress-bar-warning" role="progressbar" style={{safeEmberstyle blue model.napprove}} >
-                      {{truncate model.napprove model.nlength}} Approved
-                    </div>
-                    <div class="progress-bar progress-bar-danger" role="progressbar" style={{safeEmberstyle dimgrey model.nsubmit}}  >
-                      {{truncate model.nsubmit model.nlength}} Submitted
-                    </div>
-                    <div class="progress-bar progress-bar-success" role="progressbar" style={{safeEmberstyle orange model.nprogress}}>
-                      {{truncate model.nprogress model.nlength}} In progress
 
-                    </div>
-                    <div class="progress-bar progress-bar-warning" role="progressbar" style={{safeEmberstyle indianred model.npast}}>
-                      {{truncate model.npast model.nlength}} Past duew
-                    </div>
-                    <div class="progress-bar progress-bar-danger" role="progressbar" style={{safeEmberstyle  darkred model.nreject}}>
-                      {{truncate model.nreject model.nlength}} Rejected
-                    </div>
 
                 </div>
 
@@ -353,6 +356,7 @@
       </form>
   {{/modal-dialog}}
 {{/if}}
+
 
 
 
