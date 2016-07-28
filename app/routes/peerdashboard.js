@@ -20,20 +20,18 @@ export default Ember.Route.extend({
       ncomplete: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
         return reviewslist.filterBy('status','Completed').get('length')/reviewslist.get('length')*100;
       }),
-      napprove: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
-        return reviewslist.filterBy('status','Approved').get('length')/reviewslist.get('length')*100;
+      
+      nawaitingr: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
+        return reviewslist.filterBy('status','Awaiting review').get('length')/reviewslist.get('length')*100;
       }),
-      nprogress: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
-        return reviewslist.filterBy('status','In-progress').get('length')/reviewslist.get('length')*100;
+      nreview: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
+        return reviewslist.filterBy('status','Under review').get('length')/reviewslist.get('length')*100;
       }),
-      nrejected: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
-        return reviewslist.filterBy('status','Rejected').get('length')/reviewslist.get('length')*100;
+      nawaitingd: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
+        return reviewslist.filterBy('status','Awaiting decision').get('length')/reviewslist.get('length')*100;
       }),
-      npast: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
-        return reviewslist.filterBy('status','Past due').get('length')/reviewslist.get('length')*100;
-      }),
-      nsubmit: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
-        return reviewslist.filterBy('status','Submitted').get('length')/reviewslist.get('length')*100;
+      nreceived: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
+        return reviewslist.filterBy('status','Received').get('length')/reviewslist.get('length')*100;
       })
 
     });
