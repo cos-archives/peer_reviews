@@ -63,6 +63,14 @@ export default Ember.Route.extend({
       this.transitionTo('index');
     },
 
+    gotoreviewing(){
+      this.transitionTo('reviewslist');
+    },
+    
+    gotoediting(){
+      this.transitionTo('peerdashboard');
+    },
+
     tablecolor(mode){
 
       Ember.$("tr").each(function() {
