@@ -23,7 +23,7 @@ export default Ember.Component.extend({
 
         self.set('username',resp.data);
         self.set('profile_url',"https://staging.osf.io/"+self.get('username')+"/");
-        console.log(self.get('profile_url'));
+        //console.log(self.get('profile_url'));
 
       }
     });
@@ -47,6 +47,14 @@ export default Ember.Component.extend({
           self.sendAction('navigate');
         }
       });
+    },
+    gotoreviewing(){
+      var self = this;
+      self.sendAction('gotoreviewing');
+    },
+    gotoediting(){
+      var self = this;
+      self.sendAction('gotoediting');
     }
 
 
