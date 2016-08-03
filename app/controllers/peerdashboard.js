@@ -1,28 +1,25 @@
-
-
 import Ember from 'ember';
 
 
 export default Ember.Controller.extend({
+
   session: Ember.inject.service('session'),
 
   loadCurrentUser() {
     return new Ember.RSVP.Promise((resolve, reject) => {
-      const token =
-        this.get('session.data.authenticated.token');
-      if (!Ember.isEmpty(token)) {
-        return this.get('store').findRecord('user',
+        const token =
+          this.get('session.data.authenticated.token');
+    if (!Ember.isEmpty(token)) {
+      return this.get('store').findRecord('user',
           'me').then((user) => {
           this.set('account', user);
-          resolve();
-        }, reject);
-      } else {
-        resolve();
-      }
-    });
+      resolve();
+    }, reject);
+    } else {
+      resolve();
+    }
+  });
   },
-
-
 
   docid:0,
   isshowingcontact: false,
@@ -46,55 +43,46 @@ export default Ember.Controller.extend({
     tablecolor(){
 
 
-     /* Ember.$("tr").each(function() {
-        Ember.$this = Ember.$(this);
-        var imps = Ember.$this.find(".st").text().trim();
+      /* Ember.$("tr").each(function() {
+       Ember.$this = Ember.$(this);
+       var imps = Ember.$this.find(".st").text().trim();
 
-        console.log(imps);
-        console.log('hii');
+       console.log(imps);
+       console.log('hii');
 
-        if (mode=='Completed' && imps=='Completed'){
+       if (mode=='Completed' && imps=='Completed'){
 
 
-          Ember.$this.css('background-color', 'green');
+       Ember.$this.css('background-color', 'green');
 
-        }else if(mode=='Passed Due' && imps=='Passed Due'){
+       }else if(mode=='Passed Due' && imps=='Passed Due'){
 
-          Ember.$this.css('background-color', 'red');
+       Ember.$this.css('background-color', 'red');
 
-        }else if (imps == ''){
+       }else if (imps == ''){
 
-        }else{
-          Ember.$this.css('background-color', 'yellow');
+       }else{
+       Ember.$this.css('background-color', 'yellow');
 
-        }
+       }
 
-        // compare id to what you want
-      });*/
-
-    },
-
-    contactauthor(){
-
+       // compare id to what you want
+       });*/
 
     },
-    approvebutton(){
 
-
-    },
+    contactauthor(){},
+    approvebutton(){},
     svalue(v){
-
       this.set('selectvalue',v);
-
-
     },
     showdata() {
       this.set('isshowingcontact', true);
     },
     showform(d) {
       this.set('isshowingform', true);
-       this.set('filelink',d);
-       console.log(d);
+      this.set('filelink',d);
+      console.log(d);
     },
     hideform() {
       this.set('isshowingform', false);
@@ -102,99 +90,70 @@ export default Ember.Controller.extend({
     hidedata()  {
       this.set('isshowingcontact', false);
     },
-    
+
     showapprove(d) {
+      this.store.findRecord('submission', d.id).then(function(record) {
+        let title = record.get('title');
+        let conference = record.get('conference');
+        let link = record.get('link');
+        let reviewdeadline = record.get('reviewdeadline');
 
+        record.set('conference',conference);
+        record.set('title',title);
+        record.set('reviewdeadline',reviewdeadline);
+        record.set('status', "Approved");
+        record.set('link',link);
 
-     this.store.findRecord('submissionslist', d.id).then(function(record) {
-
-         let title = record.get('title');
-         let conference = record.get('conference');
-         let link = record.get('link');
-       let reviewdeadline = record.get('reviewdeadline');
-
-
-
-       record.set('conference',conference);
-       record.set('title',title);
-       record.set('reviewdeadline',reviewdeadline);
-       record.set('status', "Approved");
-       record.set('link',link);
-
-
-       record.save();
-
-
+        record.save();
       });
-
-
-
-
     },
     showassign(d) {
       this.set('isshowingassign', true);
       this.set('docid',d);
-
-
     },
 
     hideassign(inp)  {
       if (inp === 'ok'){
 
-      var target = document.getElementById('selectbasic');
-
-      if (target.value === '2'){
-
-
-        this.set('isshowingassign', false);
-
-        this.transitionToRoute('assignreview',{queryParams: {submission_id: this.get('docid')}});
-
-      }else{
-
-
-        this.set('isshowingassign', false);
-              }
-      }else{
-
-        this.set('isshowingassign', false);
-
-
+        var target = document.getElementById('selectbasic');
+        if (target.value === '2'){
+          this.set('isshowingassign', false);
+          this.transitionToRoute('assignreview',{queryParams: {submission_id: this.get('docid')}});
+        }
+        else {
+          this.set('isshowingassign', false);
+        }
       }
-
+      else {
+        this.set('isshowingassign', false);
+      }
     },
-    openreview()
-    {
+
+    openreview() {
       this.transitionToRoute('evaluation');
     },
-    showlist(){
 
+    showlist() {
       this.set('islistview',true);
       this.set('isgridview',false);
       this.set('istreeview',false);
-
     },
 
-    showgrid(){
+    showgrid() {
       this.set('islistview',false);
       this.set('isgridview',true);
       this.set('istreeview',false);
-
     },
 
     isInArray(value, array) {
-        return array.indexOf(value) > -1;
-
+      return array.indexOf(value) > -1;
     },
 
-    showtree(){
-
-
+    showtree() {
       this.set('istreeview',true);
       this.set('isgridview',false);
       this.set('islistview',false);
+    },
 
-    }
   }
-
 });

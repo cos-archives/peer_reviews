@@ -9,7 +9,7 @@ export default Ember.Component.extend({
 
     var self = this;
     Ember.$.ajax({
-      url: "http://localhost:8000/api/username",
+      url: "http://localhost:8000/username",
       dataType: 'json',
       contentType: 'text/plain',
       xhrFields: {

@@ -1,18 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    reviewerinfo: null,
+
     islistview : true,
     isgridview: false,
-  emailbody: '',
-  msgtemplate: '' +
-  'Dear Academic Editor,\n'+
-  'This email is to inform you that reviewer {cname} has declined the invitation to review the manuscript entitled {ptitle}.\n\n'+
-  'OSF Peer reviews',
-
-    activate:{
-
-    },
     actions: {
       openreview()
       {
@@ -28,57 +19,15 @@ export default Ember.Controller.extend({
       showgrid(){
         this.set('islistview',false);
         this.set('isgridview',true);
-
+        
       },
-
+      
       acceptsubmission(){
-
+        
       },
-
-      storereviewerInfo(id){
-        this.set('isshowingBio',true);
-        this.set('reviewerInfo',this.store.findRecord('reviewer', id));
-
-
-      },
-      declinesubmission(did,sname){
-        let self = this;
-        var rid = null;
-        Ember.$.ajax({
-          url: "http://localhost:8000/api/reviewerid",
-          dataType: 'json',
-          contentType: 'text/plain',
-          xhrFields: {
-            withCredentials: true
-          }
-        }).then(function(response) {
-
-          rid = response.data[0].id;
-
-          let assignrecord = self.store.createRecord('reviewerassignment');
-          assignrecord.submission = did;
-          assignrecord.reviewer = rid;
-          assignrecord.status = 'Declined';
-          assignrecord.save();
-        },function (response) {
-          self.set('emailbody',self.get('msgtemplate').replace("{cname}",response.data[0].name).replace('{ptitle}',sname));
-          let emailrecord = self.store.createRecord('email');
-          emailrecord.from_email = 'sherif_hany@hotmail.com';
-          emailrecord.to_email = 'sherief@vbi.vt.edu';
-          emailrecord.message = self.get('emailbody');
-          emailrecord.subject = 'Review Invitation';
-          emailrecord.save();
-
-
-
-        });
-
-
-
-
-
-
-
+      
+      declinesubmission(){
+        
       }
     }
 
