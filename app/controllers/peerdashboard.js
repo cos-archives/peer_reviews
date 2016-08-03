@@ -102,7 +102,7 @@ export default Ember.Controller.extend({
     hidedata()  {
       this.set('isshowingcontact', false);
     },
-    
+
     showapprove(d) {
 
 
@@ -193,6 +193,11 @@ export default Ember.Controller.extend({
       this.set('istreeview',true);
       this.set('isgridview',false);
       this.set('islistview',false);
+
+    },
+    goToSubmission(id){
+     console.log(id);
+
 
     }
   }

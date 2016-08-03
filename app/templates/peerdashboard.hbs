@@ -1,4 +1,3 @@
-
 {{cos-navbar navigate='navigate' gotoreviewing='gotoreviewing' gotoediting='gotoediting' }}
 
 
@@ -9,33 +8,25 @@
     <div class="row">
         <div class="col-md-12">
 
-
-
-            <h3 class="text-center text-primary">
-            </h3>
-            <div>
-
-            <h1 class="ptitle">
-                Peer Review Dashboard
-            </h1>
-
-
+          <br />
+          <br />
+            <div class="ptitle">
+              <h1 class="text-center">
+                  Peer Review Dashboard
+              </h1>
             </div>
 
-
-
-            <div class="input-group"> <span class="input-group-addon">Filter</span>
-
-                <input id="filter" type="text" class="filter-control" placeholder="Type here..." {{action 'filterdata'}}>
+            <div class="input-group filter-control-holder">
+              <input id="filter" type="text" class="filter-control" placeholder="Filter results" {{action 'filterdata'}} >
             </div>
 
-            <div class="btn-group">
-                <a id="list" class="btn btn-default btn-sm" {{action 'showlist'}}><span class="glyphicon glyphicon-th-list">
-            </span>List</a> <a id="grid" class="btn btn-default btn-sm"{{action 'showgrid'}} ><span
-                    class="glyphicon glyphicon-th"></span>Grid</a>
-                <!--<a id="tree" class="btn btn-default btn-sm"{{action 'showtree'}} ><span-->
-                    <!--class="glyphicon glyphicon-leaf"></span>Tree</a>-->
-            </div>
+                   <th>
+                      <div class="btn-group list-gird-view-buttons">
+                        <a id="list" class="btn btn-default btn-sm" {{action 'showlist'}}><span class="glyphicon glyphicon-th-list"></span>List</a>
+                        <a id="grid" class="btn btn-default btn-sm"{{action 'showgrid'}} ><span class="glyphicon glyphicon-th"></span>Grid</a>
+                      </div>
+                    </th>
+
 
             <div class="container">
 
@@ -70,79 +61,75 @@
 
             </div>
             {{#if islistview}}
-            <table id="submissions" class="table table-hover" >
-                <thead>
+          <div class="listViewHolder">
+              <table id="submissions" class="table table-hover" align="center" >
+                  <thead>
+                  <tr>
+                      <th>
+                          #
+                      </th>
+                      <th>
+                          Title
+                      </th>
+                      <th>
+                          Conference
+                      </th>
+                      <th>
+                          Review Deadline
+                      </th>
+                      <th>
+                          Status
+                      </th>
+                  </tr>
+                  </thead>
+                  <tbody class="searchable">
+                  {{#each model.reviewsdate as |d|}}
 
-                <tr>
-                    <th>
-                        #
-                    </th>
-                    <th>
-                        Title
-                    </th>
-                    <th>
-                        Conference
-                    </th>
-                    <th>
-                        Review Deadline
-                    </th>
-                    <th>
-                        Status
-                    </th>
-                    <th>
+                      <tr  {{action 'goToSubmission' d.id }}>
+                          <td>
+                            {{d.id}}
+                          </td>
+                          <td>
+                            {{d.title}}
+                          </td>
+                          <td>
+                            {{d.conference}}
+                          </td>
+                          <td>
+                            {{d.reviewdeadline}}
+                          </td>
+                          <td class="st">
+                            {{d.status}}
+                          </td>
 
-                    </th>
-                </tr>
-                </thead>
-                <tbody class="searchable">
-                {{#each model.reviewsdate as |d|}}
+                        <!--  <td>
+                              <a class="btn btn-primary" {{action 'showform' d.attachment}} >View</a>
 
-                    <tr>
-                        <td>
-                          {{d.id}}
-                        </td>
-                        <td>
-                          {{d.title}}
-                        </td>
-                        <td>
-                          {{d.conference}}
-                        </td>
-                        <td>
-                          {{d.reviewdeadline}}
-                        </td>
-                        <td class="st">
-                          {{d.status}}
-                        </td>
-
-                        <td>
-                            <a class="btn btn-primary" {{action 'showform' d.attachment}} >View</a>
-
-                        </td>
-                        <td>
-                            <a class="btn btn-primary" {{action 'showapprove' d}} >Approve</a>
-                        </td>
-                        <td>
-                            <a class="btn btn-primary" {{action 'showassign' d.id}} >Assign</a>
-                        </td>
-                        <td>
-                            <a class="btn btn-primary" {{action 'showdata'}} >Contact Author</a>
-                        </td>
+                          </td>
+                          <td>
+                              <a class="btn btn-primary" {{action 'showapprove' d}} >Approve</a>
+                          </td>
+                          <td>
+                              <a class="btn btn-primary" {{action 'showassign' d.id}} >Assign</a>
+                          </td>
+                          <td>
+                              <a class="btn btn-primary" {{action 'showdata'}} >Contact Author</a>
+                          </td>
+  -->
 
 
-
-
-
-                    </tr>
-                {{/each}}
-                </tbody>
-            </table>
+                      </tr>
+                  {{/each}}
+                  </tbody>
+              </table>
+          </div>
             {{/if}}
 
           {{#if isgridview}}
 
-              <div id="reviews" class="row list-group">
+              <div id="reviews" class="row list-group" >
                 {{#each model.reviewsdate as |d|}}
-                    <div class="searchable2  col-xs-4 col-lg-4">
+                    <div class="searchable2  col-xs-4 col-lg-4" {{action 'goToSubmission' d.id }}>
                         <div class="thumbnail">
                             <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
                             <div class="caption">
@@ -155,12 +142,12 @@
                                         <p class="lead">
                                           {{d.reviewdeadline}}</p>
                                     </div>
-                                    <div class="col-xs-12 col-md-10">
+                                <!--<div class="col-xs-12 col-md-10">
                                         <a class="btn btn-primary" {{action 'showform'}} >View</a>
                                         <a class="btn btn-primary" {{action 'showapprove' d.id}} >Approve</a>
                                         <a class="btn btn-primary" {{action 'showassign' d.id}} >Assign</a>
                                         <a class="btn btn-primary" {{action 'showdata'}} >Contact Author</a>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -174,7 +161,7 @@
 
 
 
-          {{#if istreeview}}
+ <!--         {{#if istreeview}}
              <div id="reviews" class="row list-group">
 
               <div class="tree" {{action 'treeEvent'}}>
@@ -234,7 +221,7 @@
 
 
              </div>
-          {{/if}}
+          {{/if}}-->
 
         </div>
     </div>
@@ -362,6 +349,4 @@
 
 
 
-
-{{outlet}}
 

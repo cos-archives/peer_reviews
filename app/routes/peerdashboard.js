@@ -20,7 +20,7 @@ export default Ember.Route.extend({
       ncomplete: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
         return reviewslist.filterBy('status','Completed').get('length')/reviewslist.get('length')*100;
       }),
-      
+
       nawaitingr: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
         return reviewslist.filterBy('status','Awaiting review').get('length')/reviewslist.get('length')*100;
       }),
@@ -66,7 +66,7 @@ export default Ember.Route.extend({
     gotoreviewing(){
       this.transitionTo('reviewslist');
     },
-    
+
     gotoediting(){
       this.transitionTo('peerdashboard');
     },

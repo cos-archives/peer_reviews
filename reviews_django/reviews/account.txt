@@ -1,0 +1,4 @@
+[Account_Info]
+host= smtp.mailgun.org
+user= postmaster@teachfy.com
+password=cossherief123

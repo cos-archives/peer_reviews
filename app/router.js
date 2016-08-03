@@ -21,7 +21,8 @@ Router.map(function() {
   this.route('reviewslist');
   this.route('signup');
   this.route('evaluation-page');
-  this.route('peerdashboard');
+  this.route('peerdashboard', function() {});
+
 });
 
 export default Router;
