@@ -28,6 +28,13 @@ export default Ember.Route.extend({
       navigate() {
         this.transitionTo('index');
       },
+      gotoreviewing(){
+        this.transitionTo('reviewslist');
+      },
+
+      gotoediting(){
+        this.transitionTo('peerdashboard');
+      },
         saveEvaluation(newEval) {
             let router = this;
             if ((parseInt(document.getElementById('premise').value) >= 0) &&

@@ -13,6 +13,7 @@ export default Model.extend({
   status: attr('string'),
   link: attr('string'),
   attachment: attr('string'),
-  iswaiting: Ember.computed.equal('status', 'Awaiting review')
+  iswaiting: Ember.computed.equal('status', 'Awaiting review'),
+  isdeclined: Ember.computed.equal('status', 'Declined')
 
   });

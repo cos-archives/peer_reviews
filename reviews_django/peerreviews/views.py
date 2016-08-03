@@ -84,7 +84,7 @@ class submisisonAssignmentViewSet(viewsets.ModelViewSet):
 
 
 
-        s = reviewerassignments.objects.filter(models.Q(reviewer=serializer.validated_data['reviewer']) & models.Q(submission=serializer.validated_data['submission']) & models.Q(status=serializer.validated_data['submission']))
+        s = reviewerassignments.objects.filter(models.Q(reviewer=serializer.validated_data['reviewer']) & models.Q(submission=serializer.validated_data['submission']) & models.Q(status=serializer.validated_data['status']))
 
         if len(s) == 0:
 
@@ -98,15 +98,32 @@ class submisisonAssignmentViewSet(viewsets.ModelViewSet):
 
             s = reviewslists.objects.get(id=serializer.validated_data['submission'])
 
-            s.reviewer.add(rv)
 
-            if s.status == "Awaiting review":
 
-                s.status = serializer.validated_data['status']
+            if s.status == "Received":
+
+                s.status = "Awaiting review"
+                s.reviewer.add(rv)
 
 
             else:
-                s.status = "Awaiting review"
+                if serializer.validated_data['status'] == 'Declined':
+
+                    s.reviewer.remove(rv)
+
+                    t = reviewerassignments.objects.filter(models.Q(submission=serializer.validated_data['submission']) & models.Q(status="Awaiting review"))
+                    if len(t) == 1:
+                        s.status = "Received"
+
+                    else:
+
+                        s.status = "Awaiting review"
+
+
+
+                elif serializer.validated_data['status'] == 'Accepted':
+                    s.reviewer.add(rv)
+                    s.status = "Awaiting review"
 
             s.save()
 
