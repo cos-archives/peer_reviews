@@ -41,7 +41,7 @@ export default Ember.Controller.extend({
 
 
       },
-      declinesubmission(did,sname){
+      decidesubmission(did,sname,status){
         let self = this;
         var rid = null;
         Ember.$.ajax({
@@ -58,11 +58,12 @@ export default Ember.Controller.extend({
           let assignrecord = self.store.createRecord('reviewerassignment');
           assignrecord.submission = did;
           assignrecord.reviewer = rid;
-          assignrecord.status = 'Declined';
+          assignrecord.status = status;
           assignrecord.save();
         },function (response) {
           self.set('emailbody',self.get('msgtemplate').replace("{cname}",response.data[0].name).replace('{ptitle}',sname));
           let emailrecord = self.store.createRecord('email');
+          //using this email for testing
           emailrecord.from_email = 'sherif_hany@hotmail.com';
           emailrecord.to_email = 'sherief@vbi.vt.edu';
           emailrecord.message = self.get('emailbody');
@@ -75,11 +76,8 @@ export default Ember.Controller.extend({
 
 
 
-
-
-
-
       }
+
     }
 
 });

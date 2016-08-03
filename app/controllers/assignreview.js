@@ -32,7 +32,7 @@ export default Ember.Controller.extend({
          let assignrecord = self.store.createRecord('reviewerassignment');
          assignrecord.submission = self.get('submission_id');
          assignrecord.reviewer = self.get('reviewerInfo.id');
-         assignrecord.status = 'assigned';
+         assignrecord.status = 'Awaiting review';
 
          assignrecord.save().then(function () {
 
