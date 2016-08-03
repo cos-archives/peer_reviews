@@ -25,6 +25,11 @@ OSF_API_URL = "https://test-api.osf.io/"
 OSF_ACCOUNTS_URL = "https://test-accounts.osf.io/"
 
 
+
+
+
+
+
 class checkLoggedIn(APIView):
     def get(self, request, format=None):
         if request.user.is_authenticated():
@@ -79,7 +84,7 @@ class submisisonAssignmentViewSet(viewsets.ModelViewSet):
 
 
 
-        s = reviewerassignments.objects.filter(models.Q(reviewer=serializer.validated_data['reviewer']) & models.Q(submission=serializer.validated_data['submission']))
+        s = reviewerassignments.objects.filter(models.Q(reviewer=serializer.validated_data['reviewer']) & models.Q(submission=serializer.validated_data['submission']) & models.Q(status=serializer.validated_data['submission']))
 
         if len(s) == 0:
 
@@ -95,7 +100,13 @@ class submisisonAssignmentViewSet(viewsets.ModelViewSet):
 
             s.reviewer.add(rv)
 
-            s.status = "Awaiting review"
+            if s.status == "Awaiting review":
+
+                s.status = serializer.validated_data['status']
+
+
+            else:
+                s.status = "Awaiting review"
 
             s.save()
 
