@@ -23,6 +23,11 @@ Router.map(function() {
   this.route('evaluation-page');
   this.route('peerdashboard', function() {});
 
+  //replacement for peerdashboard
+  this.route('editing', function() {
+    this.route('submission' , { path: '/submission/:submissionslist_id' });
+    this.route('submissions');
+  });
 });
 
 export default Router;

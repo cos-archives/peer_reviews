@@ -1,0 +1,39 @@
+{{yield}}
+<div class="accordion-holder" {{action 'accordion'}}>
+  <button class="accordion">Content</button>
+  <div class="accordion-panel">
+
+    <div {{action 'accordionContent'}}>
+      <ul>
+        <li class="accordion-button">Title</li>
+        <li class="accordion-button" >Conference</li>
+        <li class="accordion-button" >Author(s)</li>
+        <li class="accordion-button">File</li>
+      </ul>
+      <div class="accordion-content accordion-content-title">tst</div>
+      <div class="accordion-content accordion-content-conference"></div>
+      <div class="accordion-content accordion-content-author">tst</div>
+      <div class="accordion-content accordion-content-File">
+        <legend>Submission Preview</legend>
+        <div class = "col-md-4" style="width: 680px">
+            <iframe id="fred" style="border:1px solid #666CCC" title="Submission" src={{filelink}}  scrolling="auto" height="650" width="650" ></iframe>
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <button class="accordion">Reviewers</button>
+  <div class="accordion-panel">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  </div>
+
+  <button class="accordion">Decision</button>
+  <div id="foo" class="accordion-panel">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  </div>
+</div>

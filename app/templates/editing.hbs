@@ -1,0 +1,54 @@
+{{cos-navbar navigate='navigate' gotoreviewing='gotoreviewing' gotoediting='gotoediting' }}
+
+     <div class="ptitle">
+      <h1 class="text-center">
+          Peer Review Dashboard
+      </h1>
+    </div>
+
+    <div class="input-group filter-control-holder">
+      <input id="filter" type="text" class="filter-control" placeholder="Filter results" {{action 'filterdata'}} >
+    </div>
+
+           <th>
+              <div class="btn-group list-gird-view-buttons">
+                <a id="list" class="btn btn-default btn-sm" {{action 'showlist'}}><span class="glyphicon glyphicon-th-list"></span>List</a>
+                <a id="grid" class="btn btn-default btn-sm"{{action 'showgrid'}} ><span class="glyphicon glyphicon-th"></span>Grid</a>
+              </div>
+            </th>
+
+
+    <div class="container">
+
+        <div class="progress">
+
+            <div class="progress-bar progress-bar-danger" role="progressbar" style={{safeEmberstyle dimgrey model.nreceived}}  >
+              {{truncate model.nreceived model.nlength}} Received
+            </div>
+
+            <div class="progress-bar progress-bar-warning" role="progressbar" style={{safeEmberstyle blue model.nawaitingr}} >
+              {{truncate model.nawaitingr model.nlength}} Awaiting review
+            </div>
+
+            <div class="progress-bar progress-bar-success" role="progressbar" style={{safeEmberstyle orange model.nreview}}>
+              {{truncate model.nreview model.nlength}} Under review
+
+            </div>
+
+            <div class="progress-bar progress-bar-warning" role="progressbar" style={{safeEmberstyle  sienna model.nawaitingd}}>
+              {{truncate model.nawaitingd model.nlength}} Awaiting decision
+            </div>
+
+            <div class="progress-bar progress-bar-success" role="progressbar" style={{safeEmberstyle green model.ncomplete}} >
+              {{truncate model.ncomplete model.nlength}} Completed
+
+            </div>
+        </div>
+      </div>
+
+
+  {{outlet}}
+
+
+
+
