@@ -5,14 +5,11 @@
 
     <div {{action 'accordionContent'}}>
       <ul>
-        <li class="accordion-button">Title</li>
-        <li class="accordion-button" >Conference</li>
-        <li class="accordion-button" >Author(s)</li>
+        <li class="accordion-button" >file Info</li>
         <li class="accordion-button">File</li>
       </ul>
-      <div class="accordion-content accordion-content-title">tst</div>
-      <div class="accordion-content accordion-content-conference"></div>
-      <div class="accordion-content accordion-content-author">tst</div>
+
+      <div class="accordion-content accordion-content-author">Title Author(s) Conference </div>
       <div class="accordion-content accordion-content-File">
         <legend>Submission Preview</legend>
         <div class = "col-md-4" style="width: 680px">
@@ -28,8 +25,25 @@
   </div>
 
   <button class="accordion">Reviewers</button>
-  <div class="accordion-panel">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <div class="accordion-panel">
+
+          <!-- Form Name -->
+          <legend>Review Assignment</legend>
+
+          <!-- Select Basic -->
+          <div class="form-group">
+              <h4 for="selectbasic">Assign to</h4>
+              <div class="col-md-4">
+                  <select id="selectbasic" name="selectbasic" class="form-control" style="width: 170px">
+                      <option value="1">Any Available Reviewer</option>
+                      <option value="2">Specific Reviewer</option>
+                  </select>
+
+              </div>
+          </div>
+          <br />
+
+
   </div>
 
   <button class="accordion">Decision</button>

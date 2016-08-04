@@ -62,8 +62,12 @@ html, body .fullscreen
 
 body{
     min-height: 700px;
-    background: #C5D6E6 url('https://osf.io/static/img/bg6.jpg') bottom  repeat-y;
-    background-size: cover;
+    background-image: linear-gradient(to bottom left, #000305, #0e4364, #4A8DB0);
+    color:white;
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 .titleRow
 {

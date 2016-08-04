@@ -4,8 +4,8 @@ export default Ember.Component.extend({
 didRender(){
   console.log("gey");
   $(".accordion-content").hide();
-  $(".accordion-button").eq(3).toggleClass("accordion-panel-active");
-  $(".accordion-content").eq(3).show();
+  $(".accordion-button").eq(1).toggleClass("accordion-panel-active");
+  $(".accordion-content").eq(1).show();
   $(".accordion").eq(0).toggleClass("active");
   $(".accordion-panel").eq(0).toggleClass("show");
 
