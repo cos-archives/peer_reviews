@@ -22,6 +22,7 @@ export default Ember.Route.extend({
       }),
 
       nawaitingr: this.store.findAll('submission', {reload: true}).then(function (reviewslist) {
+
         return reviewslist.filterBy('status','Awaiting review').get('length')/reviewslist.get('length')*100;
       }),
       nreview: this.store.findAll('submission', {reload: true}).then(function (reviewslist) {
