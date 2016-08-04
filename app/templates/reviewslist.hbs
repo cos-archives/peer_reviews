@@ -82,19 +82,26 @@
 
 
                 {{#if d.iswaiting}}
+
+
+
+                {{else}}
+
                     <td>
 
 
-                        <a class="btn btn-success" {{action 'acceptsubmission'}}>Accept </a>
+                        <a class="btn btn-success" {{action 'decidesubmission' d.id d.title 'Accepted'}}>Accept </a>
 
 
                     </td>
                     <td>
 
 
-                        <a class="btn btn-danger" {{action 'declinesubmision'}} >Decline </a>
+
+                        <a class="btn btn-danger" {{action 'decidesubmission' d.id d.title 'Declined'}} >Decline </a>
 
                     </td>
+
                 {{/if}}
 
                 </tr>

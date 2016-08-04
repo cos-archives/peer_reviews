@@ -560,7 +560,9 @@ background-color: rgba(12, 12, 12, 0.1);
 }
 
 
-
+.panel-collapse {
+  color: #0a0a0a;
+}
 
 //////
 
@@ -709,6 +711,12 @@ background-color: rgba(12, 12, 12, 0.1);
   z-index: -1;
 }
 
+.panel-group{
+
+  width: 800px;
+  margin: auto;
+
+}
 
 .sign-in{
   z-index: 5;

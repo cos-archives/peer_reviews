@@ -9,7 +9,6 @@ export default Ember.Route.extend({
         record.set('submission', this.get('submission'));
         return record;
     },
-
     activate: function () {
 
         var self = this;
@@ -32,6 +31,13 @@ export default Ember.Route.extend({
     actions: {
         navigate() {
             this.transitionTo('index');
+        },
+        gotoreviewing(){
+            this.transitionTo('reviewslist');
+        },
+
+        gotoediting(){
+            this.transitionTo('peerdashboard');
         },
         saveEvaluation(newEval) {
             let router = this;
@@ -57,7 +63,6 @@ export default Ember.Route.extend({
                 document.getElementById('errorAlert').className = "alert-danger alert fade in";
                 setTimeout(function () {
                     document.location.reload();
-
                 }, 2000);
 
             }
