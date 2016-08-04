@@ -63,8 +63,8 @@ class Reviewerassignment(models.Model):
 
 class Evaluation(models.Model):
     datesubmitted = models.DateTimeField(auto_now_add=True)
-    reviewer = models.ForeignKey(Reviewer)
-    submission = models.ForeignKey(Submission)
+    reviewer = models.ForeignKey(Reviewer, null=True)
+    submission = models.ForeignKey(Submission, null=True)
     premise = models.IntegerField(default=0, null=True)
     research = models.IntegerField(default=0, null=True)
     style = models.IntegerField(default=0, null=True)
