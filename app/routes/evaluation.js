@@ -6,6 +6,9 @@ export default Ember.Route.extend({
     },
   activate: function() {
 
+    
+    
+    
     var self = this;
     Ember.$.ajax({
       url: "http://localhost:8000/api/checklogin",
