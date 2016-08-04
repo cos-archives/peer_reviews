@@ -4,7 +4,7 @@ import Ember from 'ember';
 
 export default JSONAPIAdapter.extend({
 
-    namespace: 'api',
+    // namespace: 'api',
     host: 'http://localhost:8000',
     buildURL() {
 

@@ -10,27 +10,28 @@ export default Ember.Route.extend({
 
     return Ember.RSVP.hash({
 
-      reviewsall: this.store.findAll('submissionslist'),
-      reviewsdate: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
-        return reviewslist.sortBy('submissionslist').reverse();
+      reviewsall: this.store.findAll('submission'),
+      reviewsdate: this.store.findAll('submission', {reload: true}).then(function (reviewslist) {
+        return reviewslist.sortBy('submission').reverse();
       }),
-      nlength: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
+      nlength: this.store.findAll('submission', {reload: true}).then(function (reviewslist) {
         return reviewslist.get('length');
       }),
-      ncomplete: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
+      ncomplete: this.store.findAll('submission', {reload: true}).then(function (reviewslist) {
         return reviewslist.filterBy('status','Completed').get('length')/reviewslist.get('length')*100;
       }),
-      
-      nawaitingr: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
+
+      nawaitingr: this.store.findAll('submission', {reload: true}).then(function (reviewslist) {
+
         return reviewslist.filterBy('status','Awaiting review').get('length')/reviewslist.get('length')*100;
       }),
-      nreview: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
+      nreview: this.store.findAll('submission', {reload: true}).then(function (reviewslist) {
         return reviewslist.filterBy('status','Under review').get('length')/reviewslist.get('length')*100;
       }),
-      nawaitingd: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
+      nawaitingd: this.store.findAll('submission', {reload: true}).then(function (reviewslist) {
         return reviewslist.filterBy('status','Awaiting decision').get('length')/reviewslist.get('length')*100;
       }),
-      nreceived: this.store.findAll('submissionslist', {reload: true}).then(function (reviewslist) {
+      nreceived: this.store.findAll('submission', {reload: true}).then(function (reviewslist) {
         return reviewslist.filterBy('status','Received').get('length')/reviewslist.get('length')*100;
       })
 
@@ -44,20 +45,20 @@ export default Ember.Route.extend({
 
 
 
-      Ember.$.ajax({
-        url: "http://localhost:8000/api/checklogin",
-        dataType: 'json',
-        contentType: 'text/plain',
-        xhrFields: {
-          withCredentials: true
-        }
-      }).then(function(loggedIn) {
-        if (loggedIn.data === 'false') {
-          console.log('not logged in');
-          self.transitionTo('login');
-        }
-      });
-    },
+    Ember.$.ajax({
+      url: "http://localhost:8000/checklogin",
+      dataType: 'json',
+      contentType: 'text/plain',
+      xhrFields: {
+        withCredentials: true
+      }
+    }).then(function(loggedIn) {
+      if (loggedIn.data === 'false') {
+        console.log('not logged in');
+        self.transitionTo('login');
+      }
+    });
+  },
   actions: {
     navigate() {
       this.transitionTo('index');
@@ -66,7 +67,7 @@ export default Ember.Route.extend({
     gotoreviewing(){
       this.transitionTo('reviewslist');
     },
-    
+
     gotoediting(){
       this.transitionTo('peerdashboard');
     },
@@ -116,7 +117,6 @@ export default Ember.Route.extend({
     filterdata(){
 
       Ember.$('#filter').keyup(function () {
-
         var rex = new RegExp(Ember.$(this).val(), 'i');
         Ember.$('.searchable tr').hide();
         Ember.$('.searchable2').hide();
@@ -126,7 +126,6 @@ export default Ember.Route.extend({
         Ember.$('.searchable2').filter(function () {
           return rex.test(Ember.$(this).text());
         }).show();
-
       });
     },
     dateColor(d){ //this action is not used now, but needed for future use.
@@ -134,36 +133,17 @@ export default Ember.Route.extend({
       var dd = today.getDate();
       var mm = today.getMonth()+1;
       var yyyy = today.getFullYear();
-
-      if(dd<10) {
-        dd='0'+dd;
-      }
-
-      if(mm<10) {
-        mm='0'+mm;
-      }
-
-      today = new Date(mm+'/'+dd+'/'+yyyy);
-
-
+      if( dd < 10 ) { dd='0'+dd; }
+      if( mm < 10 ) { mm='0'+mm; }
+      var today = new Date(mm+'/'+dd+'/'+yyyy);
       var date2 = new Date(d);
       var timeDiff = (date2.getTime() - today.getTime());
       var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
       if (diffDays >= 0 ){
-
         this.set('statusc',this.get('statusc')+1);
-
-      }else{
-
+      } else {
         this.set('statusc',this.get('statusc')+0);
-
-
       }
-
-
     }
-
-
-
   }
 });

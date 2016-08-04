@@ -1,46 +1,33 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    reviewerinfo: null,
+
     islistview : true,
     isgridview: false,
-  emailbody: '',
-  msgtemplate: '' +
-  'Dear Academic Editor,\n'+
-  'This email is to inform you that reviewer {cname} has declined the invitation to review the manuscript entitled {ptitle}.\n\n'+
-  'OSF Peer reviews',
-
-    activate:{
-
-    },
     actions: {
-      openreview()
-      {
-        this.transitionToRoute('evaluation');
+      openreview(submission) {
+        this.transitionToRoute('evaluation', {queryParams: {sub: submission}});
       },
-      showlist(){
 
+      showlist(){
         this.set('islistview',true);
         this.set('isgridview',false);
-
       },
 
       showgrid(){
         this.set('islistview',false);
         this.set('isgridview',true);
-
       },
-
+      
       acceptsubmission(){
-
+        
       },
 
       storereviewerInfo(id){
         this.set('isshowingBio',true);
         this.set('reviewerInfo',this.store.findRecord('reviewer', id));
-
-
       },
+
       decidesubmission(did,sname,status){
         let self = this;
         var rid = null;
@@ -69,15 +56,7 @@ export default Ember.Controller.extend({
           emailrecord.message = self.get('emailbody');
           emailrecord.subject = 'Review Invitation';
           emailrecord.save();
-
-
-
         });
-
-
-
       }
-
     }
-
 });

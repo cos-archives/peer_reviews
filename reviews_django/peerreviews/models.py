@@ -1,11 +1,8 @@
 from django.db import models
-from django.utils import timezone
 from django.contrib.auth.models import User, Group
 
-import datetime
-
-
-
+# TODO: normalize casing in models
+# TODO: add timestamp fields
 
 class Reviewer(models.Model):
     user = models.OneToOneField(User,default=None)
@@ -18,16 +15,21 @@ class Reviewer(models.Model):
     osfreviews = models.IntegerField(default=0)
     avatar = models.ImageField(blank=True, null=True, upload_to='media/avatars')
 
+    def __str__(self):
+        return "Reviewer - " + self.name + " (" + self.affiliation + ")"
+
 
 class Editor(models.Model):
-        user = models.OneToOneField(User, default=None)
-        name = models.CharField(max_length=200)
-        email = models.EmailField(default=None)
+    user = models.OneToOneField(User, default=None)
+    name = models.CharField(max_length=200)
+    email = models.EmailField(default=None)
+
+    def __str__(self):
+        return "Editor - " + self.name
 
 
-
-class reviewslists(models.Model):
-
+class Submission(models.Model):
+    datesubmitted = models.DateTimeField(auto_now_add=True)
     conference = models.TextField(null=True)
     title = models.TextField(null=True)
     reviewdeadline = models.DateField(default=None)
@@ -37,30 +39,40 @@ class reviewslists(models.Model):
     link = models.URLField(blank=True, null=True)
     attachment = models.FileField(null=True, upload_to='media/files')
     reviewer = models.ManyToManyField(Reviewer, blank=True, default=None)
-    editor  = models.ForeignKey(Editor, null=True)
+    editor = models.ForeignKey(Editor, null=True)
 
-class emails(models.Model):
+    def __str__(self):
+        return self.title
 
+
+class Email(models.Model):
     from_email = models.EmailField(null=True)
     to_email = models.EmailField(null=True)
     message = models.TextField(default=None)
     subject = models.TextField(default=None)
 
+    def __str__(self):
+        return self.from_email + ' -> ' + self.to_email
 
-class reviewerassignments(models.Model):
+
+class Reviewerassignment(models.Model):
     reviewer = models.CharField(max_length=200)
     submission = models.CharField(max_length=200)
     status = models.CharField(max_length=200)
 
 
-class submissionevals(models.Model):
-
-    #reviewer = models.OneToOneField(Reviewer)
-    #submission = models.OneToOneField(Reviewslist)
-    premise = models.IntegerField(default=0)
-    research = models.IntegerField(default=0)
-    style = models.IntegerField(default=0)
+class Evaluation(models.Model):
+    datesubmitted = models.DateTimeField(auto_now_add=True)
+    reviewer = models.ForeignKey(Reviewer, null=True)
+    submission = models.ForeignKey(Submission, null=True)
+    premise = models.IntegerField(default=0, null=True)
+    research = models.IntegerField(default=0, null=True)
+    style = models.IntegerField(default=0, null=True)
     comment = models.TextField(null=True)
+    # status = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.reviewer.name + ': ' + self.submission
 
 
     @property

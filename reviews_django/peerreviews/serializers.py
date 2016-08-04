@@ -1,12 +1,16 @@
-from rest_framework import serializers
 from django.contrib.auth.models import User, Group
-from models import Reviewer, reviewslists, submissionevals, emails, reviewerassignments, Editor
+from models import Reviewer, Submission, Evaluation, Email, Editor, Reviewerassignment
 from rest_framework import serializers as ser
+from rest_framework_json_api import serializers, relations
+
 
 class UserSerializer(ser.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'email', 'groups')
+
+    class JSONAPIMeta:
+        resource_name = 'users'
 
 
 class GroupSerializer(ser.HyperlinkedModelSerializer):
@@ -14,45 +18,72 @@ class GroupSerializer(ser.HyperlinkedModelSerializer):
         model = Group
         fields = ('id', 'name')
 
+    class JSONAPIMeta:
+        resource_name = 'groups'
+
 
 class ReviewerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reviewer
+        fields = ('id', 'user', 'name', 'affiliation', 'email', 'bio', 'research', 'website', 'osfreviews', 'avatar')
 
-        fields = ('user','name', 'affiliation', 'email', 'bio', 'research', 'website', 'osfreviews', 'avatar')
+    class JSONAPIMeta:
+        resource_name = 'reviewers'
 
 
 class EmailSerializer(serializers.ModelSerializer):
     class Meta:
-        model = emails
+        model = Email
+        fields = ('from_email', 'to_email', 'message', 'subject')
 
-        fields = ('from_email','to_email','message', 'subject')
+    class JSONAPIMeta:
+        resource_name = 'emails'
 
-class ReviewslistSerializer(serializers.ModelSerializer):
+
+class SubmissionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = reviewslists
-        fields = ('conference', 'title','reviewdeadline',  'author_name','author_email', 'status', 'link', 'attachment')
+        model = Submission
+        fields = ('id', 'datesubmitted', 'conference', 'title', 'reviewdeadline',  'author_name','author_email', 'status',
+                  'link', 'attachment')
 
-class ReviewslistSerializerUpdate(serializers.ModelSerializer):
+    class JSONAPIMeta:
+        resource_name = 'submissions'
+
+
+# class SubmissionSerializerUpdate(serializers.ModelSerializer):
+#     class Meta:
+#         model = Submission
+#         fields = ('conference', 'title','reviewdeadline', 'status', 'link')
+
+
+class ReviewerassignmentSerializer(serializers.ModelSerializer):
+
+    # reviewer = relations.ResourceRelatedField(
+    #   queryset = Reviewer.objects.all(),
+    #   related_link_url_kwarg='reviewer_pk'  # still scary
+    # )
+    #
+    # submission = relations.ResourceRelatedField(
+    #   queryset = Submission.objects.all(),
+    #   related_link_url_kwarg='submission_pk'  # see above
+    # )
 
     class Meta:
-        model = reviewslists
-        fields = ('conference', 'title','reviewdeadline', 'status', 'link')
+        model = Reviewerassignment
+        fields = ('reviewer', 'submission', 'status')
 
-class assignmentSerializer(serializers.ModelSerializer):
+    class JSONAPIMeta:
+        resource_name = 'reviewerassignments'
+
+
+class EditorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = reviewerassignments
-        fileds = ('reviewer','submisison','status')
+        model = Editor
+        fields = ('user', 'name', 'email')
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'groups')
+    class JSONAPIMeta:
+        resource_name = 'editors'
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-   class Meta:
-		model = Group
-		fields = ('url', 'name')
 
 class AuthenticationSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
@@ -61,7 +92,11 @@ class AuthenticationSerializer(serializers.Serializer):
     def validate(self, data):
         return data
 
-class evalSerializer(serializers.ModelSerializer):
+
+class EvaluationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = submissionevals
-        fields = ('premise', 'research', 'style', 'comment', 'total')
+        model = Evaluation
+        fields = ('reviewer', 'submission', 'datesubmitted', 'premise', 'research', 'style', 'comment', 'total')
+
+    class JSONAPIMeta:
+        resource_name = 'evaluations'

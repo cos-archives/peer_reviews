@@ -24,6 +24,10 @@ config/local.yml
 *.rar
 *.tar
 *.zip
+.idea
+media
+reviews_django/reviews/account.txt
+.DS_Store
 
 # Logs and databases #
 ######################
@@ -61,3 +65,5 @@ tests/.coverage
 tmp/
 build/
 tests/report/
+.idea
+reviews_django/reviews/account.txt
