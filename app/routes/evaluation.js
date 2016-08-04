@@ -2,13 +2,13 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
     model() {
-        return this.store.createRecord('submissioneval');
+        return this.store.createRecord('evaluation');
     },
   activate: function() {
 
     var self = this;
     Ember.$.ajax({
-      url: "http://localhost:8000/api/checklogin",
+      url: "http://localhost:8000/checklogin",
       dataType: 'json',
       contentType: 'text/plain',
       xhrFields: {
@@ -66,9 +66,3 @@ export default Ember.Route.extend({
     },
 
 });
-
-
-// {{evaluation submission=model}}\
-
-// {{submission.}}
-// {{total}}
