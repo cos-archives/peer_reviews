@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+	queryParams: ['sub'],
 	//Checks if numbers entered in rubric are <= 15 and >= 0
 	isValidPremiseMax: Ember.computed.lte('model.premise', 15),
 	isValidPremiseMin: Ember.computed.gte('model.premise', 0),

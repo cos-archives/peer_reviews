@@ -1,17 +1,23 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-    model() {
-        return this.store.createRecord('submissioneval');
-    },
-  activate: function() {
+  submission: '',
 
-    var self = this;
-    Ember.$.ajax({
-      url: "http://localhost:8000/api/checklogin",
-      dataType: 'json',
-      contentType: 'text/plain',
-      xhrFields: {
+    model(params) {
+      this.set('submission', params.sub);
+      var record = this.store.createRecord('submissioneval');
+      record.set('reviewslist', this.get('submission'));
+      return record;
+    },
+
+    activate: function() {
+
+      var self = this;
+      Ember.$.ajax({
+        url: "http://localhost:8000/api/checklogin",
+        dataType: 'json',
+        contentType: 'text/plain',
+        xhrFields: {
         withCredentials: true
       }
     }).then(function(loggedIn) {
@@ -37,10 +43,11 @@ export default Ember.Route.extend({
                 (parseInt(document.getElementById('style').value) >= 0) &&
                 (parseInt(document.getElementById('style').value) <= 15)) {
 
+                //newEval.set('reviewslist', this.get('submission'));
                 newEval.save().then(function() {
                     document.getElementById('submitAlert').className =
                     "alert-success alert fade in";
-
+                    console.log(newEval.get('reviewslist'));
                     setTimeout(function() {
                         router.transitionTo('reviewslist');
                     }, 2000);

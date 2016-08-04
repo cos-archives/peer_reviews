@@ -5,9 +5,9 @@ export default Ember.Controller.extend({
     islistview : true,
     isgridview: false,
     actions: {
-      openreview()
+      openreview(submission)
       {
-        this.transitionToRoute('evaluation');
+        this.transitionToRoute('evaluation', {queryParams: {sub: submission}});
       },
       showlist(){
 
