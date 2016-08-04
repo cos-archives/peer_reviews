@@ -61,3 +61,5 @@ tests/.coverage
 tmp/
 build/
 tests/report/
+.idea
+reviews_django/reviews/account.txt
