@@ -1,21 +1,6 @@
 {{cos-navbar navigate='navigate' gotoreviewing='gotoreviewing' gotoediting='gotoediting' }}
 
-     <div class="ptitle">
-      <h1 class="text-center">
-          Peer Review Dashboard
-      </h1>
-    </div>
-
-    <div class="input-group filter-control-holder">
-      <input id="filter" type="text" class="filter-control" placeholder="Filter results" {{action 'filterdata'}} >
-    </div>
-
-           <th>
-              <div class="btn-group list-gird-view-buttons">
-                <a id="list" class="btn btn-default btn-sm" {{action 'showlist'}}><span class="glyphicon glyphicon-th-list"></span>List</a>
-                <a id="grid" class="btn btn-default btn-sm"{{action 'showgrid'}} ><span class="glyphicon glyphicon-th"></span>Grid</a>
-              </div>
-            </th>
+{{filter-search  title="Peer Review Dashboard"}}
 
 
     <div class="container">
