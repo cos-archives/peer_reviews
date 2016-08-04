@@ -31,6 +31,9 @@ export default Ember.Route.extend({
     },
 
     actions: {
+      openreview() {
+        this.transitionToRoute('evaluation');
+      },
 
         navigate() {
             this.transitionTo('index');

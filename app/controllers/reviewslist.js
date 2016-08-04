@@ -18,9 +18,9 @@ export default Ember.Controller.extend({
         this.set('islistview',false);
         this.set('isgridview',true);
       },
-      
+
       acceptsubmission(){
-        
+
       },
 
       storereviewerInfo(id){
