@@ -1,0 +1,51 @@
+{{yield}}
+
+<div class="listViewHolder">
+<table id="reviewers" class="table table-hover" align="center">
+    <thead>
+
+    <tr>
+
+        <th> Id
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Affiliation
+        </th>
+        <th>
+            Email
+        </th>
+    </tr>
+    </thead>
+    <tbody class="searchable">
+
+
+
+    {{#each model.reviewerall as |d|}}
+        <tr onclick={{action 'storereviewerInfo' d.id}}>
+            <td>
+              {{d.id}}
+            </td>
+            <td>
+              {{d.name}}
+            </td>
+            <td>
+              {{d.affiliation}}
+            </td>
+            <td>
+              {{d.email}}
+            </td>
+
+        </tr>
+    {{/each}}
+
+
+
+
+    </tbody>
+</table>
+
+
+    </div>

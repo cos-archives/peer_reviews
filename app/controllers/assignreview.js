@@ -5,8 +5,7 @@ export default Ember.Controller.extend( {
     ptitle: null,
     cname: null,
     reviewerInfo: '',
-    msgtemplate: '' +
-    ' Dear {rname},\n\n' +
+    msgtemplate: 'Dear {rname},\n\n' +
     'I am writing to invite you to review a manuscript for {cname} entitled {ptitle}.\n' +
     'If you accept this assignment, you are confirming that you have no competing interests that may affect your ability to provide an objective evaluation. Our Competing Interests policy can be found at here.\n' +
     'By agreeing to review, you are also committing to a confidential review process.\n' +
