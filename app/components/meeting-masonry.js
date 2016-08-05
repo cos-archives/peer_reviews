@@ -1,9 +1,6 @@
-import Ember from 'ember';
-
-
-
-export default Ember.Component.extend({
+import Ember from "ember";
+export default Ember.Component.extend( {
     title: '',
     description: '',
-    classNames: ['tile']
-});
+    classNames: [ 'tile' ]
+} );

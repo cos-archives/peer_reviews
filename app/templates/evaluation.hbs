@@ -4,159 +4,135 @@
 <div class="container-fluid big">
     <div class="row">
         <div class="col-md-6">
-  <div class="row title">
-     <div class="col-md-8 col-md">
-         <div >
-              <h2>Submission Evaluation</h2>
-         </div>
-    </div>
-  </div>
+            <div class="row title">
+                <div class="col-md-8 col-md">
+                    <div>
+                        <h2>Submission Evaluation</h2>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-        <div class="row">
-            <div class="col-md-8">
-                <div class="panel-group" id="accordion">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="color: #0a0a0a"><span class="glyphicon glyphicon-file" >
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                               style="color: #0a0a0a"><span class="glyphicon glyphicon-file">
                             </span>Submission Content</a>
-                            </h4>
-                        </div>
-                        <div id="collapseOne" class="panel-collapse in">
-                            <div class="panel-body">
-
-                                <div class = "col-md-12" align="center">
-                                    <iframe id="fred" style="border:1px solid #666CCC" title="Submission" src="http://localhost:8000/media/media/files/content_2013_1_30_60033_6sypwhr.pdf"  scrolling="auto" height="550" width="750" ></iframe>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse in">
+                        <div class="panel-body">
+                            <div class="col-md-12" align="center">
+                                <iframe id="fred" style="border:1px solid #666CCC" title="Submission"
+                                        src="http://localhost:8000/media/media/files/content_2013_1_30_60033_6sypwhr.pdf"
+                                        scrolling="auto" height="550" width="750"></iframe>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-8">
                                 </div>
-
-
-                                <div class="form-group">
-
-                                    <div class="col-md-8">
-
-
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="color: #001f3f "><span class="glyphicon glyphicon-th-list">
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
+                               style="color: #001f3f "><span class="glyphicon glyphicon-th-list">
                             </span>Feedback</a>
-                            </h4>
-                        </div>
-                        <div id="collapseTwo" class="panel-collapse collapse">
-                            <div class="panel-body">
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <form method="post">
+                                <div class="col-md-8 col-md-offset-1">
+                                    <div class="form-group row">
+                                        <h4><b>Step 1: Select Grade Based on Rubric</b></h4>
+                                        <div class="col-md-4 col-md-offset-1">
+                                            <label>Premise <font style='color: #ff0000'>*</font></label>
+                                        </div>
+                                        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <div class="col-md-6" style="width: 15%">
+                                            {{input id="premise" type="integer" value=model.premise class="form-control"}}
 
-                                <form method="post">
-
-
-                                    <div class="col-md-8 col-md-offset-1">
-
-
-                                        <div class="form-group row">
-                                            <h4><b>Step 1: Select Grade Based on Rubric</b></h4>
-                                            <div class="col-md-4 col-md-offset-1">
-                                                <label>Premise <font style='color: #ff0000'>*</font></label>
-                                            </div>
-                                            <span class="glyphicon glyphicon-ok form-control-feedback" ></span>
-                                            <div class="col-md-6" style="width: 15%">
-                                              {{input id="premise" type="integer" value=model.premise class="form-control"}}
-
-                                                <div style="color:#FF0000">
-                                                  {{if this.premiseError "Please assign a valid value" ""}}
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label  style='color: yellowgreen'>/15 </label>
+                                            <div style="color:#FF0000">
+                                                {{if this.premiseError "Please assign a valid value" ""}}
                                             </div>
                                         </div>
-
-
-                                        <div class="form-group row">
-                                            <div class="col-md-4 col-md-offset-1">
-                                                <label>Research <font style='color: #ff0000'>*</font></label>
-                                            </div>
-                                            <span class="glyphicon glyphicon-ok form-control-feedback" ></span>
-                                            <div class="col-md-6" style="width: 15%">
-                                              {{input id="research" type="integer" value=model.research class="form-control"}}
-
-                                                <div style="color:#FF0000">
-                                                  {{if this.researchError "Please assign a valid value" ""}}
-                                                </div>
-
-                                            </div>
-                                            <div>
-                                                <label  style='color: yellowgreen'>/15 </label>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="form-group row">
-                                            <div class="col-md-4 col-md-offset-1">
-                                                <label>Style <font style='color: #ff0000'>*</font></label>
-                                            </div>
-                                            <span class="glyphicon glyphicon-ok form-control-feedback" ></span>
-                                            <div class="col-md-6" style="width: 15%">
-                                              {{input id="style" type="integer" value=model.style class="form-control"}}
-                                                <div style="color:#FF0000">
-                                                  {{if this.StyleError "Please assign a valid value" ""}}
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <label  style='color: yellowgreen'>/15 </label>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="row total">
-                                            <div class="col-md-8 col-md-offset-1">
-                                                <h4 style="color: yellowgreen">TOTAL: {{model.total}}/45 </h4>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-md-6 col-md-offset-1">
-                                                <h6><font style="color: #ff0000">*</font> denotes required field</h6>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="form-group row">
-
-                                            <h4><b>Step 2: Comment Below</b></h4>
-                                            <div style="color: black">{{textarea value=model.comment cols="80" rows="5"}}</div>
-
-                                            <h4><b>File Attachment (optional) </b></h4>
-                                            <input id="filebutton" name="filebutton" class="input-file" type="file">
-                                        </div>
-                                        <div class="form-group row step3">
-                                            <h4><b>Step 3: Submit</b></h4>
-
-                                            <a style = "height: 40px; width: 100px" {{action "saveEvaluation" model}} class="btn btn-success" type="submit">Submit</a>
-                                            <a style = "height: 40px; width: 100px" {{action "cancel"}} class="btn btn-danger">Cancel</a>
-
-                                        </div>
-                                        <div id="errorAlert" class="alert alert-danger hide fade in" style = "width: 250px">
-                                            Please recheck your values.
-                                        </div>
-                                        <div id="submitAlert" class="alert alert-success hide fade in" style = "width: 250px">
-                                            Success! Feedback submitted.
+                                        <div>
+                                            <label style='color: yellowgreen'>/15 </label>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-4 col-md-offset-1">
+                                            <label>Research <font style='color: #ff0000'>*</font></label>
+                                        </div>
+                                        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <div class="col-md-6" style="width: 15%">
+                                            {{input id="research" type="integer" value=model.research class="form-control"}}
 
-
-                                </form>
-
-                            </div>
+                                            <div style="color:#FF0000">
+                                                {{if this.researchError "Please assign a valid value" ""}}
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label style='color: yellowgreen'>/15 </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-4 col-md-offset-1">
+                                            <label>Style <font style='color: #ff0000'>*</font></label>
+                                        </div>
+                                        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <div class="col-md-6" style="width: 15%">
+                                            {{input id="style" type="integer" value=model.style class="form-control"}}
+                                            <div style="color:#FF0000">
+                                                {{if this.StyleError "Please assign a valid value" ""}}
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label style='color: yellowgreen'>/15 </label>
+                                        </div>
+                                    </div>
+                                    <div class="row total">
+                                        <div class="col-md-8 col-md-offset-1">
+                                            <h4 style="color: yellowgreen">TOTAL: {{model.total}}/45 </h4>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-6 col-md-offset-1">
+                                            <h6><font style="color: #ff0000">*</font> denotes required field</h6>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <h4><b>Step 2: Comment Below</b></h4>
+                                        <div style="color: black">{{textarea value=model.comment cols="80" rows="5"}}</div>
+                                        <h4><b>File Attachment (optional) </b></h4>
+                                        <input id="filebutton" name="filebutton" class="input-file" type="file">
+                                    </div>
+                                    <div class="form-group row step3">
+                                        <h4><b>Step 3: Submit</b></h4>
+                                        <a style="height: 40px; width: 100px" {{action "saveEvaluation" model}}
+                                           class="btn btn-success" type="submit">Submit</a>
+                                        <a style="height: 40px; width: 100px" {{action "cancel"}}
+                                           class="btn btn-danger">Cancel</a>
+                                    </div>
+                                    <div id="errorAlert" class="alert alert-danger hide fade in" style="width: 250px">
+                                        Please recheck your values.
+                                    </div>
+                                    <div id="submitAlert" class="alert alert-success hide fade in" style="width: 250px">
+                                        Success! Feedback submitted.
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
+    </div>
 </div>

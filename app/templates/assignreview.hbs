@@ -3,169 +3,134 @@
 <div class="container-fluid big">
     <div class="row">
         <div class="col-md-12">
-
-            <h3 class="text-center text-primary">
-            </h3>
-            <h2>
-                Assign Reviewers
-            </h2>
-
-
-            <div class="input-group"> <span class="input-group-addon">Filter</span>
-
-                <input id="filter" type="text" class="filter-control" placeholder="Type here..." {{action 'filterdata'}}>
+            <h3 class="text-center text-primary"></h3>
+            <h2>Assign Reviewers</h2>
+            <div class="input-group"><span class="input-group-addon">Filter</span>
+                <input id="filter" type="text" class="filter-control"
+                       placeholder="Type here..." {{action 'filterdata'}}>
             </div>
-
             <div class="btn-group">
-                <a id="list" class="btn btn-default btn-sm" {{action 'showlist'}}><span class="glyphicon glyphicon-th-list">
-            </span>List</a> <a id="grid" class="btn btn-default btn-sm"{{action 'showgrid'}} ><span
-                    class="glyphicon glyphicon-th"></span>Grid</a>
-                    <!--<a id="tree" class="btn btn-default btn-sm"{{action 'showtree'}} ><span-->
-                    <!--class="glyphicon glyphicon-leaf"></span>Tree</a>-->
+                <a id="list" class="btn btn-default btn-sm" {{action 'showlist'}}>
+                    <span class="glyphicon glyphicon-th-list"></span>
+                    List
+                </a>
+                <a id="grid" class="btn btn-default btn-sm"{{action 'showgrid'}} >
+                    <span class="glyphicon glyphicon-th"></span>
+                    Grid
+                </a>
+                <!--<a id="tree" class="btn btn-default btn-sm"{{action 'showtree'}} ><span-->
+                <!--class="glyphicon glyphicon-leaf"></span>Tree</a>-->
             </div>
-
-
             <table class="table table-hover">
                 <thead>
-
                 <tr>
-
-                    <th> Id
-                    </th>
-                    <th>
-                        Name
-                    </th>
-                    <th>
-                        Affiliation
-                    </th>
-                    <th>
-                        Email
-                    </th>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Affiliation</th>
+                    <th>Email</th>
                 </tr>
                 </thead>
                 <tbody class="searchable">
-
-
-
                 {{#each model.reviewerall as |d|}}
-                <tr onclick={{action 'storereviewerInfo' d.id}}>
-                    <td>
-                      {{d.id}}
-                    </td>
-                    <td>
-                      {{d.name}}
-                    </td>
-                    <td>
-                      {{d.affiliation}}
-                    </td>
-                    <td>
-                      {{d.email}}
-                    </td>
-
-                </tr>
+                    <tr onclick={{action 'storereviewerInfo' d.id}}>
+                        <td>
+                            {{d.id}}
+                        </td>
+                        <td>
+                            {{d.name}}
+                        </td>
+                        <td>
+                            {{d.affiliation}}
+                        </td>
+                        <td>
+                            {{d.email}}
+                        </td>
+                    </tr>
                 {{/each}}
-
-
-
-
                 </tbody>
             </table>
 
-
-           {{#if isshowingBio}}
-
-
-            <div class="media" id = "sss">
-                <a href="#" class="pull-left"><img alt="Bootstrap Media Preview" src={{reviewerInfo.avatar}} class="media-object" /></a>
-                <div class="media-body">
-                    <h4 class="media-heading">
-                        <b style="font-size: small; color: yellow">{{reviewerInfo.name}}</b>
-                    </h4>
-                    <h4 class="media-heading">
-                    </h4>
-                    <div class="media">
-                        <div class="media-body">
-
-                            <p>
-                                <b style="font-size: small">Bio:</b>
-                                {{reviewerInfo.bio}}
-                            </p>
-                            <div>
+            {{#if isshowingBio}}
+                <div class="media" id="sss">
+                    <a href="#" class="pull-left">
+                        <img alt="Bootstrap Media Preview" src={{reviewerInfo.avatar}} class="media-object"/>
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <b style="font-size: small; color: yellow">{{reviewerInfo.name}}</b>
+                        </h4>
+                        <h4 class="media-heading">
+                        </h4>
+                        <div class="media">
+                            <div class="media-body">
                                 <p>
-                                    <b style="font-size: small">Research Areas:</b>
-                                    {{reviewerInfo.research}}
+                                    <b style="font-size: small">Bio:</b> {{reviewerInfo.bio}}
                                 </p>
-
-                            </div>
-
-                            <div>
-                                <p>
-                                    <b style="font-size: small">Total OSF Reviews: {{reviewerInfo.osfreviews}}</b>
-                                <p></p>
-                                </p>
+                                <div>
+                                    <p>
+                                        <b style="font-size: small">Research Areas:</b> {{reviewerInfo.research}}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p>
+                                        <b style="font-size: small">Total OSF Reviews: {{reviewerInfo.osfreviews}}</b>
+                                    <p>
+                                    </p>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <button id="button3id" name="button3id"
+                        class="btn btn-primary" {{action 'showdata2' reviewerInfo.name}} >Invite
+                </button>
+            {{/if}}
 
-               <button id="button3id" name="button3id" class="btn btn-primary" {{action 'showdata2' reviewerInfo.name}} >Invite</button>
-
-
-           {{/if}}
-
-            <button id="button1id" name="button1id" class="btn btn-success" {{action 'gotodashboard'}}>Back</button>
-
-
+            <button id="button1id" name="button1id" class="btn btn-success" {{action 'gotodashboard'}}>
+                Back
+            </button>
         </div>
     </div>
-
-    <div id="submitAlert" class="alert alert-success hide fade in" style = "width: 250px">
+    <div id="submitAlert" class="alert alert-success hide fade in" style="width: 250px">
         Email sent successfully..
     </div>
-
-    <div id="submitAlert2" class="alert alert-danger hide fade in" style = "width: 500px">
+    <div id="submitAlert2" class="alert alert-danger hide fade in" style="width: 500px">
         Submission already assigned to this reviewer..
     </div>
-
 </div>
 
 
 {{#if isshowingInvite}}
-  {{#modal-dialog close="hidedata"
-  targetAttachment="center"
-  translucentOverlay=true}}
-      <form class="form-horizontal" style="width: 1000px">
-          <fieldset>
-
-              <!-- Form Name -->
-              <legend>Reviewer Invitation</legend>
-
-              <!-- Textarea -->
-              <div class="form-group" >
-                  <label class="col-md-4 control-label" for="textarea">Email Message</label>
-                  <div class="col-md-4">
-                        <textarea class="form-control" id="textarea" name="textarea" rows="18" style="width: 600px">{{emailbody}} </textarea>
-                  </div>
-              </div>
-
-
-
-              <!-- Button (Double) -->
-              <div class="form-group">
-                  <label class="col-md-4 control-label" for="button1id"></label>
-                  <div class="col-md-8">
-                      <button id="button1id" name="button1id" class="btn btn-success" {{action 'sendemail'}}>Send</button>
-                      <button id="button2id" name="button2id" class="btn btn-danger" {{action 'hidedata'}}>Cancel</button>
-
-                  </div>
-
-
-              </div>
-
-          </fieldset>
-      </form>
-  {{/modal-dialog}}
+    {{#modal-dialog close="hidedata" targetAttachment="center" translucentOverlay=true}}
+        <form class="form-horizontal" style="width: 1000px">
+            <fieldset>
+                <!-- Form Name -->
+                <legend>Reviewer Invitation</legend>
+                <!-- Textarea -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textarea">Email Message</label>
+                    <div class="col-md-4">
+                        <textarea class="form-control" id="textarea" name="textarea" rows="18" style="width: 600px">
+                            {{emailbody}}
+                        </textarea>
+                    </div>
+                </div>
+                <!-- Button (Double) -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="button1id"></label>
+                    <div class="col-md-8">
+                        <button id="button1id" name="button1id" class="btn btn-success" {{action 'sendemail'}}>
+                            Send
+                        </button>
+                        <button id="button2id" name="button2id" class="btn btn-danger" {{action 'hidedata'}}>
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    {{/modal-dialog}}
 {{/if}}
 
 

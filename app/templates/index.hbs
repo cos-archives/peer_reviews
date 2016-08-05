@@ -1,96 +1,65 @@
 {{#if this.visited}}
-  {{auto-scroll}}
+    {{auto-scroll}}
 {{/if}}
 
 
-    <div id="indexTop" class="container-fluid big osf-standard-background">
-        <a href="https://staging.osf.io/"><img class="logo" src="https://osf.io/static/img/cos-white2.png"> </a>
-
-
-
-            <div id="logo">
-
-                <div class="circle" id="circle-1"><span></span></div>
-                <div class="circle" id="circle-2"><span></span></div>
-                <div class="circle" id="circle-3"><span></span></div>
-                <div class="circle" id="circle-4"><span></span></div>
-                <div class="circle" id="circle-5"><span></span></div>
-                <div class="circle" id="circle-6"><span></span></div>
-                <div class="circle" id="circle-7"><span></span></div>
-                <div class="circle" id="circle-8"><span></span></div>
-            </div>
-
-
-
-
-
-        <div class="cos-about" >
-
-            <h1>OSF for Peer Review</h1>
-            <h3></h3>
-            <h5 >We began with one infrastructure project, the Open Science Framework,</h5>
-            <h5>one research project, Reproducibility Project: Psychology,</h5>
-            <h5>and a mission: to increase openness, integrity, and reproducibility of scientific research.</h5>
-            <!-- <h5>Broaden your impact, create an open scholar environment</h5> -->
-            <!-- <button {{action 'scrollit'}} type="button" value="continue" class="btn btn-success">Begin Sharing</button> -->
-
+<div id="indexTop" class="container-fluid big osf-standard-background">
+    <a href="https://staging.osf.io/"><img class="logo" src="https://osf.io/static/img/cos-white2.png"> </a>
+    <div id="logo">
+        <div class="circle" id="circle-1"><span></span></div>
+        <div class="circle" id="circle-2"><span></span></div>
+        <div class="circle" id="circle-3"><span></span></div>
+        <div class="circle" id="circle-4"><span></span></div>
+        <div class="circle" id="circle-5"><span></span></div>
+        <div class="circle" id="circle-6"><span></span></div>
+        <div class="circle" id="circle-7"><span></span></div>
+        <div class="circle" id="circle-8"><span></span></div>
+    </div>
+    <div class="cos-about">
+        <h1>OSF for Peer Review</h1>
+        <h3></h3>
+        <h5>We began with one infrastructure project, the Open Science Framework,</h5>
+        <h5>one research project, Reproducibility Project: Psychology,</h5>
+        <h5>and a mission: to increase openness, integrity, and reproducibility of scientific research.</h5>
+        <!-- <h5>Broaden your impact, create an open scholar environment</h5> -->
+        <!-- <button {{action 'scrollit'}} type="button" value="continue" class="btn btn-success">Begin Sharing</button> -->
+    </div>
+    <div id="hero-signup" class="container">
+        <div class="row">
+            <div class="item content" id="content_section1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Already have an OSF account? Sign in.</h2>
+                            <div id="signUp" class="anchor"></div>
+                            <div id="signUpScope">
+                                <form data-bind="submit: submit">
+                                    <div class="sign" style="z-index: 5; position: absolute">
+                                        <button type="submit" class="btn btn-warning" data-bind="visible: !submitted() "
+                                                id="signupSubmit"  {{action 'gotoLogin'}}>Sign In
+                                        </button>
+                                    </div>
+                                </form>
+                            </div><!-- end #signUpScope -->
+                        </div>
+                        <div class="col-md-6">
+                            <br>
+                            <div class="videoWrapper" style="z-index: 5; position: absolute">
+                                <iframe src="//player.vimeo.com/video/92205016?title=0&amp;byline=0&amp;portrait=0"
+                                        width="600" height="381" frameborder="2" webkitallowfullscreen=""
+                                        mozallowfullscreen="" allowfullscreen=""></iframe>
+                                <!--<iframe width="700" height="481" src="https://www.youtube.com/embed/rOCQZ7QnoN0" frameborder="0" allowfullscreen></iframe>-->
+                                <div class="frameCover" data-type="video"></div>
+                            </div>
+                        </div><!-- /.col-md-6 -->
+                    </div><!-- /.row -->
+                </div><!-- /.container -->
+            </div><!-- /.item -->
         </div>
-
-        <div id="hero-signup" class="container" >
-                  <div class="row">
-
-
-                      <div class="item content" id="content_section1">
-
-                          <div class="container">
-
-                              <div class="row" >
-
-                                  <div class="col-sm-6">
-                                      <h2>Already have an OSF account? Sign in.</h2>
-                                      <div id="signUp" class="anchor"></div>
-                                      <div id="signUpScope">
-                                          <form data-bind="submit: submit">
-
-
-                                              <div class="sign" style="z-index: 5; position: absolute">
-                                                  <button type="submit" class="btn btn-warning" data-bind="visible: !submitted() " id="signupSubmit"  {{action 'gotoLogin'}}>Sign In</button>
-                                              </div>
-
-                                          </form>
-
-                                      </div><!-- end #signUpScope -->
-                                  </div>
-
-                                  <div class="col-md-6">
-
-                                      <br>
-
-                                      <div class="videoWrapper" style="z-index: 5; position: absolute">
-                                          <iframe src="//player.vimeo.com/video/92205016?title=0&amp;byline=0&amp;portrait=0" width="600" height="381" frameborder="2"  webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
-                                          <!--<iframe width="700" height="481" src="https://www.youtube.com/embed/rOCQZ7QnoN0" frameborder="0" allowfullscreen></iframe>-->
-                                          <div class="frameCover" data-type="video"></div>
-                                      </div>
-
-                                  </div><!-- /.col-md-6 -->
-
-                              </div><!-- /.row -->
-
-                          </div><!-- /.container -->
-
-                      </div><!-- /.item -->
-
-
-
-                  </div>
-
-                </div>
-
-     <img class="background" src="https://osf.io/static/img/front-page/bg-web.png" style="z-index: 0; position: absolute; index: 80%">
-
-
-
-    </div> <!-- end container & splash page -->
+    </div>
+    <img class="background" src="https://osf.io/static/img/front-page/bg-web.png"
+         style="z-index: 0; position: absolute; index: 80%">
+</div> <!-- end container & splash page -->
 
 
 

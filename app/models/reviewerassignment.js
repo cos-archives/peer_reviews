@@ -1,10 +1,9 @@
-import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import { belongsTo } from 'ember-data/relationships';
-
-export default Model.extend({
-  submission: belongsTo('submission'),
-  reviewer: belongsTo('reviewer'),
-  status: attr('string')
-});
+import Model from "ember-data/model";
+import attr from "ember-data/attr";
+import { belongsTo } from "ember-data/relationships";
+export default Model.extend( {
+    submission: belongsTo( 'submission' ),
+    reviewer: belongsTo( 'reviewer' ),
+    status: attr( 'string' )
+} );
 

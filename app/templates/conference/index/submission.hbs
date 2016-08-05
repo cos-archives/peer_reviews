@@ -1,8 +1,8 @@
 <div class="container-fluid osf-light-background">
     <div class="row">
         <div class="col-md-6 col-md-offset-3 no-pad">
-                <h3>Submit to:</h3>
-                <h4 class="conference-title">{{model.conference.title}}</h4>
+            <h3>Submit to:</h3>
+            <h4 class="conference-title">{{model.conference.title}}</h4>
         </div>
     </div>
     <div class="row">
@@ -21,7 +21,8 @@
                         {{input id="title" value=model.title class="form-control"}}
                         {{#if this.displayErrors}}
                             {{#each errors.model.title as |error|}}
-                                <br><div class="alert alert-danger" role="alert">{{error}}</div>
+                                <br>
+                                <div class="alert alert-danger" role="alert">{{error}}</div>
                             {{/each}}
                         {{/if}}
                     </div>
@@ -39,7 +40,8 @@
                         {{textarea id="description" value=model.description class="form-control"}}
                         {{#if this.displayErrors}}
                             {{#each errors.model.description as |error|}}
-                                <br><div class="alert alert-danger" role="alert">{{error}}</div>
+                                <br>
+                                <div class="alert alert-danger" role="alert">{{error}}</div>
                             {{/each}}
                         {{/if}}
                     </div>
@@ -47,12 +49,13 @@
                 <div class="form-group row">
                     <div class="col-md-4">
                         <button
-                        class="btn btn-success" {{action "saveNodeSubmission" model model.conference.id}}>
+                                class="btn btn-success" {{action "saveNodeSubmission" model model.conference.id}}>
                             Submit
                         </button>
                         <button
                                 class=" btn btn-danger" {{action
-                                "cancelSubmission"}}>Cancel</button>
+                        "cancelSubmission"}}>Cancel
+                        </button>
                     </div>
                 </div>
             </form>

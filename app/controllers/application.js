@@ -1,5 +1,4 @@
-import Ember from 'ember';
-
-export default Ember.Controller.extend({
-  isauthenticated: null
-});
+import Ember from "ember";
+export default Ember.Controller.extend( {
+    isauthenticated: null
+} );
