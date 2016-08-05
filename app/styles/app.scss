@@ -51,7 +51,7 @@ html, body .fullscreen
   max-width: 100%;
   z-index: 0;
 
-  };
+};
 
 .big .logo
 {
@@ -61,13 +61,13 @@ html, body .fullscreen
 }
 
 body{
-    min-height: 700px;
-    background-image: linear-gradient(to bottom left, #000305, #0e4364, #4A8DB0);
-    color:white;
-    height: 100%;
-    margin: 0;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+  min-height: 700px;
+  background-image: linear-gradient(to bottom left, #000305, #0e4364, #4A8DB0);
+  color:white;
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 .titleRow
 {
@@ -117,7 +117,7 @@ body{
 }*/
 
 .registration-title {
-    text-align: center;
+  text-align: center;
 }
 
 textarea {
@@ -126,8 +126,8 @@ textarea {
   width: 95%;
 }
 h1 {
-    font-size: 3.5em;
-    margin: 0 0 10px 0;
+  font-size: 3.5em;
+  margin: 0 0 10px 0;
 }
 
 .cos-about h1{
@@ -138,77 +138,77 @@ h1 {
 }
 
 h4 {
-    font-size: 1em;
+  font-size: 1em;
 }
 
 p {
-    font-size: 0.8em;
+  font-size: 0.8em;
 }
 
 .osfbar {
-    height: 35px;
+  height: 35px;
 
-    font-size: 18px;
-    margin: 0 -15px 0 -15px;
+  font-size: 18px;
+  margin: 0 -15px 0 -15px;
 }
 
 .conferencePhoto {
-    height: 350px;
+  height: 350px;
 }
 
 .conferencePhoto img {
-    max-height: 100%;
-    max-width: 100%;
-    position: absolute;
-    top: 50%;
-    left:50%;
-    transform: translateX(-50%) translateY(-50%);
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
+  max-height: 100%;
+  max-width: 100%;
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
 }
 
 .conferenceInfo h1 {
 
-    color: black;
+  color: black;
 }
 
 .conferenceInfo h4 {
-    color: black;
-    margin: 0 0 1px 30px;
+  color: black;
+  margin: 0 0 1px 30px;
 }
 
 .conferenceDescription {
-    padding: 15px 15px 15px 0;
-    font-size: 22px;
+  padding: 15px 15px 15px 0;
+  font-size: 22px;
 }
 
 .logos {
-    width: 100%;
-    height: 15%;
+  width: 100%;
+  height: 15%;
 }
 
 .keynote {
-    font-size: 2.4em;
-    color: black;
+  font-size: 2.4em;
+  color: black;
 }
 
 .smallKey {
-    color: black;
-    font-size: 1em;
+  color: black;
+  font-size: 1em;
 }
 
 .inputFields {
-    width: 100%;
-    height: 100px;
+  width: 100%;
+  height: 100px;
 }
 
 .fileView {
   padding-top: 15px;
-background-color: rgba(12, 12, 12, 0.1);
+  background-color: rgba(12, 12, 12, 0.1);
   margin: 15px 0 15px 0;
-	resize: none;
-	min-height: 350px;
-	width: 100%;
+  resize: none;
+  min-height: 350px;
+  width: 100%;
 }
 
 .splash-page
@@ -235,7 +235,7 @@ background-color: rgba(12, 12, 12, 0.1);
   min-height:20px;
   padding:10px;
   margin-bottom:20px;
- -webkit-border-radius:4px;
+  -webkit-border-radius:4px;
   -moz-border-radius:4px;
   border-radius:4px;
   -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -750,16 +750,18 @@ background-color: rgba(12, 12, 12, 0.1);
 
 }
 
+
+
 .listViewHolder{
-margin-top:20px;
+  margin-top:20px;
 }
 
 .listViewHolder .table{
-    width: 1140px;
+  width: 1140px;
 }
 
 .filter-control-holder input {
-    padding: 10px;
+  padding: 10px;
 }
 
 
@@ -774,44 +776,44 @@ margin-top:20px;
 
 button.accordion {
 
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    transition: 0.4s;
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
 }
 
 button.accordion.active, button.accordion:hover {
-    background-color: #ddd;
+  background-color: #ddd;
 }
 
 button.accordion:after {
-    content: '\02795';
-    font-size: 13px;
-    color: #777;
-    float: right;
-    margin-left: 5px;
+  content: '\02795';
+  font-size: 13px;
+  color: #777;
+  float: right;
+  margin-left: 5px;
 }
 
 button.accordion.active:after {
-    content: "\2796";
+  content: "\2796";
 }
 
 div.accordion-panel {
-    background-color: white;
-    max-height: 0;
-    overflow: hidden;
-    transition: 0.6s ease-in-out;
-    opacity: 0;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.6s ease-in-out;
+  opacity: 0;
 }
 
 div.accordion-panel.show {
-    opacity: 1;
-    max-height: 500px;
+  opacity: 1;
+  max-height: 500px;
 }
 
 .accordion-holder{
@@ -822,16 +824,16 @@ div.accordion-panel.show {
   margin-bottom:100px;
 }
 .accordion-holder button{
-    border-style: solid;
-    border-width: 0 0 1px 0 !important;
-    color:#444;
+  border-style: solid;
+  border-width: 0 0 1px 0 !important;
+  color:#444;
 }
 
 .accordion-panel ul{
   list-style-type:none;
   width:150px;
-    float: left;
-    padding: 0;
+  float: left;
+  padding: 0;
 
 }
 .accordion-panel ul li{
@@ -858,18 +860,18 @@ div.accordion-panel.show {
 }
 
 .accordion-panel-active{
-    border-width: 1px 0 1px 1px!important;
-    background-color: #ddd!important;
+  border-width: 1px 0 1px 1px!important;
+  background-color: #ddd!important;
 
 }
 
 .accordion-content{
-    background-color: #ddd;
-    width:990px;
-    min-height:600px;
-    height:100%;
-    margin-left: 150px;
-    padding-left: 150px;
+  background-color: #ddd;
+  width:990px;
+  min-height:600px;
+  height:100%;
+  margin-left: 150px;
+  padding-left: 150px;
 
 
 }
@@ -883,6 +885,6 @@ div.accordion-panel.show {
 }
 
 .list-gird-view-buttons{
-    margin: 10px;
-    margin-left: 650px;
+  margin: 10px;
+  margin-left: 650px;
 }
