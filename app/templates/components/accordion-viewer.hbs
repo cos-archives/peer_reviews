@@ -1,24 +1,20 @@
 {{yield}}
+<!--
 <div class="accordion-holder" {{action 'accordion'}}>
   <button class="accordion">Content</button>
   <div class="accordion-panel">
-
-    <div {{action 'accordionContent'}}>
-      <ul>
-        <li class="accordion-button" >file Info</li>
-        <li class="accordion-button">File</li>
-      </ul>
-
-      <div class="accordion-content accordion-content-author">Title: { Author(s) Conference </div>
-      <div class="accordion-content accordion-content-File">
-        <legend>Submission Preview</legend>
-        <div class = "col-md-4" style="width: 680px">
-            <iframe id="fred" style="border:1px solid #666CCC" title="Submission" src={{filelink}}  scrolling="auto" height="650" width="650" ></iframe>
-        </div>
-
-
+      <div class="accordion-content">
+        <ul>
+          <li>Title:</li>
+          <li> Author(s):</li>
+          <li> Conference:</li>
+        </ul>
       </div>
-    </div>
+      <div class="accordion-content">
+        <legend>Submission Preview</legend>
+            <iframe id="fred" style="margin:0 auto;" title="Submission" src="http://www.w3schools.com" scrolling="auto"   width="600" height="570" ></iframe>
+      </div>
+
 
 
 
@@ -27,10 +23,10 @@
   <button class="accordion">Reviewers</button>
         <div class="accordion-panel">
 
-          <!-- Form Name -->
+          &lt;!&ndash; Form Name &ndash;&gt;
           <legend>Review Assignment</legend>
 
-          <!-- Select Basic -->
+          &lt;!&ndash; Select Basic &ndash;&gt;
           <div class="form-group">
               <h4 for="selectbasic">Assign to</h4>
               <div class="col-md-4">
@@ -51,3 +47,45 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
   </div>
 </div>
+-->
+
+
+
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Collapsible Group 1</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Collapsible Group 2</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Collapsible Group 3</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+      </div>
+    </div>
+  </div>

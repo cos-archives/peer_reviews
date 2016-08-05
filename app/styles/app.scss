@@ -823,39 +823,28 @@ div.accordion-panel.show {
 }
 .accordion-holder button{
     border-style: solid;
-    border-width: 0 0 1px 0 !important;
+    border-color: #4c4c4c;
+    border-width: 5px 0 0 0 !important;
     color:#444;
 }
 
 .accordion-panel ul{
-  list-style-type:none;
-  width:150px;
+   list-style-type:none;
+    width:150px;
     float: left;
     padding: 0;
 
 }
 .accordion-panel ul li{
   padding:5px 0 5px 0;
-  cursor:pointer;
-  border-style: solid;
-  border-width: 1px;
-  border-color:#999;
   margin-top:1px;
-  background-color: #eee;
   padding:4px;
   padding-left:10px;
-  border-bottom-left-radius: 12px;
-  border-top-left-radius: 12px;
-
-
-
-
-
+  font-size:19px;
+  color:#444;
 }
 
-.accordion-panel ul li:hover{
-  background-color: #ddd;
-}
+
 
 .accordion-panel-active{
     border-width: 1px 0 1px 1px!important;
@@ -864,14 +853,13 @@ div.accordion-panel.show {
 }
 
 .accordion-content{
-    background-color: #ddd;
-    width:990px;
-    min-height:600px;
-    height:100%;
-    margin-left: 150px;
-    padding-left: 150px;
+  width:500px;
+  float:left;
+  margin:10px;
 
-
+}
+.accordion-panel{
+    width: 1140px;
 }
 
 .listViewHolder{

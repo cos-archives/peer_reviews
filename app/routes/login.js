@@ -53,7 +53,7 @@ export default Ember.Route.extend({
 				}
 			}).then(function() {
 
-        self.transitionTo('peerdashboard');
+        self.transitionTo('editing.submissions');
 
 			});
 		}

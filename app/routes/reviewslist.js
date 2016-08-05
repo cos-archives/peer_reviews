@@ -41,7 +41,7 @@ export default Ember.Route.extend({
         },
 
         gotoediting(){
-            this.transitionTo('peerdashboard');
+            this.transitionTo('editing.submissions');
         },
 
         filterdata(){
