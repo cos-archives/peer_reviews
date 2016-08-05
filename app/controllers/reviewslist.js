@@ -1,8 +1,6 @@
-import Ember from 'ember';
-
-export default Ember.Controller.extend({
-
-    islistview : true,
+import Ember from "ember";
+export default Ember.Controller.extend( {
+    islistview: true,
     isgridview: false,
     actions: {
       openreview(submission) {
@@ -18,9 +16,9 @@ export default Ember.Controller.extend({
         this.set('islistview',false);
         this.set('isgridview',true);
       },
-      
+
       acceptsubmission(){
-        
+
       },
 
       storereviewerInfo(id){
@@ -32,7 +30,7 @@ export default Ember.Controller.extend({
         let self = this;
         var rid = null;
         Ember.$.ajax({
-          url: "http://localhost:8000/api/reviewerid",
+          url: "http://localhost:8000/reviewerid",
           dataType: 'json',
           contentType: 'text/plain',
           xhrFields: {
@@ -59,4 +57,4 @@ export default Ember.Controller.extend({
         });
       }
     }
-});
+} );

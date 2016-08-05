@@ -1,24 +1,20 @@
-import Ember from 'ember';
-
-export default Ember.Controller.extend({
-
-    session: Ember.inject.service('session'),
-
+import Ember from "ember";
+export default Ember.Controller.extend( {
+    session: Ember.inject.service( 'session' ),
     loadCurrentUser() {
-        return new Ember.RSVP.Promise((resolve, reject) => {
-            const token = this.get('session.data.authenticated.token');
-            if (!Ember.isEmpty(token)) {
-                return this.get('store').findRecord('user', 'me').then((user) => {
-                    this.set('account', user);
+        return new Ember.RSVP.Promise( ( resolve, reject ) => {
+            const token = this.get( 'session.data.authenticated.token' );
+            if ( !Ember.isEmpty( token ) ) {
+                return this.get( 'store' ).findRecord( 'user', 'me' ).then( ( user ) => {
+                    this.set( 'account', user );
                     resolve();
-                }, reject);
+                }, reject );
             }
             else {
                 resolve();
             }
-        });
+        } );
     },
-
     docid: 0,
     isshowingcontact: false,
     isshowingassign: false,
@@ -30,10 +26,8 @@ export default Ember.Controller.extend({
     selectvalue: 0,
     rid: 0,
     msgtemplate: '' + ' Dear Prof. Tom,\n\n' + 'I am writing to inquiry about your submission for ASONAM 2016 entitled Analyzing patients health records (AS-213).\n' + 'Academic Editor',
-
     actions: {
         confirmHandler: function () {
-
         }, tablecolor(){
 
 
@@ -62,87 +56,81 @@ export default Ember.Controller.extend({
 
              // compare id to what you want
              });*/
-
         },
-
-        contactauthor(){}, approvebutton(){}, svalue(v){
-            this.set('selectvalue', v);
-        }, showdata() {
-            this.set('isshowingcontact', true);
-        }, showform(d) {
-            this.set('isshowingform', true);
-            this.set('filelink', d);
-            console.log(d);
-        }, hideform() {
-            this.set('isshowingform', false);
-        }, hidedata()  {
-            this.set('isshowingcontact', false);
+        contactauthor(){},
+        approvebutton(){},
+        svalue( v ){
+            this.set( 'selectvalue', v );
         },
-
-        showapprove(d) {
-            this.store.findRecord('submission', d.id).then(function (record) {
-                let title = record.get('title');
-                let conference = record.get('conference');
-                let link = record.get('link');
-                let reviewdeadline = record.get('reviewdeadline');
-
-                record.set('conference', conference);
-                record.set('title', title);
-                record.set('reviewdeadline', reviewdeadline);
-                record.set('status', "Approved");
-                record.set('link', link);
-
+        showdata() {
+            this.set( 'isshowingcontact', true );
+        },
+        showform( d ) {
+            this.set( 'isshowingform', true );
+            this.set( 'filelink', d );
+            console.log( d );
+        },
+        hideform() {
+            this.set( 'isshowingform', false );
+        },
+        hidedata()  {
+            this.set( 'isshowingcontact', false );
+        },
+        showapprove( d ) {
+            this.store.findRecord( 'submission', d.id ).then( function ( record ) {
+                let title = record.get( 'title' );
+                let conference = record.get( 'conference' );
+                let link = record.get( 'link' );
+                let reviewdeadline = record.get( 'reviewdeadline' );
+                record.set( 'conference', conference );
+                record.set( 'title', title );
+                record.set( 'reviewdeadline', reviewdeadline );
+                record.set( 'status', "Approved" );
+                record.set( 'link', link );
                 record.save();
-            });
-        }, showassign(d) {
-            this.set('isshowingassign', true);
-            this.set('docid', d);
+            } );
         },
-
-        hideassign(inp)  {
-            if (inp === 'ok') {
-
-                var target = document.getElementById('selectbasic');
-                if (target.value === '2') {
-                    this.set('isshowingassign', false);
-                    this.transitionToRoute('assignreview', {queryParams: {submission_id: this.get('docid')}});
+        showassign( d ) {
+            this.set( 'isshowingassign', true );
+            this.set( 'docid', d );
+        },
+        hideassign( inp )  {
+            if ( inp === 'ok' ) {
+                var target = document.getElementById( 'selectbasic' );
+                if ( target.value === '2' ) {
+                    this.set( 'isshowingassign', false );
+                    this.transitionToRoute( 'assignreview', { queryParams: { submission_id: this.get( 'docid' ) } } );
                 }
                 else {
-                    this.set('isshowingassign', false);
+                    this.set( 'isshowingassign', false );
                 }
             }
             else {
-                this.set('isshowingassign', false);
+                this.set( 'isshowingassign', false );
             }
         },
-
         openreview() {
-            this.transitionToRoute('evaluation');
+            this.transitionToRoute( 'evaluation' );
         },
-
         showlist() {
-            this.set('islistview', true);
-            this.set('isgridview', false);
-            this.set('istreeview', false);
+            this.set( 'islistview', true );
+            this.set( 'isgridview', false );
+            this.set( 'istreeview', false );
         },
-
         showgrid() {
-            this.set('islistview', false);
-            this.set('isgridview', true);
-            this.set('istreeview', false);
+            this.set( 'islistview', false );
+            this.set( 'isgridview', true );
+            this.set( 'istreeview', false );
         },
-
-        isInArray(value, array) {
-            return array.indexOf(value) > -1;
+        isInArray( value, array ) {
+            return array.indexOf( value ) > -1;
         },
-
         showtree() {
-            this.set('istreeview', true);
-            this.set('isgridview', false);
-            this.set('islistview', false);
-        }, goToSubmission(id){
-            console.log(id);
-
+            this.set( 'istreeview', true );
+            this.set( 'isgridview', false );
+            this.set( 'islistview', false );
+        }, goToSubmission( id ){
+            console.log( id );
         }
     }
-});
+} );

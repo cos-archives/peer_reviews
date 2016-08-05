@@ -1,0 +1,49 @@
+{{yield}}
+<div class="listViewHolder">
+    <table id="submissions" class="table table-hover" align="center">
+        <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Conference
+            </th>
+            <th>
+                Review Deadline
+            </th>
+            <th>
+                Status
+            </th>
+        </tr>
+        </thead>
+        <tbody class="searchable">
+            {{#each model.reviewsdate as |d|}}
+
+                <tr>
+                    <td>{{d.id}}</td>
+                    <td>{{d.title}}</td>
+                    <td>{{d.conference}}</td>
+                    <td>{{d.reviewdeadline}}</td>
+                    <td>{{d.status}}</td>
+                    <td><a class="btn btn-primary" {{action 'openreview'}} >Review </a></td>
+
+                    {{#if d.iswaiting}}
+
+                    {{else}}
+                        <td><a class="btn btn-success" {{action 'decidesubmission' d.id d.title 'Accepted'}}>
+                            Accept
+                        </a></td>
+                        <td><a class="btn btn-danger" {{action 'decidesubmission' d.id d.title 'Declined'}} >
+                            Decline
+                        </a></td>
+                    {{/if}}
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+

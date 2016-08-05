@@ -2,351 +2,227 @@
 
 
 
-<div class="container-fluid big" >
-
-
+<div class="container-fluid big">
     <div class="row">
         <div class="col-md-12">
-
-          <br />
-          <br />
+            <br/>
+            <br/>
             <div class="ptitle">
-              <h1 class="text-center">
-                  Peer Review Dashboard
-              </h1>
+                <h1 class="text-center">
+                    Peer Review Dashboard
+                </h1>
             </div>
-
             <div class="input-group filter-control-holder">
-              <input id="filter" type="text" class="filter-control" placeholder="Filter results" {{action 'filterdata'}} >
+                <input id="filter" type="text" class="filter-control"
+                       placeholder="Filter results" {{action 'filterdata'}} >
             </div>
-
-                   <th>
-                      <div class="btn-group list-gird-view-buttons">
-                        <a id="list" class="btn btn-default btn-sm" {{action 'showlist'}}><span class="glyphicon glyphicon-th-list"></span>List</a>
-                        <a id="grid" class="btn btn-default btn-sm"{{action 'showgrid'}} ><span class="glyphicon glyphicon-th"></span>Grid</a>
-                      </div>
-                    </th>
-
-
-            <div class="container">
-
-                <div class="progress">
-
-                    <div class="progress-bar progress-bar-danger" role="progressbar" style={{safeEmberstyle dimgrey model.nreceived}}  >
-                      {{truncate model.nreceived model.nlength}} Received
-                    </div>
-
-                    <div class="progress-bar progress-bar-warning" role="progressbar" style={{safeEmberstyle blue model.nawaitingr}} >
-                      {{truncate model.nawaitingr model.nlength}} Awaiting review
-                    </div>
-
-                    <div class="progress-bar progress-bar-success" role="progressbar" style={{safeEmberstyle orange model.nreview}}>
-                      {{truncate model.nreview model.nlength}} Under review
-
-                    </div>
-
-                    <div class="progress-bar progress-bar-warning" role="progressbar" style={{safeEmberstyle  sienna model.nawaitingd}}>
-                      {{truncate model.nawaitingd model.nlength}} Awaiting decision
-                    </div>
-
-                    <div class="progress-bar progress-bar-success" role="progressbar" style={{safeEmberstyle green model.ncomplete}} >
-                      {{truncate model.ncomplete model.nlength}} Completed
-
-                    </div>
-
-
+            <th>
+                <div class="btn-group list-gird-view-buttons">
+                    <a id="list" class="btn btn-default btn-sm" {{action 'showlist'}}>
+                        <span class="glyphicon glyphicon-th-list"></span>
+                        List
+                    </a>
+                    <a id="grid" class="btn btn-default btn-sm"{{action 'showgrid'}} >
+                        <span class="glyphicon glyphicon-th"></span>
+                        Grid
+                    </a>
                 </div>
-
-
-
+            </th>
+            <div class="container">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-danger" role="progressbar"
+                         style={{safeEmberstyle dimgrey model.nreceived}}>
+                        {{truncate model.nreceived model.nlength}} Received
+                    </div>
+                    <div class="progress-bar progress-bar-warning" role="progressbar"
+                         style={{safeEmberstyle blue model.nawaitingr}}>
+                        {{truncate model.nawaitingr model.nlength}} Awaiting review
+                    </div>
+                    <div class="progress-bar progress-bar-success" role="progressbar"
+                         style={{safeEmberstyle orange model.nreview}}>
+                        {{truncate model.nreview model.nlength}} Under review
+                    </div>
+                    <div class="progress-bar progress-bar-warning" role="progressbar"
+                         style={{safeEmberstyle  sienna model.nawaitingd}}>
+                        {{truncate model.nawaitingd model.nlength}} Awaiting decision
+                    </div>
+                    <div class="progress-bar progress-bar-success" role="progressbar"
+                         style={{safeEmberstyle green model.ncomplete}}>
+                        {{truncate model.ncomplete model.nlength}} Completed
+                    </div>
+                </div>
             </div>
             {{#if islistview}}
-          <div class="listViewHolder">
-              <table id="submissions" class="table table-hover" align="center" >
-                  <thead>
-                  <tr>
-                      <th>
-                          #
-                      </th>
-                      <th>
-                          Title
-                      </th>
-                      <th>
-                          Conference
-                      </th>
-                      <th>
-                          Review Deadline
-                      </th>
-                      <th>
-                          Status
-                      </th>
-                  </tr>
-                  </thead>
-                  <tbody class="searchable">
-                  {{#each model.reviewsdate as |d|}}
+                <div class="listViewHolder">
+                    <table id="submissions" class="table table-hover" align="center">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Title</th>
+                                <th>Conference</th>
+                                <th>Review Deadline</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="searchable">
+                            {{#each model.reviewsdate as |d|}}
 
-                      <tr  {{action 'goToSubmission' d.id }}>
-                          <td>
-                            {{d.id}}
-                          </td>
-                          <td>
-                            {{d.title}}
-                          </td>
-                          <td>
-                            {{d.conference}}
-                          </td>
-                          <td>
-                            {{d.reviewdeadline}}
-                          </td>
-                          <td class="st">
-                            {{d.status}}
-                          </td>
-
-                          <td>
-                              <a class="btn btn-primary" {{action 'showform' d.attachment}} >View</a>
-
-                          </td>
-                          <td>
-                              <a class="btn btn-primary" {{action 'showapprove' d}} >Approve</a>
-                          </td>
-                          <td>
-                              <a class="btn btn-primary" {{action 'showassign' d.id}} >Assign</a>
-                          </td>
-                          <td>
-                              <a class="btn btn-primary" {{action 'showdata'}} >Contact Author</a>
-                          </td>
-
-
-
-                      </tr>
-                  {{/each}}
-                  </tbody>
-              </table>
-          </div>
+                                <tr  {{action 'goToSubmission' d.id }}>
+                                    <td>{{d.id}}</td>
+                                    <td>{{d.title}}</td>
+                                    <td>{{d.conference}}</td>
+                                    <td>{{d.reviewdeadline}}</td>
+                                    <td class="st">{{d.status}}</td>
+                                    <td>
+                                        <a class="btn btn-primary" {{action 'showform' d.attachment}} >
+                                            View
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary" {{action 'showapprove' d}} >
+                                            Approve
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary" {{action 'showassign' d.id}} >
+                                            Assign
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary" {{action 'showdata'}} >
+                                            Contact Author
+                                        </a>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
             {{/if}}
 
-          {{#if isgridview}}
+            {{#if isgridview}}
 
-              <div id="reviews" class="row list-group" >
-                {{#each model.reviewsdate as |d|}}
-                    <div class="searchable2  col-xs-4 col-lg-4" {{action 'goToSubmission' d.id }}>
-                        <div class="thumbnail">
-                            <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
-                            <div class="caption">
-                                <h4 class="group inner list-group-item-heading">
-                                  {{d.title}}</h4>
-                                <p class="group inner list-group-item-text">
-                                  {{d.conference}}</p>
-                                <div class="row">
-                                    <div class="col-xs-12 col-md-6">
-                                        <p class="lead">
-                                          {{d.reviewdeadline}}</p>
+                <div id="reviews" class="row list-group">
+                    {{#each model.reviewsdate as |d|}}
+                        <div class="searchable2  col-xs-4 col-lg-4" {{action 'goToSubmission' d.id }}>
+                            <div class="thumbnail">
+                                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt=""/>
+                                <div class="caption">
+                                    <h4 class="group inner list-group-item-heading">
+                                        {{d.title}}</h4>
+                                    <p class="group inner list-group-item-text">
+                                        {{d.conference}}</p>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-6">
+                                            <p class="lead">
+                                                {{d.reviewdeadline}}</p>
+                                        </div>
                                     </div>
-                                <!--<div class="col-xs-12 col-md-10">
-                                        <a class="btn btn-primary" {{action 'showform'}} >View</a>
-                                        <a class="btn btn-primary" {{action 'showapprove' d.id}} >Approve</a>
-                                        <a class="btn btn-primary" {{action 'showassign' d.id}} >Assign</a>
-                                        <a class="btn btn-primary" {{action 'showdata'}} >Contact Author</a>
-                                    </div>-->
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {{/each}}
-
-
-              </div>
-          {{/if}}
-
-
-
-
- <!--         {{#if istreeview}}
-             <div id="reviews" class="row list-group">
-
-              <div class="tree" {{action 'treeEvent'}}>
-                  <ul>
-                      <li>
-                          <span><i class="icon-folder-open"></i>Conferences</span>
-                          <ul>
-                              <li>
-                                  <span><i class="icon-minus-sign"></i>ICCS 2016</span>
-                                  <ul>
-                                      <li>
-                                          <span><i class="icon-leaf"></i> Social Network Analysis using Genetic Algorithms</span>
-                                          <a class="btn btn-primary" {{action 'showform'}} >View</a>
-                                          <a class="btn btn-primary" {{action 'showapprove' d.id}} >Approve</a>
-                                          <a class="btn btn-primary" {{action 'showassign' d.id}} >Assign</a>
-                                          <a class="btn btn-primary" {{action 'showdata'}} >Contact Author</a>
-                                      </li>
-                                      <li>
-                                          <span><i class="icon-leaf"></i> Reproducible Research for Scientific Computing</span>
-                                          <a class="btn btn-primary" {{action 'showform'}} >View</a>
-                                          <a class="btn btn-primary" {{action 'showapprove' d.id}} >Approve</a>
-                                          <a class="btn btn-primary" {{action 'showassign' d.id}} >Assign</a>
-                                          <a class="btn btn-primary" {{action 'showdata'}} >Contact Author</a>
-                                      </li>
-                                  </ul>
-                              </li>
-                              <li>
-                                  <span><i class="icon-minus-sign"></i> ASONAM 2016</span>
-                                  <ul>
-                                      <li>
-                                          <span><i class="icon-leaf"></i> Analyzing patients records</span>
-                                          <a class="btn btn-primary" {{action 'showform'}} >View</a>
-                                          <a class="btn btn-primary" {{action 'showapprove' d.id}} >Approve</a>
-                                          <a class="btn btn-primary" {{action 'showassign' d.id}} >Assign</a>
-                                          <a class="btn btn-primary" {{action 'showdata'}} >Contact Author</a>
-                                      </li>
-                                  </ul>
-                              </li>
-                              <li>
-                                  <span><i class="icon-minus-sign"></i> ASEE 2015</span>
-                                  <ul>
-                                      <li>
-                                          <span><i class="icon-leaf"></i> Repeatability and Benefaction in Computer Systems Research</span>
-                                          <a class="btn btn-primary" {{action 'showform'}} >View</a>
-                                          <a class="btn btn-primary" {{action 'showapprove' d.id}} >Approve</a>
-                                          <a class="btn btn-primary" {{action 'showassign' d.id}} >Assign</a>
-                                          <a class="btn btn-primary" {{action 'showdata'}} >Contact Author</a>
-                                      </li>
-
-                                  </ul>
-                              </li>
-
-                          </ul>
-                      </li>
-                      </ul>
-              </div>
-
-
-             </div>
-          {{/if}}-->
-
+                    {{/each}}
+                </div>
+            {{/if}}
         </div>
     </div>
-
-
 </div>
 
-
-
-
-
-
-
 {{#if isshowingform}}
-  {{#modal-dialog close="hideform"
-  targetAttachment="center"
-  translucentOverlay=true}}
-      <form class="form-horizontal">
-          <fieldset>
-
-              <!-- Form Name -->
-              <legend>Submission Preview</legend>
-
-
-              <div class = "col-md-4" style="width: 680px">
-                  <iframe id="fred" style="border:1px solid #666CCC" title="Submission" src={{filelink}}  scrolling="auto" height="650" width="650" ></iframe>
-              </div>
-
-
-              <!-- Button (Double) -->
-              <div class="form-group">
-                  <label class="col-md-4 control-label" for="button1id"></label>
-                  <div class="col-md-8">
-                      <button id="button1id" name="button1id" class="btn btn-success" {{action 'hideform'}}>Close</button>
-
-                  </div>
-              </div>
-
-          </fieldset>
-      </form>
-
-
-  {{/modal-dialog}}
+    {{#modal-dialog close="hideform"
+    targetAttachment="center"
+    translucentOverlay=true}}
+        <form class="form-horizontal">
+            <fieldset>
+                <!-- Form Name -->
+                <legend>Submission Preview</legend>
+                <div class="col-md-4" style="width: 680px">
+                    <iframe id="fred" style="border:1px solid #666CCC" title="Submission"
+                            src={{filelink}}  scrolling="auto" height="650" width="650"></iframe>
+                </div>
+                <!-- Button (Double) -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="button1id"></label>
+                    <div class="col-md-8">
+                        <button id="button1id" name="button1id" class="btn btn-success" {{action 'hideform'}}>Close
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    {{/modal-dialog}}
 {{/if}}
-
-
-
-
 
 {{#if isshowingassign}}
-  {{#modal-dialog close="hideassign"
-  targetAttachment="center"
-  translucentOverlay=true}}
-      <form class="form-horizontal">
-          <fieldset>
-
-              <!-- Form Name -->
-              <legend>Review Assignment</legend>
-
-              <!-- Select Basic -->
-              <div class="form-group">
-                  <label class="col-md-4 control-label" for="selectbasic">Assign to</label>
-                  <div class="col-md-4">
-                      <select id="selectbasic" name="selectbasic" class="form-control" style="width: 170px">
-                          <option value="1">Any Available Reviewer</option>
-                          <option value="2">Specific Reviewer</option>
-                      </select>
-
-                  </div>
-              </div>
-
-              <!-- Button (Double) -->
-              <div class="form-group">
-                  <label class="col-md-4 control-label" for="button1id"></label>
-                  <div class="col-md-8">
-                      <button id="button1id" name="button1id" class="btn btn-success" {{action 'hideassign' 'ok'}}>Ok</button>
-                      <button id="button2id" name="button2id" class="btn btn-danger" {{action 'hideassign' 'cancel'}}>Cancel</button>
-                  </div>
-              </div>
-
-          </fieldset>
-      </form>
-
-
-  {{/modal-dialog}}
+    {{#modal-dialog close="hideassign"
+    targetAttachment="center"
+    translucentOverlay=true}}
+        <form class="form-horizontal">
+            <fieldset>
+                <!-- Form Name -->
+                <legend>Review Assignment</legend>
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="selectbasic">Assign to</label>
+                    <div class="col-md-4">
+                        <select id="selectbasic" name="selectbasic" class="form-control" style="width: 170px">
+                            <option value="1">Any Available Reviewer</option>
+                            <option value="2">Specific Reviewer</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Button (Double) -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="button1id"></label>
+                    <div class="col-md-8">
+                        <button id="button1id" name="button1id" class="btn btn-success" {{action 'hideassign' 'ok'}}>
+                            Ok
+                        </button>
+                        <button id="button2id" name="button2id" class="btn btn-danger" {{action 'hideassign' 'cancel'}}>
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    {{/modal-dialog}}
 {{/if}}
-
-
 
 {{#if isshowingcontact}}
-  {{#modal-dialog close="hidedata"
-  targetAttachment="center"
-  translucentOverlay=true}}
-      <form class="form-horizontal" style="width: 1000px">
-          <fieldset>
-
-              <!-- Form Name -->
-              <legend>Contact Author</legend>
-
-              <!-- Textarea -->
-              <div class="form-group" >
-                  <label class="col-md-4 control-label" for="textarea">Email Message</label>
-                  <div class="col-md-4">
-                      <textarea class="form-control" id="textarea" name="textarea" rows="10" style="width: 600px">{{msgtemplate}} </textarea>
-                  </div>
-              </div>
-
-                           <!-- Button (Double) -->
-              <div class="form-group">
-                  <label class="col-md-4 control-label" for="button1id"></label>
-                  <div class="col-md-8">
-                      <button id="button1id" name="button1id" class="btn btn-success" {{action 'hidedata'}}>Send</button>
-                      <button id="button2id" name="button2id" class="btn btn-danger" {{action 'hidedata'}}>Cancel</button>
-                  </div>
-                {{#bs-progress}}
-                  {{bs-progress-bar value=progressValue minValue=0 maxValue=10 showLabel=true type="danger"}}
-                {{/bs-progress}}
-              </div>
-
-          </fieldset>
-      </form>
-  {{/modal-dialog}}
+    {{#modal-dialog close="hidedata"
+    targetAttachment="center"
+    translucentOverlay=true}}
+        <form class="form-horizontal" style="width: 1000px">
+            <fieldset>
+                <!-- Form Name -->
+                <legend>Contact Author</legend>
+                <!-- Textarea -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="textarea">
+                        Email Message
+                    </label>
+                    <div class="col-md-4">
+                        <textarea class="form-control" id="textarea" name="textarea" rows="10" style="width: 600px">
+                            {{msgtemplate}}
+                        </textarea>
+                    </div>
+                </div>
+                <!-- Button (Double) -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="button1id"></label>
+                    <div class="col-md-8">
+                        <button id="button1id" name="button1id" class="btn btn-success" {{action 'hidedata'}}>
+                            Send
+                        </button>
+                        <button id="button2id" name="button2id" class="btn btn-danger" {{action 'hidedata'}}>
+                            Cancel
+                        </button>
+                    </div>
+                    {{#bs-progress}}
+                        {{bs-progress-bar value=progressValue minValue=0 maxValue=10 showLabel=true type="danger"}}
+                    {{/bs-progress}}
+                </div>
+            </fieldset>
+        </form>
+    {{/modal-dialog}}
 {{/if}}
-
-
-
-
-

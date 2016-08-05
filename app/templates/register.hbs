@@ -27,22 +27,24 @@
                             {{textarea value=model.description class="form-control resize" id="description"}}
                             {{#if this.displayErrors}}
                                 {{#each errors.model.description as |error|}}
-                                    <br><div class="alert alert-danger" role="alert">{{error}}</div>
+                                    <br>
+                                    <div class="alert alert-danger" role="alert">
+                                        {{error}}
+                                    </div>
                                 {{/each}}
                             {{/if}}
                         </div>
                     </div>
-
-
                     <div class="form-group row fade-background">
                         <div class="section-header">LOCATE</div>
                         <hr>
                         <div class="col-lg-6">
-                            <div class ="{{"has-success"}}">
+                            <div class="{{"has-success"}}">
                                 <label for="country" class="form-control-label" id="countryScroll">
                                     Country
                                 </label>
-                                <select class="form-control form-spacing" onchange={{action (mut model.country) value="target.value"}}>
+                                <select class="form-control form-spacing"
+                                        onchange={{action (mut model.country) value="target.value"}}>
                                     {{#each countries as |countryChoice|}}
                                         <option value={{countryChoice}} selected={{eq model.country countryChoice}}>
                                             {{countryChoice}}
@@ -51,11 +53,13 @@
                                 </select>
                                 {{#if this.displayErrors}}
                                     {{#each errors.model.country as |error|}}
-                                        <br><div class="alert alert-danger" role="alert">{{error}}</div>
+                                        <br>
+                                        <div class="alert alert-danger" role="alert">
+                                            {{error}}
+                                        </div>
                                     {{/each}}
                                 {{/if}}
                             </div>
-
                             <div class="{{"has-success"}}">
                                 <label for="state" class="form-control-label" id="stateScroll">
                                     State
@@ -63,23 +67,26 @@
                                 {{input value=model.state class="form-control" id="state" placeholder="State"}}
                                 {{#if this.displayErrors}}
                                     {{#each errors.model.state as |error|}}
-                                        <br><div class="alert alert-danger" role="alert">{{error}}</div>
+                                        <br>
+                                        <div class="alert alert-danger" role="alert">
+                                            {{error}}
+                                        </div>
                                     {{/each}}
                                 {{/if}}
                             </div>
                             <div class="{{"has-success"}}">
-                                <label for="city" class=" form-control-label" id="cityScroll">City</label>
+                                <label for="city" class=" form-control-label" id="cityScroll">
+                                    City
+                                </label>
                                 {{input value=model.city class="form-control" id="city" placeholder="City"}}
                                 {{#if this.displayErrors}}
                                     {{#each errors.model.city as |error|}}
-                                        <br><div class="alert alert-danger" role="alert">{{error}}</div>
+                                        <br>
+                                        <div class="alert alert-danger" role="alert">{{error}}</div>
                                     {{/each}}
                                 {{/if}}
                             </div>
-
-
                         </div>
-
                     </div>
                     <div class="form-group row fade-background">
                         <div class="section-header" id="dateScroll">CONFERENCE WINDOW</div>
@@ -93,13 +100,14 @@
                             {{date-picker date=model.endDate class="form-control" valueFormat='date' id='endDate'}}
                             {{#if this.displayErrors}}
                                 {{#each errors.model.startDate as |error|}}
-                                    <br><div class="alert alert-danger" role="alert">{{error}}</div>
+                                    <br>
+                                    <div class="alert alert-danger" role="alert">
+                                        {{error}}
+                                    </div>
                                 {{/each}}
                             {{/if}}
-
                         </div>
                     </div>
-
                     <div class="form-group row fade-background">
                         <div class="section-header">SUBMISSION WINDOW</div>
                         <hr>
@@ -112,7 +120,8 @@
                             {{date-picker date=model.closeDate class="form-control" valueFormat='date' id='closeDate'}}
                             {{#if this.displayErrors}}
                                 {{#each errors.model.submissionDate as |error|}}
-                                    <br><div class="alert alert-danger" role="alert">{{error}}</div>
+                                    <br>
+                                    <div class="alert alert-danger" role="alert">{{error}}</div>
                                 {{/each}}
                             {{/if}}
                         </div>
@@ -129,8 +138,7 @@
                             {{input value=model.tags class="form-control form-spacing" id="tags" placeholder="tag 1, tag 2, tag 3, ..."}}
                         </div>
                     </div>
-
-                    <div class="form-group row fade-background" >
+                    <div class="form-group row fade-background">
                         <div class="col-md-4">
                             <button class="btn btn-danger" {{action "back"}}>Cancel</button>
                             <button class="btn btn-success" {{action "create" model}}>Create</button>
@@ -145,9 +153,9 @@
                                                 <div class="conferenceTopContainer col-md-12">
                                                     <div class="col-md-8 col-md-offset-2">
                                                         <div class="conferenceInfo">
-                                                            <h1> {{model.title}}</h1>
-                                                            <h4> {{model.startDate}} - {{model.endDate}} </h4>
-                                                            <h4>{{model.city}}, {{model.state}}, {{model.country}} </h4>
+                                                            <h1>{{model.title}}</h1>
+                                                            <h4>{{model.startDate}} - {{model.endDate}}</h4>
+                                                            <h4>{{model.city}}, {{model.state}}, {{model.country}}</h4>
                                                             <div class="logos"></div>
                                                         </div>
                                                     </div>
@@ -164,10 +172,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        <button class="btn btn-danger" {{action "previewOff"}}>Close
-                                        </button>
-                                        <button class="btn btn-success" {{action "create" model}}>Submit
-                                        </button>
+                                            <button class="btn btn-danger" {{action "previewOff"}}>Close
+                                            </button>
+                                            <button class="btn btn-success" {{action "create" model}}>Submit
+                                            </button>
                                         </div>
                                     </div>
                                 {{/modal-dialog}}
@@ -179,4 +187,3 @@
         </div>
     </div>
 </div>
-
