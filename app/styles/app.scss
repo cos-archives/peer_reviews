@@ -833,7 +833,29 @@ p {
   .ptitle {
     margin-top: 50px;
   }
-    .list-gird-view-buttons {
-      margin:10px;
-      margin-left: 650px;
-    }
+
+#accordion{
+  color:black!important;
+  width:1140px;
+  margin-bottom:100px;
+}
+
+.panel-title a{
+  color:#444;
+}
+
+.panel-body iframe{
+     width: 700px;
+    height: 600px;
+}
+
+.panel-body {
+  font-size:18px;
+  color:#444;
+}
+.panel-body h4{
+  margin-bottom:2px;
+}
+.panel-body legend{
+  color:#444;
+}
