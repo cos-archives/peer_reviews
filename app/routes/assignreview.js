@@ -32,6 +32,12 @@ export default Ember.Route.extend( {
         navigate() {
             this.transitionTo( 'index' );
         },
+      gotoreviewing(){
+        this.transitionTo( 'reviewslist' );
+      },
+      gotoediting(){
+        this.transitionTo( 'peerdashboard' );
+      },
         filterdata(){
             Ember.$( '#filter' ).keyup( function () {
                 var rex = new RegExp( Ember.$( this ).val(), 'i' );
