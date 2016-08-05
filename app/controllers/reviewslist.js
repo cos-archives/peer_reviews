@@ -32,7 +32,7 @@ export default Ember.Controller.extend({
         let self = this;
         var rid = null;
         Ember.$.ajax({
-          url: "http://localhost:8000/api/reviewerid",
+          url: "http://localhost:8000/reviewerid",
           dataType: 'json',
           contentType: 'text/plain',
           xhrFields: {
