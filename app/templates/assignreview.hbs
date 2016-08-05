@@ -1,11 +1,11 @@
-{{cos-navbar navigate='navigate'}}
+{{cos-navbar navigate='navigate' gotoreviewing='gotoreviewing' gotoediting='gotoediting' }}
 
 <div class="container-fluid big">
     <div class="row">
         {{filter-search  title="Assign Reviewers" filter=false}}
-        {{reviewer-list-view model=model storereviewerInfo="storereviewerInfo"}}
+        {{reviewer-list-view model=model storereviewerInfo="storereviewerInfo" }}
         {{#if isshowingBio}}
-            {{reviewer-bio model=model reviewerInfo=reviewerInfo}}
+            {{reviewer-bio model=model reviewerInfo=reviewerInfo }}
             <div class="invite" style="margin: auto; width: 100px">
                 <button id="button3id" name="button3id"
                         class="btn btn-primary"  {{action 'showdata2' reviewerInfo.name}} >

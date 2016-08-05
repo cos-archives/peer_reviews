@@ -7,6 +7,17 @@ export default Ember.Component.extend({
       this.sendAction('storereviewerInfo',id);
 
 
+    },
+    gotoreviewing() {
+      var self = this;
+      self.sendAction( 'gotoreviewing' );
+      
+    },
+    gotoediting() {
+      var self = this;
+      self.sendAction( 'gotoediting' );
+      console.log('hiii');
     }
   }
 });
+

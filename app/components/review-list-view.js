@@ -6,6 +6,16 @@ export default Ember.Component.extend( {
         },
         decidesubmission( id, title, decision ) {
             this.sendAction( 'decidesubmission', id, title, decision );
-        }
+        },
+      gotoreviewing() {
+        var self = this;
+        self.sendAction( 'gotoreviewing' );
+
+      },
+      gotoediting() {
+        var self = this;
+        self.sendAction( 'gotoediting' );
+        console.log('hiii');
+      }
     }
 } );
