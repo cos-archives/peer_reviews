@@ -215,25 +215,25 @@ class ReviewerassignmentList(generics.ListCreateAPIView):
     queryset = Reviewerassignment.objects.all()
     serializer_class = ReviewerassignmentSerializer
 
-    def create(self, request, *args, **kwargs):
-
-
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        s = Reviewerassignment.objects.filter(models.Q(reviewer=serializer.validated_data['reviewer']) & models.Q(submission=serializer.validated_data['submission']))
-        if len(s) == 0:
-            self.perform_create(serializer)
-            headers = self.get_success_headers(serializer.data)
-            rv = Reviewer.objects.get(id=serializer.validated_data['reviewer'])
-            rv.osfreviews += 1
-            rv.save()
-            s = Submission.objects.get(id=serializer.validated_data['submission'])
-            s.reviewer.add(rv)
-            s.status = "Awaiting review"
-            s.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # def create(self, request, *args, **kwargs):
+    #
+    #
+    #     serializer = self.get_serializer(data=request.data)
+    #     serializer.is_valid(raise_exception=True)
+    #     s = Reviewerassignment.objects.filter(models.Q(reviewer=serializer.validated_data['reviewer']) & models.Q(submission=serializer.validated_data['submission']))
+    #     if len(s) == 0:
+    #         self.perform_create(serializer)
+    #         headers = self.get_success_headers(serializer.data)
+    #         rv = Reviewer.objects.get(id=serializer.validated_data['reviewer'])
+    #         rv.osfreviews += 1
+    #         rv.save()
+    #         s = Submission.objects.get(id=serializer.validated_data['submission'])
+    #         s.reviewer.add(rv)
+    #         s.status = "Awaiting review"
+    #         s.save()
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    #     else:
+    #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ReviewerassignmentDetail(generics.ListCreateAPIView):
   queryset = Reviewerassignment.objects.all()
