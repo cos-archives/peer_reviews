@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework import generics
-from models import Reviewer, Submission, Evaluation, Email, Reviewerassignment, Editor
-from serializers import ReviewerSerializer, SubmissionSerializer, AuthenticationSerializer, EditorSerializer, EvaluationSerializer, EmailSerializer, UserSerializer, ReviewerassignmentSerializer
+from models import Reviewer, Submission, Evaluation, Email, Editor
+from serializers import ReviewerSerializer, SubmissionSerializer, AuthenticationSerializer, EditorSerializer, EvaluationSerializer, EmailSerializer, UserSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, login
@@ -30,7 +30,7 @@ def api_root(request, format=None):
         'evaluations': reverse('evaluation-list', request=request, format=format),
         'emails': reverse('email-list', request=request, format=format),
         'editors': reverse('editor-list', request=request, format=format),
-        'reviewerassignments' : reverse('reviewerassignment-list', request=request, format=format),
+        # 'reviewerassignments' : reverse('reviewerassignment-list', request=request, format=format),
     })
 
 # TODO: update casing on these classes
@@ -211,9 +211,9 @@ class EditorDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Editor.objects.all()
     serializer_class = EditorSerializer
 
-class ReviewerassignmentList(generics.ListCreateAPIView):
-    queryset = Reviewerassignment.objects.all()
-    serializer_class = ReviewerassignmentSerializer
+# class ReviewerassignmentList(generics.ListCreateAPIView):
+#     queryset = Reviewerassignment.objects.all()
+#     serializer_class = ReviewerassignmentSerializer
 
     # def create(self, request, *args, **kwargs):
     #
@@ -235,6 +235,6 @@ class ReviewerassignmentList(generics.ListCreateAPIView):
     #     else:
     #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class ReviewerassignmentDetail(generics.ListCreateAPIView):
-  queryset = Reviewerassignment.objects.all()
-  serializer_class = ReviewerassignmentSerializer
+# class ReviewerassignmentDetail(generics.ListCreateAPIView):
+#   queryset = Reviewerassignment.objects.all()
+#   serializer_class = ReviewerassignmentSerializer

@@ -49,8 +49,8 @@ urlpatterns += format_suffix_patterns([
     url(r'^editors?/(?P<pk>[0-9]+)/$', views.EditorDetail.as_view(),
         name='editor-detail'),
 
-    url(r'^reviewerassignments/$', views.ReviewerassignmentList.as_view(),
-        name='reviewerassignment-list'),
-    url(r'^reviewerassignments?/(?P<pk>[0-9]+)/$', views.ReviewerassignmentDetail.as_view(),
-        name='reviewerassignment-detail'),
+    # url(r'^reviewerassignments/$', views.ReviewerassignmentList.as_view(),
+    #     name='reviewerassignment-list'),
+    # url(r'^reviewerassignments?/(?P<pk>[0-9]+)/$', views.ReviewerassignmentDetail.as_view(),
+    #     name='reviewerassignment-detail'),
 ])

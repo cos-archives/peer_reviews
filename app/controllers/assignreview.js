@@ -21,21 +21,21 @@ export default Ember.Controller.extend( {
         sendemail(){
             var self = this;
 
-            let assignment = self.store.createRecord( 'reviewerassignment' );
+            let ev = self.store.createRecord( 'evaluation' );
             var subId = self.get( 'submission_id' );
 
             self.store.findRecord( 'submission', subId )
             .then( function (x) {
-                assignment.set('submission', x );
+                ev.set('submission', x );
                 var revId = self.get( 'reviewerInfo.id' );
                 return self.store.findRecord( 'reviewer', revId );
             } )
             .then( function ( y ) {
-                assignment.set( 'status', 'assigned' );
-                assignment.set( 'reviewer', y );
+                ev.set( 'status', 'assigned' );
+                ev.set( 'reviewer', y );
             } )
             .then( function () {
-                assignment.save();
+                ev.save();
             } )
             .then( function () {
                 self.set( 'isshowingInvite', false );

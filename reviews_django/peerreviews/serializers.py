@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from models import Reviewer, Submission, Evaluation, Email, Editor, Reviewerassignment
+from models import Reviewer, Submission, Evaluation, Email, Editor
 from rest_framework import serializers as ser
 from rest_framework_json_api import serializers, relations
 
@@ -56,24 +56,24 @@ class SubmissionSerializer(serializers.ModelSerializer):
 #         fields = ('conference', 'title','reviewdeadline', 'status', 'link')
 
 
-class ReviewerassignmentSerializer(serializers.ModelSerializer):
-
-    reviewer = relations.ResourceRelatedField(
-      queryset = Reviewer.objects.all(),
-      related_link_url_kwarg='reviewer_pk'  # still scary
-    )
-
-    submission = relations.ResourceRelatedField(
-      queryset = Submission.objects.all(),
-      related_link_url_kwarg='submission_pk'  # see above
-    )
-
-    class Meta:
-        model = Reviewerassignment
-        fields = ('reviewer', 'submission', 'status')
-
-    class JSONAPIMeta:
-        resource_name = 'reviewerassignments'
+# class ReviewerassignmentSerializer(serializers.ModelSerializer):
+#
+#     reviewer = relations.ResourceRelatedField(
+#       queryset = Reviewer.objects.all(),
+#       related_link_url_kwarg='reviewer_pk'  # still scary
+#     )
+#
+#     submission = relations.ResourceRelatedField(
+#       queryset = Submission.objects.all(),
+#       related_link_url_kwarg='submission_pk'  # see above
+#     )
+#
+#     class Meta:
+#         model = Reviewerassignment
+#         fields = ('reviewer', 'submission', 'status')
+#
+#     class JSONAPIMeta:
+#         resource_name = 'reviewerassignments'
 
 
 class EditorSerializer(serializers.ModelSerializer):

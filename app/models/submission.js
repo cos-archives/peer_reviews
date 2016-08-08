@@ -12,5 +12,4 @@ export default DS.Model.extend( {
     attachment: attr( 'string' ),
     iswaiting: Ember.computed.equal( 'status', 'Awaiting review' ),
     evaluations: hasMany( 'evaluation' ),
-    reviewerassignments: hasMany( 'reviewerassignment' ),
 } );
