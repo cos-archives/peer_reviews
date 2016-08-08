@@ -4,6 +4,8 @@ export default Ember.Route.extend( {
     model(){
         return Ember.RSVP.hash( {
             reviewsall: this.store.findAll( 'submission' ),
+            reviewerall: this.store.findAll( 'reviewer' ),
+
             reviewsdate: this.store.findAll( 'submission', { reload: true } ).then( function ( reviewslist ) {
                 return reviewslist.sortBy( 'submission' ).reverse();
             } ),

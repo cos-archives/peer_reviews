@@ -1,51 +1,75 @@
 {{yield}}
 
 <div class="listViewHolder">
-<table id="reviewers" class="table table-hover" align="center">
-    <thead>
+  <table id="reviewers" class="table table-hover" align="center">
+      <thead>
 
-    <tr>
+      <tr>
 
-        <th> Id
-        </th>
-        <th>
-            Name
-        </th>
-        <th>
-            Affiliation
-        </th>
-        <th>
-            Email
-        </th>
-    </tr>
-    </thead>
-    <tbody class="searchable">
+          <th> Id
+          </th>
+          <th>
+              Name
+          </th>
+          <th>
+              Affiliation
+          </th>
+          <th>
+              Email
+          </th>
+      </tr>
+      </thead>
+      <tbody class="searchable">
 
 
 
-    {{#each model.reviewerall as |d|}}
-        <tr onclick={{action 'storereviewerInfo' d.id}}>
-            <td>
-              {{d.id}}
-            </td>
-            <td>
-              {{d.name}}
-            </td>
-            <td>
-              {{d.affiliation}}
-            </td>
-            <td>
-              {{d.email}}
-            </td>
+      {{#each model.reviewerall as |d|}}
+          <tr onclick={{action "showReviewer" d.id}}>
+              <td >
+                {{d.id}}
+              </td>
+              <td>
+                {{d.name}}
+              </td>
+              <td>
+                {{d.affiliation}}
+              </td>
+              <td>
+                {{d.email}}
+              </td>
+          </tr>
 
+
+      {{/each}}
+
+      </tbody>
+  </table>
+{{#each model.reviewerall as |d|}}
+
+  <table class="table table-reviewer-more-info">
+    <tbody>
+        <tr>
+          <th width="100" ><img alt="Bootstrap Media Preview" style="width: 60px; height: 60px" src={{d.avatar}} class="media-object" /></th>
+            <td>{{d.name}}</td>
         </tr>
-    {{/each}}
+        <tr>
+          <th width="100">Bio:</th>
+            <td>{{d.bio}}</td>
+        </tr>
+        <tr>
+          <th width="100">Research Areas:</th>
+            <td>{{d.research}}</td>
+        </tr>
+        <tr>
+          <th width="100">Total OSF Reviews:</th>
+            <td>{{d.osfreviews}}</td>
+        </tr>
 
-
-
-
+        <tr >
+             <th width="100"></th>
+            <td><button id="button3id" name="button3id" class="btn btn-primary"  {{action 'showdata2' reviewerInfo.name}} >Invite</button></td>
+        </tr>
     </tbody>
 </table>
-
-
-    </div>
+{{/each}}
+</div>
