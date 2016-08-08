@@ -20,23 +20,22 @@ export default Ember.Controller.extend( {
     actions: {
         sendemail(){
             var self = this;
-            let assignment = self.store.createRecord( 'reviewerassignment' );
+
+            let ev = self.store.createRecord( 'evaluation' );
             var subId = self.get( 'submission_id' );
+
             self.store.findRecord( 'submission', subId )
-            .then( function ( x ) {
-                console.log( 'sub:', x.get( 'title' ) );
-                assignment.set( 'submission', x );
+            .then( function (x) {
+                ev.set('submission', x );
                 var revId = self.get( 'reviewerInfo.id' );
                 return self.store.findRecord( 'reviewer', revId );
             } )
-            .then( function ( x ) {
-                console.log( 'rev:', x.get( 'name' ) );
-                assignment.set( 'reviewer', x );
-                assignment.set( 'status', 'assigned' );
+            .then( function ( y ) {
+                ev.set( 'status', 'assigned' );
+                ev.set( 'reviewer', y );
             } )
             .then( function () {
-                assignment.save();
-                console.log( "got here" );
+                ev.save();
             } )
             .then( function () {
                 self.set( 'isshowingInvite', false );
@@ -61,23 +60,25 @@ export default Ember.Controller.extend( {
         showdata2( name ){
             var self = this;
             self.store.findAll( 'submission', { reload: true } ).then( function ( response ) {
-                console.log( self.get( 'submission_id' ) );
+                //console.log( self.get( 'submission_id' ) );
                 let tyrion = response.filterBy( 'id', self.get( 'submission_id' ) );
-                console.log( tyrion[ 0 ].get( 'data' ) );
+                //console.log( tyrion[ 0 ].get( 'data' ) );
                 self.set( 'ptitle', tyrion[ 0 ].get( 'title' ) );
                 self.set( 'cname', tyrion[ 0 ].get( 'conference' ) );
                 self.set( 'isshowingInvite', true );
-                self.set( 'emailbody', self.get( 'msgtemplate' ) );
+                //self.set( 'emailbody', self.get( 'msgtemplate' ) );
                 self.set( 'emailbody', self.get( 'msgtemplate' ).replace( "{cname}", self.get( 'cname' ) )
                 .replace( '{ptitle}', self.get( 'ptitle' ) ).replace( '{rname}', name )
-                .replace( '{osfp}', "http://localhost:4200/reviewslist/" ) );
+                .replace( '{osfp}', "http://localhost:4200/reviewslist/" ));
+                console.log(self.get('emailbody'));
+                //self.set( 'emailbody', self.get('emailbody'));
             } );
         },
         showdata( name ) {
             var self = this;
-            this.store.findRecord( 'reviewslist', this.get( 'submission_id' ) ).then( function ( tyrion ) {
-                self.set( 'ptitle', tyrion.get( 'title' ) );
-                self.set( 'cname', tyrion.get( 'conference' ) );
+            this.store.findRecord( 'reviewslist', this.get( 'submission_id' ) ).then( function ( response ) {
+                self.set( 'ptitle', response.get( 'title' ) );
+                self.set( 'cname', response.get( 'conference' ) );
                 self.set( 'isshowingInvite', true );
                 self.set( 'emailbody', self.get( 'msgtemplate' ) );
                 var str = "OSF Peer Reviews";
@@ -110,53 +111,3 @@ export default Ember.Controller.extend( {
 //     'I would appreciate receiving your review within 7 calendar days of your acceptance.\n'+
 //     'If you have any questions or concerns, please contact us at reviews@osf.io\n\n'+
 //      'Academic Editor',
-//
-//    emailbody: '',
-//
-//      actions: {
-//
-//        sendemail(){
-//
-//          var self = this;
-//
-//          let assignrecord = self.store.createRecord('reviewerassignment');
-//          assignrecord.submission = self.get('submission_id');
-//          assignrecord.reviewer = self.get('reviewerInfo.id');
-//          assignrecord.status = 'Awaiting review';
-//
-//          assignrecord.save().then(function () {
-//
-//            self.set('isshowingInvite', false);
-//            document.getElementById('submitAlert').className = "alert-success alert fade in";
-//
-//            setTimeout(function () {
-//
-//
-//              self.transitionToRoute('peerdashboard');
-//            }, 2000);
-//
-//            let emailrecord = self.store.createRecord('email');
-//            emailrecord.from_email = 'sherif_hany@hotmail.com';
-//            emailrecord.to_email = 'sherief@vbi.vt.edu';
-//            emailrecord.message = self.get('emailbody');
-//            emailrecord.subject = 'Review Invitation';
-//            emailrecord.save();
-//
-//
-//
-//          },function () {
-//            self.set('isshowingInvite', false);
-//            document.getElementById('submitAlert2').className = "alert-danger alert fade in";
-//
-//            setTimeout(function () {
-//
-//              Ember.$('#submitAlert2').hide();
-//
-//            }, 2000);
-//
-//          });
-//
-//
-//
-//
-// >>>>>>> a25d5b0903c480fc6cc2db99a2964103615bd89e

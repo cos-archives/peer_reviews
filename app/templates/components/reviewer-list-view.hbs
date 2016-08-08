@@ -1,50 +1,48 @@
 {{yield}}
 
 <div class="listViewHolder">
-  <table id="reviewers" class="table table-hover" align="center">
-      <thead>
-
-      <tr>
-
-          <th> Id
-          </th>
-          <th>
-              Name
-          </th>
-          <th>
-              Affiliation
-          </th>
-          <th>
-              Email
-          </th>
-      </tr>
-      </thead>
-      <tbody class="searchable">
+    <table id="reviewers" class="table table-hover" align="center">
+        <thead>
+        <tr>
+            <th> Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Affiliation
+            </th>
+            <th>
+                Email
+            </th>
+        </tr>
+        </thead>
+        <tbody class="searchable">
 
 
 
-      {{#each model.reviewerall as |d|}}
-          <tr onclick={{action "showReviewer" d.id}}>
-              <td >
-                {{d.id}}
-              </td>
-              <td>
-                {{d.name}}
-              </td>
-              <td>
-                {{d.affiliation}}
-              </td>
-              <td>
-                {{d.email}}
-              </td>
-          </tr>
-
-
+        {{#each model.allReviewers as |d|}}
+            <tr onclick={{action "showReviewer" d.id}}>
+                <td>
+                    {{d.id}}
+                </td>
+                <td>
+                    {{d.name}}
+                </td>
+                <td>
+                    {{d.affiliation}}
+                </td>
+                <td>
+                    {{d.email}}
+                </td>
+            </tr>
       {{/each}}
+
 
       </tbody>
   </table>
-{{#each model.reviewerall as |d|}}
+
+{{#each model.allReviewers as |d|}}
 <div class="table-reviewer-more-info">
   <hr class="line-style">
   <div class="row">
@@ -83,4 +81,5 @@
   </div>
 </div>
 {{/each}}
+
 </div>

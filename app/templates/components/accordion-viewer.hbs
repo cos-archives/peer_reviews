@@ -1,77 +1,22 @@
 {{yield}}
-<!--
-<div class="accordion-holder" {{action 'accordion'}}>
-<<<<<<< HEAD
-  <button class="accordion">Content</button>
-  <div class="accordion-panel">
-      <div class="accordion-content">
-        <ul>
-          <li>Title:</li>
-          <li> Author(s):</li>
-          <li> Conference:</li>
-        </ul>
-      </div>
-      <div class="accordion-content">
-        <legend>Submission Preview</legend>
-            <iframe id="fred" style="margin:0 auto;" title="Submission" src="http://www.w3schools.com" scrolling="auto"   width="600" height="570" ></iframe>
-      </div>
 
-
-
-
-  </div>
-
-  <button class="accordion">Reviewers</button>
-        <div class="accordion-panel">
-
-          &lt;!&ndash; Form Name &ndash;&gt;
-          <legend>Review Assignment</legend>
-
-          &lt;!&ndash; Select Basic &ndash;&gt;
-          <div class="form-group">
-              <h4 for="selectbasic">Assign to</h4>
-              <div class="col-md-4">
-                  <select id="selectbasic" name="selectbasic" class="form-control" style="width: 170px">
-                      <option value="1">Any Available Reviewer</option>
-                      <option value="2">Specific Reviewer</option>
-                  </select>
-
-              </div>
-          </div>
-          <br />
-
-
-  </div>
-
-  <button class="accordion">Decision</button>
-  <div id="foo" class="accordion-panel">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  </div>
-</div>
--->
-
-
-
-  <div class="panel-group" id="accordion">
+<div class="panel-group" id="accordion">
     <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Content</a>
-        </h4>
-      </div>
-      <div id="collapse1" class="panel-collapse collapse in">
-        <div class="panel-body">
-          <p align="center">
-            <legend>Title</legend>
-            <iframe id="fred"  title="Submission" src="http://www.w3schools.com" scrolling="auto"></iframe>
-          </p>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+            <div class="panel-heading"><h4 class="panel-title" style="color:#444">Content</h4></div>
+        </a>
+        <div id="collapse1" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <p align="center">
+                    <legend>{{model.thisSubmission.title}}</legend>
+                    <iframe id="fred" title="Submission" src={{model.thisSubmission.attachment}} scrolling="auto"></iframe>
+                </p>
           <span align="center">
-           <h4> Author(s):</h4><p>Leo m, Leo t</p>
-            <h4> Conference:</h4><p>TA Place</p>
+           <h4> Author(s):</h4><p>{{model.thisSubmission.authorname}}</p>
+            <h4> Conference:</h4><p>{{model.thisSubmission.conference}}</p>
           </span>
-
+            </div>
         </div>
-      </div>
     </div>
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -82,19 +27,20 @@
       <div id="collapse2" class="panel-collapse collapse">
         <div class="panel-body">
           {{reviewer-list-view model=model storereviewerInfo="storereviewerInfo" }}
-        </div>
-      </div>
     </div>
     <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Decision</a>
-        </h4>
-      </div>
-      <div id="collapse3" class="panel-collapse collapse">
-        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-      </div>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+            <div class="panel-heading">
+                <h4 class="panel-title" style="color:#444">
+                    Decision
+                </h4>
+            </div>
+        </a>
+        <div id="collapse3" class="panel-collapse collapse">
+            <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </div>
+        </div>
     </div>
-  </div>
+</div>

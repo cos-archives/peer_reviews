@@ -31,9 +31,6 @@ urlpatterns += format_suffix_patterns([
     url(r'^submissions?/(?P<pk>[0-9]+)/$', views.SubmissionDetail.as_view(),
         name='submission-detail'),
 
-    # url(r'^mysubmissions/$', views.SubmissionList.as_view({'get': 'get_my_submissions'}),
-    #     name='my-submissions'),
-
     url(r'^evaluations/$', views.EvaluationList.as_view(),
         name='evaluation-list'),
     url(r'^evaluations?/(?P<pk>[0-9]+)/$', views.EvaluationDetail.as_view(),
@@ -49,8 +46,4 @@ urlpatterns += format_suffix_patterns([
     url(r'^editors?/(?P<pk>[0-9]+)/$', views.EditorDetail.as_view(),
         name='editor-detail'),
 
-    url(r'^reviewerassignments/$', views.ReviewerassignmentList.as_view(),
-        name='reviewerassignment-list'),
-    url(r'^reviewerassignments?/(?P<pk>[0-9]+)/$', views.ReviewerassignmentDetail.as_view(),
-        name='reviewerassignment-detail'),
 ])

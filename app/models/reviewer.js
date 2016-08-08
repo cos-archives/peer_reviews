@@ -11,5 +11,4 @@ export default Model.extend( {
     avatar: attr( 'string' ),
     website: attr( 'string' ),
     evaluations: hasMany( 'evaluation' ),
-    reviewerassignments: hasMany( 'reviewerassignment' ),
 } );
