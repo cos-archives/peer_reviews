@@ -67,7 +67,7 @@ class getReviewerid(APIView):
             return Response(ss.data)
         else:
             return Response('false')
-T)
+
 
 
 class UserViewSet(viewsets.ModelViewSet):
