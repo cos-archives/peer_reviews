@@ -864,7 +864,6 @@ font-weight: bold;}
 
 
 .table-reviewer-more-info{
-  width:500px;
   border-style: hidden!important;
   display:none;
 
@@ -873,4 +872,20 @@ font-weight: bold;}
 .table{
     margin: 0 auto; /* or margin: 0 auto 0 auto */
     text-align:left;
+}
+
+.form-group-button{
+  float:right;
+  margin-right: 69px;
+  margin-top: 10px;
+}
+hr.line-style {
+	border-top: 1px solid #8c8b8b;
+  margin-bottom:5px;
+  margin-top:5px;
+}
+
+.table-reviewer-more-info textarea{
+  margin-top:18px;
+  margin-left:50px;
 }
