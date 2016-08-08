@@ -1,43 +1,40 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  queryParams: { submission_id: null },
+    model(){
+        return Ember.RSVP.hash( {
+            reviewerall: this.store.findAll( 'reviewer' ),
+            reviewername: this.store.findAll( 'reviewer', { reload: true } ).then( function ( reviewer ) {
+                return reviewer.sortBy( 'name' );
+            } ),
+            revieweremail: this.store.findAll( 'reviewer', { reload: true } ).then( function ( reviewer ) {
+                return reviewer.sortBy( 'email' );
+            } )
+        } );
+    },
+
 didRender(){
-  console.log("Loaded accordion-viewer");
-  $(".accordion-content").hide();
-  $(".accordion-button").eq(1).toggleClass("accordion-panel-active");
-  $(".accordion-content").eq(1).show();
-  $(".accordion").eq(0).toggleClass("active");
-  $(".accordion-panel").eq(0).toggleClass("show");
-
-
 
 },
   actions: {
-    accordion(){
-      var accordion = $(".accordion");
-      var i = 0;
-      for (i = 0; i < accordion.length; i++) {;
-        accordion[i].onclick = function(){
-            this.classList.toggle("active");
-            this.nextElementSibling.classList.toggle("show");
-      }
-     }
-    },
-    accordionContent(){
-     var i = 0;
-     for (i = 0; i <= $(".accordion-button").length; i++) {
-          $(".accordion-button").eq(i).removeClass("accordion-panel-active");
-          $(".accordion-content").eq(i).hide();
-
-          if(i == $(event.target).index()){
-            $(".accordion-button").eq(i).toggleClass("accordion-panel-active");
-            $(".accordion-content").eq(i).show();
-
-          }
-
-    }
-
-
-  }
+          navigate() {
+            this.transitionTo( 'index' );
+        },
+      gotoreviewing(){
+        this.transitionTo( 'reviewslist' );
+      },
+      gotoediting(){
+        this.transitionTo( 'peerdashboard' );
+      },
+        filterdata(){
+            Ember.$( '#filter' ).keyup( function () {
+                var rex = new RegExp( Ember.$( this ).val(), 'i' );
+                Ember.$( '.searchable tr' ).hide();
+                Ember.$( '.searchable tr' ).filter( function () {
+                    return rex.test( Ember.$( this ).text() );
+                } ).show();
+            } );
+        }
  }
 });

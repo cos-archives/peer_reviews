@@ -1,2 +1,8 @@
 import Ember from "ember";
-export default Ember.Route.extend( {} );
+export default Ember.Route.extend( {
+    model(){
+        return Ember.RSVP.hash( {
+            reviewerall: this.store.findAll( 'reviewer' ),
+         } );
+    }
+} );
