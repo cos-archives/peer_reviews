@@ -43,7 +43,7 @@ class EmailSerializer(serializers.ModelSerializer):
 class SubmissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Submission
-        fields = ('id', 'datesubmitted', 'conference', 'title', 'reviewdeadline',  'author_name','author_email', 'status',
+        fields = ('id', 'datesubmitted', 'conference', 'title', 'reviewdeadline',  'authorname','authoremail', 'status',
                   'link', 'attachment')
 
     class JSONAPIMeta:
