@@ -56,7 +56,7 @@ class Email(models.Model):
 
 
 class Reviewerassignment(models.Model):
-    reviewer = models.ForeignKey('Reviewer', related_name='reviewerassignments', null=True)
+    reviewer = models.ForeignKey('Reviewer', related_name='reviewerassignments')
     submission = models.ForeignKey('Submission', related_name='reviewerassignments')
     status = models.CharField(max_length=200)
 
