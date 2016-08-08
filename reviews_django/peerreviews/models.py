@@ -56,15 +56,15 @@ class Email(models.Model):
 
 
 class Reviewerassignment(models.Model):
-    reviewer = models.CharField(max_length=200)
-    submission = models.CharField(max_length=200)
+    reviewer = models.ForeignKey('Reviewer', related_name='reviewerassignments')
+    submission = models.ForeignKey('Submission', related_name='reviewerassignments')
     status = models.CharField(max_length=200)
 
 
 class Evaluation(models.Model):
     datesubmitted = models.DateTimeField(auto_now_add=True)
-    reviewer = models.ForeignKey(Reviewer, null=True)
-    submission = models.ForeignKey(Submission, null=True)
+    # reviewer = models.ForeignKey(Reviewer, null=True)
+    # submission = models.ForeignKey(Submission, null=True)
     premise = models.IntegerField(default=0, null=True)
     research = models.IntegerField(default=0, null=True)
     style = models.IntegerField(default=0, null=True)

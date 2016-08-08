@@ -58,15 +58,15 @@ class SubmissionSerializer(serializers.ModelSerializer):
 
 class ReviewerassignmentSerializer(serializers.ModelSerializer):
 
-    # reviewer = relations.ResourceRelatedField(
-    #   queryset = Reviewer.objects.all(),
-    #   related_link_url_kwarg='reviewer_pk'  # still scary
-    # )
-    #
-    # submission = relations.ResourceRelatedField(
-    #   queryset = Submission.objects.all(),
-    #   related_link_url_kwarg='submission_pk'  # see above
-    # )
+    reviewer = relations.ResourceRelatedField(
+      queryset = Reviewer.objects.all(),
+      related_link_url_kwarg='reviewer_pk'  # still scary
+    )
+
+    submission = relations.ResourceRelatedField(
+      queryset = Submission.objects.all(),
+      related_link_url_kwarg='submission_pk'  # see above
+    )
 
     class Meta:
         model = Reviewerassignment
