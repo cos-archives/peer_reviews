@@ -55,12 +55,6 @@ class Email(models.Model):
         return self.from_email + ' -> ' + self.to_email
 
 
-# class Reviewerassignment(models.Model):
-#     reviewer = models.ForeignKey('Reviewer', related_name='reviewerassignments')
-#     submission = models.ForeignKey('Submission', related_name='reviewerassignments')
-#     status = models.CharField(max_length=200)
-
-
 class Evaluation(models.Model):
     status = models.CharField(max_length=200)
     progress = models.CharField(max_length=200)
