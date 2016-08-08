@@ -55,27 +55,26 @@ class Email(models.Model):
         return self.from_email + ' -> ' + self.to_email
 
 
-class Reviewerassignment(models.Model):
-    reviewer = models.ForeignKey('Reviewer', related_name='reviewerassignments')
-    submission = models.ForeignKey('Submission', related_name='reviewerassignments')
-    status = models.CharField(max_length=200)
-
-
 class Evaluation(models.Model):
+    status = models.CharField(max_length=200)
+    progress = models.CharField(max_length=200)
+
     datesubmitted = models.DateTimeField(auto_now_add=True)
-    # reviewer = models.ForeignKey(Reviewer, null=True)
-    # submission = models.ForeignKey(Submission, null=True)
+    reviewer = models.ForeignKey(Reviewer)
+    submission = models.ForeignKey(Submission)
     premise = models.IntegerField(default=0, null=True)
     research = models.IntegerField(default=0, null=True)
     style = models.IntegerField(default=0, null=True)
     comment = models.TextField(null=True)
-    # status = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.reviewer.name + ': ' + self.submission
+        return self.reviewer.name + ': ' + self.submission.title
 
 
     @property
     def total(self):
-        return self.premise + self.research + self.style
+        if self.premise is None or self.research is None or self.style is None:
+            return 0
+        else:
+            return self.premise + self.research + self.style
 

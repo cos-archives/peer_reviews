@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework import generics
-from models import Reviewer, Submission, Evaluation, Email, Reviewerassignment, Editor
-from serializers import ReviewerSerializer, SubmissionSerializer, AuthenticationSerializer, EditorSerializer, EvaluationSerializer, EmailSerializer, UserSerializer, ReviewerassignmentSerializer
+from models import Reviewer, Submission, Evaluation, Email, Editor
+from serializers import ReviewerSerializer, SubmissionSerializer, AuthenticationSerializer, EditorSerializer, EvaluationSerializer, EmailSerializer, UserSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, login
@@ -30,7 +30,7 @@ def api_root(request, format=None):
         'evaluations': reverse('evaluation-list', request=request, format=format),
         'emails': reverse('email-list', request=request, format=format),
         'editors': reverse('editor-list', request=request, format=format),
-        'reviewerassignments' : reverse('reviewerassignment-list', request=request, format=format),
+        # 'reviewerassignments' : reverse('reviewerassignment-list', request=request, format=format),
     })
 
 # TODO: update casing on these classes
@@ -68,37 +68,6 @@ class getReviewerid(APIView):
         else:
             return Response('false')
 
-#
-#
-# class ReviewerassignmentViewSet(viewsets.ModelViewSet):
-#     queryset = Reviewerassignment.objects.all()
-#     serializer_class = ReviewerassignmentSerializer
-#
-#     def create(self, request, *args, **kwargs):
-#         serializer = self.get_serializer(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         s = Reviewerassignment.objects.filter(models.Q(reviewer=serializer.validated_data['reviewer']) & models.Q(submission=serializer.validated_data['submission']))
-#         if len(s) == 0:
-#             self.perform_create(serializer)
-#             headers = self.get_success_headers(serializer.data)
-#             rv = Reviewer.objects.get(id=serializer.validated_data['reviewer'])
-#             rv.osfreviews += 1
-#             rv.save()
-#             s = Submission.objects.get(id=serializer.validated_data['submission'])
-#             s.reviewer.add(rv)
-#             s.status = "Awaiting review"
-#             s.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-#         else:
-#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#
-#     def partial_update(self, request, *args, **kwargs):
-#         serializer = ReviewerassignmentSerializer(data=request.data)
-#         if serializer.is_valid():
-#             print(serializer.validated_data)
-#             serializer.update(self.get_object(), serializer.validated_data)
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -211,30 +180,3 @@ class EditorDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Editor.objects.all()
     serializer_class = EditorSerializer
 
-class ReviewerassignmentList(generics.ListCreateAPIView):
-    queryset = Reviewerassignment.objects.all()
-    serializer_class = ReviewerassignmentSerializer
-
-    # def create(self, request, *args, **kwargs):
-    #
-    #
-    #     serializer = self.get_serializer(data=request.data)
-    #     serializer.is_valid(raise_exception=True)
-    #     s = Reviewerassignment.objects.filter(models.Q(reviewer=serializer.validated_data['reviewer']) & models.Q(submission=serializer.validated_data['submission']))
-    #     if len(s) == 0:
-    #         self.perform_create(serializer)
-    #         headers = self.get_success_headers(serializer.data)
-    #         rv = Reviewer.objects.get(id=serializer.validated_data['reviewer'])
-    #         rv.osfreviews += 1
-    #         rv.save()
-    #         s = Submission.objects.get(id=serializer.validated_data['submission'])
-    #         s.reviewer.add(rv)
-    #         s.status = "Awaiting review"
-    #         s.save()
-    #         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-    #     else:
-    #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-class ReviewerassignmentDetail(generics.ListCreateAPIView):
-  queryset = Reviewerassignment.objects.all()
-  serializer_class = ReviewerassignmentSerializer
