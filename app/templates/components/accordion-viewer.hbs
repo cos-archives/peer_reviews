@@ -62,11 +62,10 @@
       <div id="collapse1" class="panel-collapse collapse in">
         <div class="panel-body">
           <p align="center">
-            <legend>Submission Preview</legend>
+            <legend>Title</legend>
             <iframe id="fred"  title="Submission" src="http://www.w3schools.com" scrolling="auto"></iframe>
           </p>
           <span align="center">
-           <h4>Title:</h4><p>This congtrner tiktle </p>
            <h4> Author(s):</h4><p>Leo m, Leo t</p>
             <h4> Conference:</h4><p>TA Place</p>
           </span>
@@ -77,15 +76,19 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Review Assignment</a>
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Assign Reviewers</a>
         </h4>
       </div>
       <div id="collapse2" class="panel-collapse collapse">
         <div class="panel-body">
 
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+        {{reviewer-list-view model=model storereviewerInfo="storereviewerInfo" }}
+
+
+
+
+
         </div>
       </div>
     </div>

@@ -819,7 +819,7 @@ p {
 }
 
   .listViewHolder .table {
-    width: 1140px;
+
   }
 
   .filter-control-holder input {
@@ -858,4 +858,19 @@ p {
 }
 .panel-body legend{
   color:#444;
+}
+.font-bold {
+font-weight: bold;}
+
+
+.table-reviewer-more-info{
+  width:500px;
+  border-style: hidden!important;
+  display:none;
+
+}
+
+.table{
+    margin: 0 auto; /* or margin: 0 auto 0 auto */
+    text-align:left;
 }
