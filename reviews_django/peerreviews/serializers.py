@@ -50,32 +50,6 @@ class SubmissionSerializer(serializers.ModelSerializer):
         resource_name = 'submissions'
 
 
-# class SubmissionSerializerUpdate(serializers.ModelSerializer):
-#     class Meta:
-#         model = Submission
-#         fields = ('conference', 'title','reviewdeadline', 'status', 'link')
-
-
-# class ReviewerassignmentSerializer(serializers.ModelSerializer):
-#
-#     reviewer = relations.ResourceRelatedField(
-#       queryset = Reviewer.objects.all(),
-#       related_link_url_kwarg='reviewer_pk'  # still scary
-#     )
-#
-#     submission = relations.ResourceRelatedField(
-#       queryset = Submission.objects.all(),
-#       related_link_url_kwarg='submission_pk'  # see above
-#     )
-#
-#     class Meta:
-#         model = Reviewerassignment
-#         fields = ('reviewer', 'submission', 'status')
-#
-#     class JSONAPIMeta:
-#         resource_name = 'reviewerassignments'
-
-
 class EditorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Editor
