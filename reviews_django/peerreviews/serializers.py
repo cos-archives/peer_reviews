@@ -25,7 +25,7 @@ class GroupSerializer(ser.HyperlinkedModelSerializer):
 class ReviewerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reviewer
-        fields = ('id', 'user', 'name', 'affiliation', 'email', 'bio', 'research', 'website', 'osfreviews', 'avatar')
+        fields = ('id', 'user', 'name', 'affiliation', 'email', 'bio', 'research', 'website', 'osfreviews', 'avatar','complete')
 
     class JSONAPIMeta:
         resource_name = 'reviewers'

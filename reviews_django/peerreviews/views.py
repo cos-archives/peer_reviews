@@ -59,6 +59,16 @@ class getUsername(APIView):
             return Response('false')
 
 
+class CheckProfileComplete(APIView):
+            def get(self, request, format=None):
+                rl = Reviewer.objects.filter(user__username=request.user.username)
+                if len(rl) == 0:
+                    return Response('false')
+
+                else:
+                    return Response('true')
+
+
 
 # TODO: figure out what this method does
 class getReviewerid(APIView):
@@ -167,7 +177,17 @@ class SubmissionList(generics.ListCreateAPIView):
     queryset = Submission.objects.all()
     serializer_class = SubmissionSerializer
 
-    def get_my_submissions(self, request, pk=None, format=None):
+    def get(self, request, pk=None, format=None):
+        rl = Submission.objects.filter(editor__user__username=request.user.username)
+        ss = SubmissionSerializer(rl, context={'request': request}, many=True)
+        return Response(ss.data)
+
+
+class ReviewsList(generics.ListCreateAPIView):
+    queryset = Submission.objects.all()
+    serializer_class = SubmissionSerializer
+
+    def get(self, request, pk=None, format=None):
         rl = Submission.objects.filter(reviewer__user__username=request.user.username)
         ss = SubmissionSerializer(rl, context={'request': request}, many=True)
         return Response(ss.data)
