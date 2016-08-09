@@ -6,5 +6,9 @@ export default Ember.Route.extend( {
             thisSubmission: this.store.findRecord( 'submission', params.submission_id)
          } );
 
+    },
+     didRender() {
+      this._super(...arguments);
+      console.log("Path Name" , window.location.pathname);
     }
 } );

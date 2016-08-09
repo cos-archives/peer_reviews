@@ -1,103 +1,104 @@
 {{yield}}
 
 <div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-            <div class="panel-heading"><h4 class="panel-title" style="color:#444">Content</h4></div>
-        </a>
-        <div id="collapse1" class="panel-collapse collapse in">
-            <div class="panel-body">
-                <p align="center">
-                    <legend>{{model.thisSubmission.title}}</legend>
-                    <iframe id="fred" title="Submission" src={{model.thisSubmission.attachment}} scrolling="auto"></iframe>
-                </p>
+  <div class="panel panel-default">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+      <div class="panel-heading"><h4 class="panel-title" style="color:#444">Content</h4></div>
+    </a>
+    <div id="collapse1" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <p align="center">
+          <legend>{{model.thisSubmission.title}}</legend>
+          <iframe id="fred" title="Submission" src={{model.thisSubmission.attachment}} scrolling="auto"></iframe>
+        </p>
           <span align="center">
            <h4> Author(s):</h4><p>{{model.thisSubmission.authorname}}</p>
             <h4> Conference:</h4><p>{{model.thisSubmission.conference}}</p>
           </span>
-            </div>
-        </div>
+      </div>
     </div>
-    <div class="panel panel-default">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-            <div class="panel-heading">
-                <h4 class="panel-title" style="color:#444">
-                    Assign Reviewers
-                </h4>
-            </div>
-        </a>
-        <div id="collapse2" class="panel-collapse collapse">
-            <div class="panel-body" >
-                {{reviewer-list-view model=model storereviewerInfo="storereviewerInfo" }}
-            </div>
-        </div>
+  </div>
+  <div class="panel panel-default">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+      <div class="panel-heading">
+        <h4 class="panel-title" style="color:#444">
+          Assign Reviewers
+        </h4>
+      </div>
+    </a>
+    <div id="collapse2" class="panel-collapse collapse">
+      <div class="panel-body">
+        {{reviewer-list-view model=model storereviewerInfo="storereviewerInfo" }}
+      </div>
     </div>
-    <div class="panel panel-default">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-            <div class="panel-heading">
-                <h4 class="panel-title" style="color:#444">
-                    Decision
-                </h4>
-            </div>
-        </a>
-        <div id="collapse3" class="panel-collapse collapse">
-            <div class="panel-body">
-              <table id="reviewers" class="table table-hover" align="center">
-                <thead>
-                <tr>
-                    <th> Reviewer
-                    </th>
-                    <th>
-                        Comment
-                    </th>
-                    <th>
-                        Score
-                    </th>
-                </tr>
-                </thead>
-                <tbody class="searchable">
+  </div>
+  <div class="panel panel-default">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+      <div class="panel-heading">
+        <h4 class="panel-title" style="color:#444">
+          Decision
+        </h4>
+      </div>
+    </a>
+    <div id="collapse3" class="panel-collapse collapse">
+      <div class="panel-body">
+        <table id="reviewers" class="table table-hover" align="center">
+          <thead>
+          <tr>
+            <th> Reviewer
+            </th>
+            <th>
+              Comment
+            </th>
+            <th>
+              Score
+            </th>
+          </tr>
+          </thead>
+          <tbody class="searchable">
 
 
+          <tr>
+            <td>
+              {{e.name}}
+            </td>
+            <td>
+              {{e.comment}}
+            </td>
 
-                     <tr>
-                        <td>
-                            {{e.name}}
-                        </td>
-                        <td>
-                            {{e.comment}}
-                        </td>
-
-                       <td>
-                            <tr><span class="font-bold">Premise: </span> <label style="color: yellowgreen"> {{e.premise}}/15 </label></tr>
-                           <tr><span class="font-bold">Style: </span><label style="color: yellowgreen"> {{e.style}}/15 </label></tr>
-                            <tr><span class="font-bold">Research: </span> <label style="color: yellowgreen"> {{e.research}}/15 </label></tr>
-                            <tr><span class="font-bold">Total: </span> <span class="total-score"><label style="color: yellowgreen"> 10 {{e.total}}</label></span> </tr>
-                        </td>
-
-
-                    </tr>
+            <td>
+          <tr><span class="font-bold">Premise: </span> <label style="color: yellowgreen"> {{e.premise}}/15 </label></tr>
+          <tr><span class="font-bold">Style: </span><label style="color: yellowgreen"> {{e.style}}/15 </label></tr>
+          <tr><span class="font-bold">Research: </span> <label style="color: yellowgreen"> {{e.research}}/15 </label>
+          </tr>
+          <tr><span class="font-bold">Total: </span> <span class="total-score"><label style="color: yellowgreen"> 10 {{e.total}}</label></span>
+          </tr>
+          </td>
 
 
-                 <tr>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                        <span class="font-bold">Grand Total:</span> <span class="total-score-holder"></span>
-                        <hr />
-                    </td>
-                </tr>
+          </tr>
 
-                </tbody>
-             </table>
 
-                    {{textarea cols="80" placeholder="Comment..." class="text-area-comment"}}
-              <div class="button-control-holder-comment">
-                <button class="btn btn-success" href="#" target="_texturepack">Accept</button>
-                <button class="btn btn-danger" href="#" target="_texturepack">Reject</button>
-              </div>
-            </div>
+          <tr>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+              <span class="font-bold">Average Score:</span> <span class="total-score-holder"></span>
+              <hr/>
+            </td>
+          </tr>
+
+          </tbody>
+        </table>
+
+        {{textarea cols="80" placeholder="Comment..." class="text-area-comment"}}
+        <div class="button-control-holder-comment">
+          <button class="btn btn-success" href="#" target="_texturepack">Accept</button>
+          <button class="btn btn-danger" href="#" target="_texturepack">Reject</button>
         </div>
+      </div>
     </div>
+  </div>
 </div>
