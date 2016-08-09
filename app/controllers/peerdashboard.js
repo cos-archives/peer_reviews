@@ -1,6 +1,5 @@
 import Ember from "ember";
 export default Ember.Controller.extend( {
-  isshowingUserInfo: true,
     session: Ember.inject.service( 'session' ),
     loadCurrentUser() {
         return new Ember.RSVP.Promise( ( resolve, reject ) => {
