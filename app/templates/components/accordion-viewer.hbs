@@ -41,9 +41,62 @@
             </div>
         </a>
         <div id="collapse3" class="panel-collapse collapse">
-            <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            <div class="panel-body">
+              <table id="reviewers" class="table table-hover" align="center">
+                <thead>
+                <tr>
+                    <th> Reviewer
+                    </th>
+                    <th>
+                        Comment
+                    </th>
+                    <th>
+                        Score
+                    </th>
+                </tr>
+                </thead>
+                <tbody class="searchable">
+
+
+
+                     <tr>
+                        <td>
+                            {{e.name}}
+                        </td>
+                        <td>
+                            {{e.comment}}
+                        </td>
+
+                       <td>
+                            <tr><span class="font-bold">Premise: </span> <label style="color: yellowgreen"> {{e.premise}}/15 </label></tr>
+                           <tr><span class="font-bold">Style: </span><label style="color: yellowgreen"> {{e.style}}/15 </label></tr>
+                            <tr><span class="font-bold">Research: </span> <label style="color: yellowgreen"> {{e.research}}/15 </label></tr>
+                            <tr><span class="font-bold">Total: </span> <span class="total-score"><label style="color: yellowgreen"> 10 {{e.total}}</label></span> </tr>
+                        </td>
+
+
+                    </tr>
+
+
+                 <tr>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        <span class="font-bold">Grand Total:</span> <span class="total-score-holder"></span>
+                        <hr />
+                    </td>
+                </tr>
+
+                </tbody>
+             </table>
+
+                    {{textarea cols="80" placeholder="Comment..." class="text-area-comment"}}
+              <div class="button-control-holder-comment">
+                <button class="btn btn-success" href="#" target="_texturepack">Accept</button>
+                <button class="btn btn-danger" href="#" target="_texturepack">Reject</button>
+              </div>
             </div>
         </div>
     </div>

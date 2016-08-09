@@ -876,7 +876,7 @@ p {
 
 .form-group-button{
   float:right;
-  margin-right: 69px;
+  margin-right: 41px;
   margin-top: 10px;
 }
 hr.line-style {
@@ -888,4 +888,12 @@ hr.line-style {
 .table-reviewer-more-info textarea{
   margin-top:18px;
   margin-left:50px;
+}
+
+.text-area-comment{
+  width:100%;
+  padding: 8px;
+}
+.button-control-holder-comment{
+  float:right;
 }
