@@ -50,7 +50,9 @@ export default Ember.Route.extend( {
             this.transitionTo( 'reviewslist' );
         },
         gotoediting(){
+
             this.transitionTo( 'editing.submissions' );
+
         },
         filterdata(){
             Ember.$( '#filter' ).keyup( function () {

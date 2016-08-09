@@ -1,51 +1,84 @@
 {{yield}}
 
 <div class="listViewHolder">
-<table id="reviewers" class="table table-hover" align="center">
-    <thead>
-
-    <tr>
-
-        <th> Id
-        </th>
-        <th>
-            Name
-        </th>
-        <th>
-            Affiliation
-        </th>
-        <th>
-            Email
-        </th>
-    </tr>
-    </thead>
-    <tbody class="searchable">
-
-
-
-    {{#each model.reviewerall as |d|}}
-        <tr onclick={{action 'storereviewerInfo' d.id}}>
-            <td>
-              {{d.id}}
-            </td>
-            <td>
-              {{d.name}}
-            </td>
-            <td>
-              {{d.affiliation}}
-            </td>
-            <td>
-              {{d.email}}
-            </td>
-
+    <table id="reviewers" class="table table-hover" align="center">
+        <thead>
+        <tr>
+            <th> Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Affiliation
+            </th>
+            <th>
+                Email
+            </th>
         </tr>
+        </thead>
+        <tbody class="searchable">
+
+
+
+        {{#each model.allReviewers as |d|}}
+            <tr onclick={{action "showReviewer" d.id}}>
+                <td>
+                    {{d.id}}
+                </td>
+                <td>
+                    {{d.name}}
+                </td>
+                <td>
+                    {{d.affiliation}}
+                </td>
+                <td>
+                    {{d.email}}
+                </td>
+            </tr>
+
+
+        {{/each}}
+
+        </tbody>
+    </table>
+    {{#each model.allReviewers as |d|}}
+        <div class="table-reviewer-more-info">
+            <hr class="line-style">
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th width="100" ><img alt="Bootstrap Media Preview" style="width: 60px; height: 60px" src={{d.avatar}} class="media-object" /></th>
+                            <td>{{d.name}}</td>
+                        </tr>
+                        <tr>
+                            <th width="100">Bio:</th>
+                            <td>{{d.bio}}</td>
+                        </tr>
+                        <tr>
+                            <th width="100">Research Areas:</th>
+                            <td>{{d.research}}</td>
+                        </tr>
+                        <tr>
+                            <th width="100">Total OSF Reviews:</th>
+                            <td>{{d.osfreviews}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <form>
+                        <textarea class="form-control" id="textarea" name="textarea" rows="18" style="width: 500px">{{emailbody}}</textarea>
+                        <div class="form-group-button">
+                            <button id="button1id" name="button1id" class="btn btn-success" {{action 'sendemail'}}>Send</button>
+                            <button id="button2id" name="button2id" class="btn btn-danger" {{action 'hidedata'}}>Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
     {{/each}}
-
-
-
-
-    </tbody>
-</table>
-
-
-    </div>
+</div>

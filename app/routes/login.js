@@ -65,7 +65,7 @@ export default Ember.Route.extend( {
             } );
         }
     }, headers: Ember.computed( function () {
-        var csrftoken = ""
+        var csrftoken = "";
         try {
             csrftoken = Ember.get( document.cookie.match( /csrftoken\=([^;]*)/ ), "1" );
             console.log( csrftoken );
@@ -80,3 +80,4 @@ export default Ember.Route.extend( {
     } ).volatile(),
 
 } );
+
