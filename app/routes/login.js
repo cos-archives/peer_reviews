@@ -1,5 +1,8 @@
 import Ember from "ember";
 export default Ember.Route.extend( {
+
+    
+
     $_GET: function ( name ) {
         var url = window.location.search;
         var num = url.search( name );
@@ -27,6 +30,7 @@ export default Ember.Route.extend( {
             }
         } );
     },
+
     activate: function () {
         //TODO: Instead of checking if there's GET data for 'code', we should use the
         //backend to check if the user is logged in, or if they need to go to login page
@@ -35,6 +39,9 @@ export default Ember.Route.extend( {
         console.log( code );
         if ( code === '' ) {
             window.location = "https://staging-accounts.osf.io/oauth2/authorize?scope=osf.full_read+osf.full_write&redirect_uri=http%3A%2F%2Flocalhost%3A4200%2Flogin&response_type=code&client_id=87ccc107d57b44b988abe7fe269bf6ba";
+
+
+
         }
         else {
             Ember.$.ajax( {
@@ -47,7 +54,14 @@ export default Ember.Route.extend( {
                     withCredentials: true,
                 }
             } ).then( function () {
-                self.transitionTo( 'peerdashboard' );
+
+
+                  self.transitionTo( 'editing.submissions' );
+
+
+
+
+
             } );
         }
     }, headers: Ember.computed( function () {
@@ -63,5 +77,6 @@ export default Ember.Route.extend( {
         return {
             "X-CSRFToken": csrftoken
         };
-    } ).volatile()
+    } ).volatile(),
+
 } );
