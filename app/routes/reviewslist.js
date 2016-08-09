@@ -2,11 +2,12 @@ import Ember from "ember";
 export default Ember.Route.extend( {
     statusc: 0, model(){
         return Ember.RSVP.hash( {
-            reviewsall: this.store.findAll( 'submission' ),
-            reviewsdate: this.store.findAll( 'submission', { reload: true } ).then( function ( reviewslist ) {
-                return reviewslist.sortBy( 'reviewdeadline' ).reverse();
+
+            reviewsall: this.store.findAll( 'review' ),
+            reviewsdate: this.store.findAll( 'review', { reload: true } ).then( function ( reviewslist ) {
+                return reviewslist.sortBy( 'review' ).reverse();
             } ),
-            reviewsfilter: this.store.findAll( 'submission', { reload: true } ).then( function ( reviewslist ) {
+            reviewsfilter: this.store.findAll( 'review', { reload: true } ).then( function ( reviewslist ) {
                 return reviewslist.filterBy( 'status', 'Completed' ).get( 'length' );
             } )
         } );
@@ -22,6 +23,21 @@ export default Ember.Route.extend( {
                 self.transitionTo( 'login' );
             }
         } );
+
+      Ember.$.ajax( {
+      url: "http://localhost:8000/checkcomplete",
+      dataType: 'json',
+      contentType: 'text/plain',
+      xhrFields: {
+        withCredentials: true
+      }
+    } ).then( function ( response ) {
+      if ( response.data === 'false' ) {
+        self.controllerFor('reviewslist').set('isshowingInfo', true);
+
+      }
+
+    } );
     },
     actions: {
         openreview() {
@@ -34,7 +50,7 @@ export default Ember.Route.extend( {
             this.transitionTo( 'reviewslist' );
         },
         gotoediting(){
-            this.transitionTo( 'peerdashboard' );
+            this.transitionTo( 'editing.submissions' );
         },
         filterdata(){
             Ember.$( '#filter' ).keyup( function () {
