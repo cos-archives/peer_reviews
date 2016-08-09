@@ -45,7 +45,9 @@ export default Ember.Route.extend( {
                 self.transitionTo( 'login' );
             }
         } );
-    }, actions: {
+
+    },
+     actions: {
         navigate() {
             this.transitionTo( 'index' );
         },
