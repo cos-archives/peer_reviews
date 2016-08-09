@@ -2,7 +2,7 @@ language: python
 python:
   - "2.7.10"
 install:
-    - pip install -r peerreviews/requirements.txt
+    - pip install -r reviews_django/requirements.txt
     - npm install jshint
     - npm install && bower install
 before_script:
