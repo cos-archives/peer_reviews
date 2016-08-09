@@ -32,6 +32,9 @@ export default Ember.Component.extend({
       var self = this;
       self.sendAction( 'gotoediting' );
       console.log('hiii');
+    },
+    emailSent(){
+      this.sendAction("emailSent");
     }
   }
 });

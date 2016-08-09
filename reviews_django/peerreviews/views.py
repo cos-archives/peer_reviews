@@ -122,7 +122,7 @@ class ReviewerList(generics.ListCreateAPIView):
     serializer_class = ReviewerSerializer
 
 
-class ReviewerDetail(generics.RetrieveAPIView):
+class ReviewerDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     API endpoint that returns single reviewer
     """
