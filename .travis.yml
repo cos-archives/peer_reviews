@@ -2,7 +2,7 @@ language: python
 python:
   - "2.7.10"
 install:
-    - pip install -r requirements.txt
+    - pip install -r peerreviews/requirements.txt
     - npm install jshint
     - npm install && bower install
 before_script:
