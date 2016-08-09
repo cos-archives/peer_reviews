@@ -2,10 +2,13 @@ import Ember from "ember";
 export default Ember.Route.extend( {
     queryParams: { isauthenticated: false },
     isauthenticated: false,
+
     statusc: 0,
     mylist: null,
     model(){
+
         return Ember.RSVP.hash( {
+          isshowingUserInfo: true,
             reviewsall: this.store.findAll( 'submission' ),
             reviewsdate: this.store.findAll( 'submission', { reload: true } ).then( function ( reviewslist ) {
                 return reviewslist.sortBy( 'submission' ).reverse();
@@ -58,7 +61,7 @@ export default Ember.Route.extend( {
             this.transitionTo( 'reviewslist' );
         },
         gotoediting(){
-            this.transitionTo( 'peerdashboard' );
+            this.transitionTo( 'editing.submissions' );
         },
         tablecolor( mode ){
             Ember.$( "tr" ).each( function () {

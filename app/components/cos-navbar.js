@@ -2,6 +2,7 @@ import Ember from "ember";
 export default Ember.Component.extend( {
     username: null,
     profile_url: null,
+    isshowingInfo: false,
     activate: function () {
         var self = this;
         Ember.$.ajax( {
@@ -26,7 +27,7 @@ export default Ember.Component.extend( {
         sendLogout() {
             var self = this;
             Ember.$.ajax( {
-                url: "http://localhost:8000/api/userlogout",
+                url: "http://localhost:8000/userlogout",
                 dataType: 'json',
                 contentType: 'text/plain',
                 xhrFields: {
@@ -44,6 +45,9 @@ export default Ember.Component.extend( {
         gotoreviewing() {
             var self = this;
             self.sendAction( 'gotoreviewing' );
+
+
+
         },
         gotoediting() {
             var self = this;

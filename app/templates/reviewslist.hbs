@@ -7,4 +7,14 @@
     </div>
 </div>
 
+{{#if isshowingInfo}}
+  {{#modal-dialog targetAttachment="center" translucentOverlay=true}}
+
+    {{reviewer-account model=model cancel='cancel' saveReviewer='saveReviewer' }}
+
+
+  {{/modal-dialog}}
+{{/if}}
+
+
 {{outlet}}
