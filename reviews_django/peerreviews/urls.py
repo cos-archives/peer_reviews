@@ -11,7 +11,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls, name='admin'),
     url(r'^checklogin$', views.checkLoggedIn.as_view(), name='checklogin'),
     url(r'^userlogout$', views.logoutUser.as_view(), name='logoutuser'),
-    url(r'^checkcomplete$', views.CheckProfileComplete.as_view(), name='checkcomplete'),
     url(r'^username$', views.getUsername.as_view(), name='username'),
     url(r'^reviewerid$', views.getReviewerid.as_view(), name='userid'),
     url(r'^login', include('auth.urls', namespace='login')),
@@ -29,8 +28,6 @@ urlpatterns += format_suffix_patterns([
 
     url(r'^submissions/$', views.SubmissionList.as_view(),
         name='submission-list'),
-    url(r'^reviews/$', views.ReviewsList.as_view(),
-        name='review-list'),
     url(r'^submissions?/(?P<pk>[0-9]+)/$', views.SubmissionDetail.as_view(),
         name='submission-detail'),
 

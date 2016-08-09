@@ -1,6 +1,5 @@
 import Ember from "ember";
 export default Ember.Controller.extend( {
-  isshowingInfo: false,
     islistview: true,
     isgridview: false,
     actions: {
@@ -18,8 +17,8 @@ export default Ember.Controller.extend( {
         this.set('isgridview',true);
       },
 
-      cancel(){
-        this.set('isshowingInfo',false);
+      acceptsubmission(){
+
       },
 
       storereviewerInfo(id){
