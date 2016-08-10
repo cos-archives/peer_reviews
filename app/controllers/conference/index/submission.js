@@ -26,8 +26,9 @@ export default Ember.Controller.extend( TaggableMixin, EmberValidations, {
     },
     actions: {
         killSubmission() {
-            if ( this.get( 'kill' ) )
+            if ( this.get( 'kill' ) ) {
                 this.get( 'model' ).destroyRecord();
+            }
         },
         saveNodeSubmission( newNode, id ) {
             if ( this.get( 'isValid' ) ) {

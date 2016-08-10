@@ -1,4 +1,5 @@
 import Ember from "ember";
+
 export default Ember.Route.extend( {
     queryParams: { isauthenticated: false },
     isauthenticated: false,
@@ -64,10 +65,10 @@ export default Ember.Route.extend( {
             Ember.$( "tr" ).each( function () {
                 Ember.$this = Ember.$( this );
                 //var imps = Ember.$this.find(".st").text().trim();
-                if ( mode == 'Completed' ) {
+                if ( mode === 'Completed' ) {
                     Ember.$this.css( 'background-color', 'green' );
                 }
-                else if ( mode == 'Passed Due' ) {
+                else if ( mode === 'Passed Due' ) {
                     Ember.$this.css( 'background-color', 'red' );
                 }
                 else {
@@ -115,9 +116,9 @@ export default Ember.Route.extend( {
             var yyyy = today.getFullYear();
             if ( dd < 10 ) { dd = '0' + dd; }
             if ( mm < 10 ) { mm = '0' + mm; }
-            var today = new Date( mm + '/' + dd + '/' + yyyy );
+            var today2 = new Date( mm + '/' + dd + '/' + yyyy );
             var date2 = new Date( d );
-            var timeDiff = (date2.getTime() - today.getTime());
+            var timeDiff = (date2.getTime() - today2.getTime());
             var diffDays = Math.ceil( timeDiff / (1000 * 3600 * 24) );
             if ( diffDays >= 0 ) {
                 this.set( 'statusc', this.get( 'statusc' ) + 1 );

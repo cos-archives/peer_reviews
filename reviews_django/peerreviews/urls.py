@@ -1,6 +1,6 @@
 from django.contrib import admin
 from peerreviews import views
-from django.conf.urls import include, url
+from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [

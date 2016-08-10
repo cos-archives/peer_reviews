@@ -21,11 +21,11 @@ export default JSONAPIAdapter.extend({
     return this._super(url, method, hash);
   },
    headers: Ember.computed(function() {
-    var csrftoken = ""
+    var csrftoken = "";
     try {
        csrftoken = Ember.get(document.cookie.match(/csrftoken\=([^;]*)/), "1");
     } catch(e){
-      console.log(e)
+      console.log(e);
       console.log('no csrftoken present');
     }
 
