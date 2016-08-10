@@ -53,12 +53,11 @@ class SubmissionSerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Submission
-        fields = ('id', 'datesubmitted', 'conference', 'title', 'reviewdeadline',  'authorname','authoremail', 'status',
+        fields = ('id', 'datesubmitted', 'conference', 'title', 'reviewdeadline', 'authorname', 'authoremail', 'status',
                   'link', 'attachment')
 
     class JSONAPIMeta:
         resource_name = 'reviews'
-
 
 
 class EditorSerializer(serializers.ModelSerializer):
