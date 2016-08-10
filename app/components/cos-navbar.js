@@ -26,7 +26,7 @@ export default Ember.Component.extend( {
         sendLogout() {
             var self = this;
             Ember.$.ajax( {
-                url: "http://localhost:8000/api/userlogout",
+                url: "http://localhost:8000/userlogout",
                 dataType: 'json',
                 contentType: 'text/plain',
                 xhrFields: {

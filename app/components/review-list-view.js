@@ -15,7 +15,7 @@ export default Ember.Component.extend( {
       gotoediting() {
         var self = this;
         self.sendAction( 'gotoediting' );
-        console.log('hiii');
+       
       }
     }
 } );

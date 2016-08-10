@@ -1,12 +1,9 @@
-
 from django.contrib import admin
-
 from peerreviews import views
 from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
-
     url(r'^admin/', admin.site.urls, name='admin'),
     url(r'^checklogin$', views.checkLoggedIn.as_view(), name='checklogin'),
     url(r'^userlogout$', views.logoutUser.as_view(), name='logoutuser'),
@@ -20,6 +17,7 @@ urlpatterns = [
 urlpatterns += format_suffix_patterns([
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.api_root),
+
     url(r'^reviewers/$', views.ReviewerList.as_view(),
         name='reviewer-list'),
     url(r'^reviewers?/(?P<pk>[0-9]+)/$', views.ReviewerDetail.as_view(),
@@ -27,6 +25,10 @@ urlpatterns += format_suffix_patterns([
 
     url(r'^submissions/$', views.SubmissionList.as_view(),
         name='submission-list'),
+
+    url(r'^reviews/$', views.Reviews.as_view(),
+        name='review-list'),
+
     url(r'^submissions?/(?P<pk>[0-9]+)/$', views.SubmissionDetail.as_view(),
         name='submission-detail'),
 

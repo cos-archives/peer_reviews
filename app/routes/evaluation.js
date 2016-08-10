@@ -32,7 +32,7 @@ export default Ember.Route.extend( {
             this.transitionTo( 'reviewslist' );
         },
         gotoediting(){
-            this.transitionTo( 'peerdashboard' );
+            this.transitionTo( 'editing.submissions' );
         },
         saveEvaluation( newEval ) {
             let router = this;
