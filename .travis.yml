@@ -7,6 +7,6 @@ install:
 #    - npm install && bower install
 before_script:
     - flake8 reviews_django/
-    - jshint .
+    - jshint app/
 script:
     - python reviews_django/peerreviews/tests.py
