@@ -6,9 +6,8 @@ from serializers import ReviewerSerializer, SubmissionSerializer, Authentication
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
 from django.contrib.auth import logout
-from django.db import models
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.decorators import api_view
@@ -84,7 +83,6 @@ class UserDetail(APIView):
         user = User.objects.get(pk=user_id)
         user_serializer = UserSerializer(user, context={'request': request}, many=False)
         return Response(user_serializer.data)
-
 
 
 # Create your views here.
@@ -177,4 +175,3 @@ class EditorList(generics.ListCreateAPIView):
 class EditorDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Editor.objects.all()
     serializer_class = EditorSerializer
-
