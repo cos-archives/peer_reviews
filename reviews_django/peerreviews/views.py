@@ -58,18 +58,6 @@ class getUsername(APIView):
         else:
             return Response('false')
 
-
-class CheckProfileComplete(APIView):
-            def get(self, request, format=None):
-                rl = Reviewer.objects.filter(user__username=request.user.username)
-                if len(rl) == 0:
-                    return Response('false')
-
-                else:
-                    return Response('true')
-
-
-
 # TODO: figure out what this method does
 class getReviewerid(APIView):
     def get(self, request, format=None):
@@ -201,5 +189,4 @@ class EditorList(generics.ListCreateAPIView):
 class EditorDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Editor.objects.all()
     serializer_class = EditorSerializer
-
 
