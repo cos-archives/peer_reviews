@@ -1,16 +1,14 @@
 import Ember from "ember";
 export default Ember.Route.extend( {
-    statusc: 0, model(){
+    model(){
         return Ember.RSVP.hash( {
-            reviewsall: this.store.findAll( 'review' ),
+            //return all reviews assigned to current user sorted by review date
             reviewsdate: this.store.findAll( 'review', { reload: true } ).then( function ( reviewslist ) {
                 return reviewslist.sortBy( 'reviewdeadline' ).reverse();
-            } ),
-            reviewsfilter: this.store.findAll( 'review', { reload: true } ).then( function ( reviewslist ) {
-                return reviewslist.filterBy( 'status', 'Completed' ).get( 'length' );
             } )
         } );
     }, activate: function () {
+         //check if current user is logged in, otherwise forward to login page
         var self = this;
         Ember.$.ajax( {
             url: "http://localhost:8000/checklogin", dataType: 'json', contentType: 'text/plain', xhrFields: {
@@ -18,12 +16,13 @@ export default Ember.Route.extend( {
             }
         } ).then( function ( loggedIn ) {
             if ( loggedIn.data === 'false' ) {
-                console.log( 'not logged in' );
+
                 self.transitionTo( 'login' );
             }
         } );
     },
     actions: {
+
         openreview() {
             this.transitionToRoute( 'evaluation' );
         },
@@ -37,6 +36,7 @@ export default Ember.Route.extend( {
          this.transitionTo('editing.submissions');
 
         },
+        //handle filter search
         filterdata(){
             Ember.$( '#filter' ).keyup( function () {
                 var rex = new RegExp( Ember.$( this ).val(), 'i' );
@@ -49,28 +49,6 @@ export default Ember.Route.extend( {
                     return rex.test( Ember.$( this ).text() );
                 } ).show();
             } );
-        }, dateColor( d ){
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth() + 1;
-            var yyyy = today.getFullYear();
-            if ( dd < 10 ) {
-                dd = '0' + dd;
-            }
-            if ( mm < 10 ) {
-                mm = '0' + mm;
-            }
-            today = new Date( mm + '/' + dd + '/' + yyyy );
-            var date2 = new Date( d );
-            var timeDiff = ( date2.getTime() - today.getTime() );
-            var diffDays = Math.ceil( timeDiff / (1000 * 3600 * 24) );
-            if ( diffDays >= 0 ) {
-                this.set( 'statusc', this.get( 'statusc' ) + 1 );
-            }
-            else {
-                this.set( 'statusc', this.get( 'statusc' ) + 0 );
-            }
-            console.log( this.get( 'statusc' ) );
         }
     }
 } );
