@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
 
 # TODO: normalize casing in models
 # TODO: add timestamp fields
