@@ -61,10 +61,10 @@ export default Ember.Route.extend( {
             Ember.$( "tr" ).each( function () {
                 Ember.$this = Ember.$( this );
                 //var imps = Ember.$this.find(".st").text().trim();
-                if ( mode == 'Completed' ) {
+                if ( mode === 'Completed' ) {
                     Ember.$this.css( 'background-color', 'green' );
                 }
-                else if ( mode == 'Passed Due' ) {
+                else if ( mode === 'Passed Due' ) {
                     Ember.$this.css( 'background-color', 'red' );
                 }
                 else {
@@ -127,11 +127,11 @@ export default Ember.Route.extend( {
         }, goToSubmission( id ){
             console.log( id );
         }, showlist(){
-            $( ".listViewHolder" ).show();
-            $( ".listGridHolder" ).hide();
+            Ember.$( ".listViewHolder" ).show();
+            Ember.$( ".listGridHolder" ).hide();
         }, showgrid(){
-            $( ".listViewHolder" ).hide();
-            $( ".listGridHolder" ).show();
+            Ember.$( ".listViewHolder" ).hide();
+            Ember.$( ".listGridHolder" ).show();
         }
     }
 } );

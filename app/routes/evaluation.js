@@ -36,12 +36,12 @@ export default Ember.Route.extend( {
         },
         saveEvaluation( newEval ) {
             let router = this;
-            if ( (parseInt( document.getElementById( 'premise' ).value ) >= 0)
-                && (parseInt( document.getElementById( 'premise' ).value ) <= 15)
-                && (parseInt( document.getElementById( 'research' ).value ) >= 0)
-                && (parseInt( document.getElementById( 'research' ).value ) <= 15)
-                && (parseInt( document.getElementById( 'style' ).value ) >= 0)
-                && (parseInt( document.getElementById( 'style' ).value ) <= 15) ) {
+            if ( (parseInt( document.getElementById( 'premise' ).value ) >= 0) &&
+                (parseInt( document.getElementById( 'premise' ).value ) <= 15) &&
+                (parseInt( document.getElementById( 'research' ).value ) >= 0) &&
+                (parseInt( document.getElementById( 'research' ).value ) <= 15) &&
+                (parseInt( document.getElementById( 'style' ).value ) >= 0) &&
+                (parseInt( document.getElementById( 'style' ).value ) <= 15) ) {
 
                 //newEval.set('reviewslist', this.get('submission'));
                 newEval.save().then( function () {

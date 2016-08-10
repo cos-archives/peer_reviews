@@ -1,5 +1,4 @@
 import Base from 'ember-validations/validators/base';
-import Ember from 'ember';
 
 export default Base.extend({
     init: function() {

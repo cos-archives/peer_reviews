@@ -35,6 +35,8 @@ didRender(){
                     return rex.test( Ember.$( this ).text() );
                 } ).show();
             } );
+        },
+        acceptPaper(){
         }
  }
 });

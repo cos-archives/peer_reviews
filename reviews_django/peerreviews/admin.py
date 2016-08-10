@@ -1,8 +1,5 @@
-
-
 from django.contrib import admin
-
-from .models import Reviewer,Submission, Evaluation, Email, Editor
+from .models import Reviewer, Submission, Evaluation, Email, Editor
 
 admin.site.register(Reviewer)
 admin.site.register(Editor)

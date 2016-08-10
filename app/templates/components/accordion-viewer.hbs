@@ -28,7 +28,7 @@
     </a>
     <div id="collapse2" class="panel-collapse collapse">
       <div class="panel-body">
-        {{reviewer-list-view model=model storereviewerInfo="storereviewerInfo" }}
+        {{reviewer-list-view model=model storereviewerInfo="storereviewerInfo" emailSent="emailSent" }}
       </div>
     </div>
   </div>
@@ -60,18 +60,38 @@
 
           <tr>
             <td>
-              {{e.name}}
+              {{e.name}}Linda Belcher
             </td>
             <td>
-              {{e.comment}}
+              {{e.comment}}I don't know...
             </td>
 
             <td>
-          <tr><span class="font-bold">Premise: </span> <label style="color: yellowgreen"> {{e.premise}}/15 </label></tr>
-          <tr><span class="font-bold">Style: </span><label style="color: yellowgreen"> {{e.style}}/15 </label></tr>
-          <tr><span class="font-bold">Research: </span> <label style="color: yellowgreen"> {{e.research}}/15 </label>
+          <tr><span class="font-bold">Premise: </span> <label style="color: yellowgreen"> {{e.premise}}5/15 </label></tr>
+          <tr><span class="font-bold">Style: </span><label style="color: yellowgreen"> {{e.style}}7/15 </label></tr>
+          <tr><span class="font-bold">Research: </span> <label style="color: yellowgreen"> {{e.research}}4/15 </label>
           </tr>
-          <tr><span class="font-bold">Total: </span> <span class="total-score"><label style="color: yellowgreen"> 10 {{e.total}}</label></span>
+          <tr><span class="font-bold">Total: </span> <span class="total-score"><label style="color: yellowgreen"> 16 {{e.total}}</label></span>
+          </tr>
+          </td>
+
+
+          </tr>
+
+                    <tr>
+            <td>
+              {{e.name}} Gene Belcher
+            </td>
+            <td>
+              {{e.comment}} I LOVE BURGERS
+            </td>
+
+            <td>
+          <tr><span class="font-bold">Premise: </span> <label style="color: yellowgreen"> {{e.premise}}15/15 </label></tr>
+          <tr><span class="font-bold">Style: </span><label style="color: yellowgreen"> {{e.style}}15/15 </label></tr>
+          <tr><span class="font-bold">Research: </span> <label style="color: yellowgreen"> {{e.research}}15/15 </label>
+          </tr>
+          <tr><span class="font-bold">Total: </span> <span class="total-score"><label style="color: yellowgreen"> 45 {{e.total}}</label></span>
           </tr>
           </td>
 
@@ -95,7 +115,7 @@
 
         {{textarea cols="80" placeholder="Comment..." class="text-area-comment"}}
         <div class="button-control-holder-comment">
-          <button class="btn btn-success" href="#" target="_texturepack">Accept</button>
+          <button class="btn btn-success" href="#" {{action "acceptPaper"}} target="_texturepack">Accept</button>
           <button class="btn btn-danger" href="#" target="_texturepack">Reject</button>
         </div>
       </div>

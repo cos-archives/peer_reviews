@@ -6,16 +6,15 @@ from serializers import ReviewerSerializer, SubmissionSerializer, ReviewSerializ
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
 from django.contrib.auth import logout
-from django.db import models
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.decorators import api_view
 
 
 USER_STORAGE = {}
-CLIENT_ID  = 'f720c20605e84d52ad24cc97e03ed3a8'
+CLIENT_ID = 'f720c20605e84d52ad24cc97e03ed3a8'
 CLIENT_SECRET = 'F4qpuFC364JtovxTMEN9R4i9kEAq6umSrcUi1XjR'
 REDIRECT_URI = "http://localhost:4200/login"
 OSF_API_URL = "https://test-api.osf.io/"
@@ -30,7 +29,6 @@ def api_root(request, format=None):
         'evaluations': reverse('evaluation-list', request=request, format=format),
         'emails': reverse('email-list', request=request, format=format),
         'editors': reverse('editor-list', request=request, format=format),
-        # 'reviewerassignments' : reverse('reviewerassignment-list', request=request, format=format),
     })
 
 # TODO: update casing on these classes
@@ -58,7 +56,7 @@ class getUsername(APIView):
         else:
             return Response('false')
 
-# TODO: figure out what this method does
+
 class getReviewerid(APIView):
     def get(self, request, format=None):
         if request.user.is_authenticated():
@@ -67,7 +65,6 @@ class getReviewerid(APIView):
             return Response(ss.data)
         else:
             return Response('false')
-
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -86,7 +83,6 @@ class UserDetail(APIView):
         user = User.objects.get(pk=user_id)
         user_serializer = UserSerializer(user, context={'request': request}, many=False)
         return Response(user_serializer.data)
-
 
 
 # Create your views here.
@@ -122,7 +118,7 @@ class ReviewerList(generics.ListCreateAPIView):
     serializer_class = ReviewerSerializer
 
 
-class ReviewerDetail(generics.RetrieveAPIView):
+class ReviewerDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     API endpoint that returns single reviewer
     """
@@ -189,4 +185,3 @@ class EditorList(generics.ListCreateAPIView):
 class EditorDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Editor.objects.all()
     serializer_class = EditorSerializer
-

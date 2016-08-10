@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
-import os, ConfigParser, io
+import os
+import ConfigParser
+import io
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -135,7 +137,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # django guardian object permissions
 # https://github.com/django-guardian/django-guardian
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend', # default
+    'django.contrib.auth.backends.ModelBackend',  # default
     'guardian.backends.ObjectPermissionBackend',
 )
 
@@ -146,8 +148,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = (
-        'localhost',
-
+    'localhost'
 )
 
 CORS_ALLOW_METHODS = (
@@ -189,7 +190,7 @@ APPEND_SLASH = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_ROOT =  os.path.join(BASE_DIR,"media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 
 
@@ -200,7 +201,7 @@ with open(FILE_NAME, "r") as myfile:
 config = ConfigParser.RawConfigParser(allow_no_value=True)
 config.readfp(io.BytesIO(data))
 EMAIL_USE_TLS = True
-EMAIL_HOST  = config.get("Account_Info", "host")
+EMAIL_HOST = config.get("Account_Info", "host")
 EMAIL_HOST_USER = config.get("Account_Info", "user")
 EMAIL_HOST_PASSWORD = config.get("Account_Info", "password")
 EMAIL_PORT = 587

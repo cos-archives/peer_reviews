@@ -1,11 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
 
 # TODO: normalize casing in models
 # TODO: add timestamp fields
 
+
 class Reviewer(models.Model):
-    user = models.OneToOneField(User,default=None)
+    user = models.OneToOneField(User, default=None)
     name = models.CharField(max_length=200)
     affiliation = models.TextField(null=True)
     email = models.EmailField(default=None)
@@ -70,11 +71,9 @@ class Evaluation(models.Model):
     def __str__(self):
         return self.reviewer.name + ': ' + self.submission.title
 
-
     @property
     def total(self):
         if self.premise is None or self.research is None or self.style is None:
             return 0
         else:
             return self.premise + self.research + self.style
-
