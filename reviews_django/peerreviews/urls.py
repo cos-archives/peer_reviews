@@ -29,7 +29,7 @@ urlpatterns += format_suffix_patterns([
 
     url(r'^submissions/$', views.SubmissionList.as_view(),
         name='submission-list'),
-    url(r'^reviews/$', views.ReviewsList.as_view(),
+    url(r'^reviews/$', views.Reviews.as_view(),
         name='review-list'),
     url(r'^submissions?/(?P<pk>[0-9]+)/$', views.SubmissionDetail.as_view(),
         name='submission-detail'),

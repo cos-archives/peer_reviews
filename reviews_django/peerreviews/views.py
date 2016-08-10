@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework import generics
 from models import Reviewer, Submission, Evaluation, Email, Editor
-from serializers import ReviewerSerializer, SubmissionSerializer, AuthenticationSerializer, EditorSerializer, EvaluationSerializer, EmailSerializer, UserSerializer
+from serializers import ReviewerSerializer, SubmissionSerializer, ReviewSerializer, AuthenticationSerializer, EditorSerializer, EvaluationSerializer, EmailSerializer, UserSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, login
@@ -152,13 +152,13 @@ class SubmissionList(generics.ListCreateAPIView):
         return Response(ss.data)
 
 
-class ReviewsList(generics.ListCreateAPIView):
+class Reviews(APIView):
     queryset = Submission.objects.all()
-    serializer_class = SubmissionSerializer
+    serializer_class = ReviewSerializer
 
     def get(self, request, pk=None, format=None):
         rl = Submission.objects.filter(reviewer__user__username=request.user.username)
-        ss = SubmissionSerializer(rl, context={'request': request}, many=True)
+        ss = ReviewSerializer(rl, context={'request': request}, many=True)
         return Response(ss.data)
 
 
