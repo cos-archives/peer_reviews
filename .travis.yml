@@ -4,7 +4,7 @@ python:
 install:
     - pip install -r reviews_django/requirements.txt
     - npm install jshint
-    - npm install && bower install
+#    - npm install && bower install
 before_script:
     - flake8 reviews_django/
     - jshint .
