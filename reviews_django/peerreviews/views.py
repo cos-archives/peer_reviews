@@ -15,7 +15,7 @@ from rest_framework.decorators import api_view
 
 
 USER_STORAGE = {}
-CLIENT_ID  = 'f720c20605e84d52ad24cc97e03ed3a8'
+CLIENT_ID = 'f720c20605e84d52ad24cc97e03ed3a8'
 CLIENT_SECRET = 'F4qpuFC364JtovxTMEN9R4i9kEAq6umSrcUi1XjR'
 REDIRECT_URI = "http://localhost:4200/login"
 OSF_API_URL = "https://test-api.osf.io/"
@@ -30,7 +30,6 @@ def api_root(request, format=None):
         'evaluations': reverse('evaluation-list', request=request, format=format),
         'emails': reverse('email-list', request=request, format=format),
         'editors': reverse('editor-list', request=request, format=format),
-        # 'reviewerassignments' : reverse('reviewerassignment-list', request=request, format=format),
     })
 
 # TODO: update casing on these classes
@@ -58,7 +57,7 @@ class getUsername(APIView):
         else:
             return Response('false')
 
-# TODO: figure out what this method does
+
 class getReviewerid(APIView):
     def get(self, request, format=None):
         if request.user.is_authenticated():
@@ -67,7 +66,6 @@ class getReviewerid(APIView):
             return Response(ss.data)
         else:
             return Response('false')
-
 
 
 class UserViewSet(viewsets.ModelViewSet):
