@@ -75,10 +75,6 @@ body {
 }
 
 .titleRow h1 {
-  font-size: 14vw;
-  min-height: 14vw;
-  line-height: 13vw;
-  z-index: 1000;
 }
 
 .titleRow h3 {
@@ -125,9 +121,9 @@ h1 {
 
 .cos-about h1 {
 
-  font-size: 5.0em;
+  font-size: 45px;
   margin: 0 0 10px 0;
-  color: #E0EBF3;
+  color: white;
 }
 
 h4 {
@@ -609,18 +605,13 @@ p {
 .cos-about {
   text-align: center;
   margin-top: 20px;
+  margin-bottom:50px;
 
-}
-
-.navbar a:hover {
-  background-color: yellow;
 }
 
 .panel-collapse {
   color: #0a0a0a;
 }
-
-//////
 
 #logo {
   width: 200px;
@@ -899,4 +890,27 @@ hr.line-style {
 }
 #submissions{
   width:1140px;
+}
+
+.main-button-holder{
+  margin: 0 auto;
+  width:340px;
+  height:200px;
+  color:white;
+  border-radius:5px;
+  padding:10px;
+  cursor:pointer;
+  background: rgba(255,255,255,0.13);
+ }
+.main-button-holder:hover{
+  color:#38b9eb;
+
+}
+
+
+.container-main{
+    height:210px;
+    width:780px;
+    margin:auto;
+
 }
