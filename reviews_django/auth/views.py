@@ -5,12 +5,10 @@ from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-
-
 import requests
 
 
-CLIENT_ID  = '87ccc107d57b44b988abe7fe269bf6ba'
+CLIENT_ID = '87ccc107d57b44b988abe7fe269bf6ba'
 CLIENT_SECRET = 'vqgPeZslbbGt6kRrZX5FNeB6SincSnB1eevfHjb5'
 REDIRECT_URI = "http://localhost:4200/login"
 OSF_API_URL = "https://staging-api.osf.io/"
@@ -21,8 +19,8 @@ USER_STORAGE = {}
 class OsfAuthorizationCode(APIView):
     def get(self, request, format=None):
         code = request.GET.get('code')
-        if code != None:
-            post_data = { "grant_type": "authorization_code", "code": code, "redirect_uri": REDIRECT_URI, "client_id": CLIENT_ID, "client_secret": CLIENT_SECRET}
+        if code is not None:
+            post_data = {"grant_type": "authorization_code", "code": code, "redirect_uri": REDIRECT_URI, "client_id": CLIENT_ID, "client_secret": CLIENT_SECRET}
             oauth_response = requests.post(OSF_ACCOUNTS_URL + "oauth2/token", data=post_data)
             try:
                 headers = {'Authorization': 'Bearer ' + oauth_response.json()['access_token']}
