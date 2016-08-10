@@ -2,11 +2,11 @@ import Ember from "ember";
 export default Ember.Route.extend( {
     statusc: 0, model(){
         return Ember.RSVP.hash( {
-            reviewsall: this.store.findAll( 'submission' ),
-            reviewsdate: this.store.findAll( 'submission', { reload: true } ).then( function ( reviewslist ) {
+            reviewsall: this.store.findAll( 'review' ),
+            reviewsdate: this.store.findAll( 'review', { reload: true } ).then( function ( reviewslist ) {
                 return reviewslist.sortBy( 'reviewdeadline' ).reverse();
             } ),
-            reviewsfilter: this.store.findAll( 'submission', { reload: true } ).then( function ( reviewslist ) {
+            reviewsfilter: this.store.findAll( 'review', { reload: true } ).then( function ( reviewslist ) {
                 return reviewslist.filterBy( 'status', 'Completed' ).get( 'length' );
             } )
         } );
