@@ -49,11 +49,12 @@ These decisions will be stored in a public endpoint accessible
  * getUsername
  * getReviewerid
 * Models
- * Submissions(?)
+ * Conferences (currently not implemented)
+ * Submissions
  * Reviewers
  * Evaluations
  * Users
- * Emails(?)
+ * Emails (_hardly_ implemented)
 
 #### Frontend
 
