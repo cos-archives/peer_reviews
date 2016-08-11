@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from models import Reviewer, Editor, Submission, Email, Evaluation
+from models import Reviewer, Editor, Submission, Evaluation
 import datetime
 
 # Create your tests here.
