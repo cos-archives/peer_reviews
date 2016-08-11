@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
-import ConfigParser
-import io
+# import ConfigParser
+# import io
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -194,14 +194,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 
 
-FILE_NAME = BASE_DIR + "/reviews/account.txt"
-
-with open(FILE_NAME, "r") as myfile:
-    data = myfile.read()
-config = ConfigParser.RawConfigParser(allow_no_value=True)
-config.readfp(io.BytesIO(data))
-EMAIL_USE_TLS = True
-EMAIL_HOST = config.get("Account_Info", "host")
-EMAIL_HOST_USER = config.get("Account_Info", "user")
-EMAIL_HOST_PASSWORD = config.get("Account_Info", "password")
-EMAIL_PORT = 587
+# FILE_NAME = BASE_DIR + "/reviews/account.txt"
+#
+# with open(FILE_NAME, "r") as myfile:
+#     data = myfile.read()
+# config = ConfigParser.RawConfigParser(allow_no_value=True)
+# config.readfp(io.BytesIO(data))
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = config.get("Account_Info", "host")
+# EMAIL_HOST_USER = config.get("Account_Info", "user")
+# EMAIL_HOST_PASSWORD = config.get("Account_Info", "password")
+# EMAIL_PORT = 587

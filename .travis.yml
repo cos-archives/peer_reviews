@@ -9,4 +9,4 @@ before_script:
     - flake8 reviews_django/
     - jshint app/
 script:
-    - python reviews_django/peerreviews/tests.py
+    - python reviews_django/manage.py test
