@@ -130,10 +130,10 @@ class SubmissionList(generics.ListCreateAPIView):
     queryset = Submission.objects.all()
     serializer_class = SubmissionSerializer
 
-    # def get(self, request, pk=None, format=None):
-    #     rl = Submission.objects.filter(editor__user__username=request.user.username)
-    #     ss = SubmissionSerializer(rl, context={'request': request}, many=True)
-    #     return Response(ss.data)
+    def get(self, request, pk=None, format=None):
+        rl = Submission.objects.filter(editor__user__username=request.user.username)
+        ss = SubmissionSerializer(rl, context={'request': request}, many=True)
+        return Response(ss.data)
 
 
 class Reviews(APIView):
