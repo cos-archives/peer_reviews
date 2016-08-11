@@ -102,6 +102,7 @@ Submission Evaluation (Feedback)
  * To re-enable emails, uncomment the bottom section of settings.py
  * This will require the accounts.txt file next to your settings.py file, which means that your travisCI builds will fail since accounts.txt isn't part of the github repo.
 * reviewslist endpoint is broken (look at Reviews class in views.py in backend to fix it. I'm pretty sure it's broken because submissions don't have attached reviewers)
+* The submissions endpoint suffers from the same problem, but the offending get method is commented out so the generic method takes precedence. 
 
 -----------
 
