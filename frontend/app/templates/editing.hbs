@@ -1,0 +1,35 @@
+{{cos-navbar navigate='navigate' gotoreviewing='gotoreviewing' gotoediting='gotoediting' }}
+
+{{filter-search  title="Peer Review Dashboard" filterdata="filterdata"}}
+
+
+<div class="container">
+    <div class="progress">
+        <div class="progress-bar progress-bar-danger" role="progressbar"
+             style={{safeEmberstyle dimgrey model.nreceived}}>
+            {{truncate model.nreceived model.nlength}} Received
+        </div>
+        <div class="progress-bar progress-bar-warning" role="progressbar"
+             style={{safeEmberstyle blue model.nawaitingr}}>
+            {{truncate model.nawaitingr model.nlength}} Awaiting review
+        </div>
+        <div class="progress-bar progress-bar-success" role="progressbar" style={{safeEmberstyle orange model.nreview}}>
+            {{truncate model.nreview model.nlength}} Under review
+        </div>
+        <div class="progress-bar progress-bar-info" role="progressbar"
+             style={{safeEmberstyle  sienna model.nawaitingd}}>
+            {{truncate model.nawaitingd model.nlength}} Awaiting decision
+        </div>
+        <div class="progress-bar progress-bar-success" role="progressbar"
+             style={{safeEmberstyle green model.ncomplete}}>
+            {{truncate model.ncomplete model.nlength}} Completed
+        </div>
+    </div>
+</div>
+
+
+{{outlet}}
+
+
+
+

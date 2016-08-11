@@ -1,0 +1,37 @@
+{{yield}}
+
+
+<div class="media" id = "bio" style="margin: auto; width: 600px">
+    <a href="#" class="pull-left"><img alt="Bootstrap Media Preview" style="width: 120px; height: auto" src={{reviewerInfo.avatar}} class="media-object" /></a>
+    <div class="media-body">
+        <h4 class="media-heading">
+            <b style="font-size: small; color: yellow">{{reviewerInfo.name}}</b>
+        </h4>
+        <h4 class="media-heading">
+        </h4>
+        <div class="media">
+            <div class="media-body">
+
+                <p>
+                    <b style="font-size: small; color: yellowgreen">Bio:</b>
+                  {{reviewerInfo.bio}}
+                </p>
+                <div>
+                    <p>
+                        <b style="font-size: small;color: yellowgreen">Research Areas:</b>
+                      {{reviewerInfo.research}}
+                    </p>
+
+                </div>
+
+                <div>
+                    <p>
+                        <b style="font-size: small;color: yellowgreen">Total OSF Reviews: </b>{{reviewerInfo.osfreviews}}
+                    <p></p>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
