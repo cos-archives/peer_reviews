@@ -1,4 +1,6 @@
 import Ember from "ember";
+
+//get the reviewer id pf current user, if she has a reviewer account.
 export function reviewerinfo() {
     var rid = null;
     Ember.$.ajax( {

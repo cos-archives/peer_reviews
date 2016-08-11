@@ -1,3 +1,16 @@
+// Code Description:
+// =================
+
+// variables:
+//---------------------
+//reviewsall: all submissions to be reviewed
+//reviewerall: all reviewers records stored in django db.
+//reviewsdate: all submissions sorted by review deadline.
+
+
+
+
+
 import Ember from "ember";
 export default Ember.Route.extend( {
     queryParams: { isauthenticated: false }, isauthenticated: false, statusc: 0, mylist: null,
@@ -7,11 +20,15 @@ export default Ember.Route.extend( {
             reviewerall: this.store.findAll( 'reviewer' ),
 
             reviewsdate: this.store.findAll( 'submission', { reload: true } ).then( function ( reviewslist ) {
-                return reviewslist.sortBy( 'submission' ).reverse();
+                return reviewslist.sortBy( 'reviewdeadline' ).reverse();
             } ),
+          
+            //number of all submissions related to this user as editor. 
             nlength: this.store.findAll( 'submission', { reload: true } ).then( function ( reviewslist ) {
                 return reviewslist.get( 'length' );
             } ),
+          
+            //count of submissions at each state.
             ncomplete: this.store.findAll( 'submission', { reload: true } ).then( function ( reviewslist ) {
                 return reviewslist.filterBy( 'status', 'Completed' )
                     .get( 'length' ) / reviewslist.get( 'length' ) * 100;
@@ -57,23 +74,8 @@ export default Ember.Route.extend( {
         gotoediting(){
             this.transitionTo( 'editing.submissions' );
         },
-        tablecolor( mode ){
-            Ember.$( "tr" ).each( function () {
-                Ember.$this = Ember.$( this );
-                //var imps = Ember.$this.find(".st").text().trim();
-                if ( mode === 'Completed' ) {
-                    Ember.$this.css( 'background-color', 'green' );
-                }
-                else if ( mode === 'Passed Due' ) {
-                    Ember.$this.css( 'background-color', 'red' );
-                }
-                else {
-                    Ember.$this.css( 'background-color', 'yellow' );
-                }
-                // compare id to what you want
-            } );
-        },
-        treeEvent(){
+        
+        treeEvent(){ //this action is not used now but might be needed for future use to handle tree view
             console.log( this.get( 'conferences' ) );
             Ember.$( '.tree li:has(ul)' ).addClass( 'parent_li' ).find( ' > span' )
             .attr( 'title', 'Collapse this branch' );
