@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework import generics
 from models import Reviewer, Submission, Evaluation, Email, Editor
@@ -33,6 +32,9 @@ def api_root(request, format=None):
 
 # TODO: update casing on these classes
 class checkLoggedIn(APIView):
+    """
+        API endpoint that cheeck if current user is logged in.
+     """
     def get(self, request, format=None):
         if request.user.is_authenticated():
             return Response('true')
@@ -41,6 +43,9 @@ class checkLoggedIn(APIView):
 
 
 class logoutUser(APIView):
+    """
+        API endpoint that logout the current user from system.
+     """
     def get(self, request, format=None):
         if request.user.is_authenticated():
             logout(request)
@@ -50,6 +55,9 @@ class logoutUser(APIView):
 
 
 class getUsername(APIView):
+    """
+       API endpoint that return osf username of current user.
+    """
     def get(self, request, format=None):
         if request.user.is_authenticated():
             return Response(request.user.username)
@@ -57,9 +65,14 @@ class getUsername(APIView):
             return Response('false')
 
 
+
 class getReviewerid(APIView):
+    """
+       API endpoint that return reviewer id of the current user.
+    """
     def get(self, request, format=None):
         if request.user.is_authenticated():
+            #query reviewers by current username
             rl = Reviewer.objects.filter(user__username=request.user.username)
             ss = ReviewerSerializer(rl, context={'request': request}, many=True)
             return Response(ss.data)
@@ -85,11 +98,11 @@ class UserDetail(APIView):
         return Response(user_serializer.data)
 
 
-# Create your views here.
-def post_list(request):
-    return render(request, 'peerreviews/test.html', {})
 
 class AuthenticateUser(APIView):
+    """
+        API endpoint that authenticate user login from ember.
+     """
     resource_name = 'User'
     serializer_class = AuthenticationSerializer
 
@@ -127,6 +140,9 @@ class ReviewerDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class SubmissionList(generics.ListCreateAPIView):
+    """
+        API endpoint that returns all submissions that belong to current user as editor.
+     """
     queryset = Submission.objects.all()
     serializer_class = SubmissionSerializer
 
@@ -137,6 +153,9 @@ class SubmissionList(generics.ListCreateAPIView):
 
 
 class Reviews(APIView):
+    """
+        API endpoint that return all reviews assigned to current user as a reviewer.
+     """
     queryset = Submission.objects.all()
     serializer_class = ReviewSerializer
 
@@ -147,20 +166,32 @@ class Reviews(APIView):
 
 
 class SubmissionDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+        API endpoint that returns single submission
+     """
     queryset = Submission.objects.all()
     serializer_class = SubmissionSerializer
 
 
 class EvaluationList(generics.ListCreateAPIView):
+    """
+        API endpoint that returns all evaluations
+     """
     queryset = Evaluation.objects.all()
     serializer_class = EvaluationSerializer
 
 class EvaluationDetail(generics.ListCreateAPIView):
+    """
+        API endpoint that returns single evaluation.
+     """
     queryset = Evaluation.objects.all()
     serializer_class = EvaluationSerializer
 
 
 class EmailList(generics.ListCreateAPIView):
+    """
+        API endpoint that returns all emails.
+     """
     queryset = Email.objects.all()
     serializer_class = EmailSerializer
 
@@ -174,14 +205,23 @@ class EmailList(generics.ListCreateAPIView):
 
 
 class EmailDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+        API endpoint that returns a single email record.
+     """
     queryset = Email.objects.all()
     serializer_class = EmailSerializer
 
 
 class EditorList(generics.ListCreateAPIView):
+    """
+        API endpoint that returns all editors.
+     """
     queryset = Editor.objects.all()
     serializer_class = EditorSerializer
 
 class EditorDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+        API endpoint that returns a single editor.
+     """
     queryset = Editor.objects.all()
     serializer_class = EditorSerializer
