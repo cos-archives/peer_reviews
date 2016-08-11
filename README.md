@@ -16,7 +16,7 @@ Editors make a final decision, with advice from the evaluations, to accept or re
 
 ### Peer Review Workflow
 
-![Peer Review User Workflow](https://raw.githubusercontent.com/cameronblandford/osf_peerreview_front/master/Peer%20Reviews%20Documentation.png)
+![Peer Review User Workflow](https://raw.githubusercontent.com/cameronblandford/peer_reviews/master/misc/Peer%20Reviews%20Documentation.png)
 
 ### Setup
 Install Ember@2.6
@@ -95,10 +95,24 @@ Submission Evaluation (Content)
 
 Submission Evaluation (Feedback)
 
+-----------
+
+### Still Broken
+* Emails (commented out)
+ * To re-enable emails, uncomment the bottom section of settings.py
+ * This will require the accounts.txt file next to your settings.py file, which means that your travisCI builds will fail since accounts.txt isn't part of the github repo.
+
+-----------
+
+### Future Ideas
+* Customizable endpoint that admin adjusts 
+* On evaluation page, move scoring/feedback to the side, so you can see it at the same time as the paper that you’re evaluating
+* Handle upload of files
 
 
-Future Ideas
-Customizable endpoint that admin adjusts 
-On evaluation page, move scoring/feedback to the side, so you can see it at the same time as the paper that you’re evaluating
+-----------
 
-Need to make handel file upload. 
+### Notes for whoever takes on this project
+
+* __Please don't use controllers whenever remotely possible.__ If you find yourself using a controller, google your situation first to make sure it can't be done with routes or models. Remember that validation can be handled in models, and actions can be stored in routes for almost every situation. This will help build the excitement for Routable Controllers too, which will make this advice obsolete and obvious.
+* Only have more than one endpoint on the API for something if it's __absolutely necessary__.
