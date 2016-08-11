@@ -1,0 +1,56 @@
+hr {
+  margin: 0 0 15px 15px;
+}
+
+h1 {
+  padding: 0;
+}
+
+.fade-background label {
+  display: inline-block;
+  padding: 0;
+}
+
+input[type="file"] {
+  margin-bottom: 15px;
+  border-radius: 0;
+  border: none;
+}
+
+.form-spacing {
+  margin-bottom: 15px;
+}
+
+.fade-background {
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+  padding: 15px;
+}
+
+.btn {
+  border: none;
+  border-radius: 0;
+}
+
+.form-control {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 0;
+  border: none;
+}
+
+.section-header {
+  margin-left: 15px;
+}
+
+.conference-title {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.submission-header {
+  display: inline-block;
+}
+
+.warning {
+  color: #ff0000;
+}

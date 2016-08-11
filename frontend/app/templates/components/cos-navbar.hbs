@@ -1,0 +1,46 @@
+<nav class="navbar navbar-inverse" id="navbarScope" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://staging.osf.io/">
+                <div class="osf-navbar-logo"></div>
+                OSF</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse navbar-right">
+            <ul class="nav navbar-nav">
+
+              <li >{{#link-to "editing.submissions"}}My Editing{{/link-to}}</li>
+              <li >{{#link-to "reviewslist"}}My Reviewing{{/link-to}}</li>
+
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Help
+                        <span class="caret hidden-xs"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">About</a></li>
+                        <li><a href="/faq/">FAQ</a></li>
+                        <li><a href="/getting-started">Getting Started</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="${web_url_for('user_profile')}">
+                        <span rel="tooltip" data-placement="bottom" title="Settings"
+                              class="fa fa-cog hidden-xs fa-lg"></span>
+                        <span class="visible-xs">Settings</span>
+                    </a>
+                </li>
+                <li><a href="#" {{action 'sendLogout'}}>Sign out</a></li>
+            </ul>
+        </div>
+        <
+    </div>
+</nav>
+
+
+{{yield}}

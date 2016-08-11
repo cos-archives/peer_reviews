@@ -1,0 +1,42 @@
+{{#if this.visited}}
+    {{auto-scroll}}
+{{/if}}
+{{cos-navbar}}
+
+<div id="indexTop" class="container-fluid big osf-standard-background">
+    <div id="logo">
+        <div class="circle" id="circle-1"><span></span></div>
+        <div class="circle" id="circle-2"><span></span></div>
+        <div class="circle" id="circle-3"><span></span></div>
+        <div class="circle" id="circle-4"><span></span></div>
+        <div class="circle" id="circle-5"><span></span></div>
+        <div class="circle" id="circle-6"><span></span></div>
+        <div class="circle" id="circle-7"><span></span></div>
+        <div class="circle" id="circle-8"><span></span></div>
+    </div>
+    <div class="cos-about">
+        <h1>OSF for Peer Review</h1>
+    </div>
+      <div class="container-main">
+        {{#link-to "editing.submissions"}}
+        <div class="main-button-holder" style="float:left">
+          <h2>My Editing</h2>
+          <hr />
+          <h5>View Submissions and assign them to be reviewed.</h5>
+
+        </div>
+        {{/link-to}}
+        {{#link-to "reviewslist"}}
+       <div class="main-button-holder" style="float:right" >
+          <h2>My Reviewing</h2>
+          <hr />
+          <h5>View Submissions assign to you and review them.</h5>
+       </div>
+        {{/link-to}}
+      </div>
+</div>
+
+
+
+
+{{yield}}

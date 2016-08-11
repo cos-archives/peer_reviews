@@ -1,0 +1,23 @@
+{{yield}}
+
+<div id="reviews" class="row list-group listGridHolder">
+    {{#each model.reviewsdate as |d|}}
+        <div class="searchable2  col-xs-4 col-lg-4" {{action 'goToSubmission' d.id }}>
+            <div class="thumbnail">
+                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt=""/>
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        {{d.title}}</h4>
+                    <p class="group inner list-group-item-text">
+                        {{d.conference}}</p>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <p class="lead">
+                                {{d.reviewdeadline}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>
