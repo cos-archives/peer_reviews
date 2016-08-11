@@ -95,6 +95,12 @@ Submission Evaluation (Content)
 
 Submission Evaluation (Feedback)
 
+-----------
+
+### Still Broken
+* Emails (commented out)
+ * To re-enable emails, uncomment the bottom section of settings.py
+ * This will require the accounts.txt file next to your settings.py file, which means that your travisCI builds will fail since accounts.txt isn't part of the github repo.
 
 -----------
 
