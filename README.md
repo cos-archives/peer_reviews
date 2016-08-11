@@ -16,7 +16,7 @@ Editors make a final decision, with advice from the evaluations, to accept or re
 
 ### Peer Review Workflow
 
-![Peer Review User Workflow](https://raw.githubusercontent.com/cameronblandford/osf_peerreview_front/master/Peer%20Reviews%20Documentation.png)
+![Peer Review User Workflow](https://raw.githubusercontent.com/cameronblandford/peer_reviews/master/misc/Peer%20Reviews%20Documentation.png)
 
 ### Setup
 Install Ember@2.6
@@ -101,8 +101,6 @@ Submission Evaluation (Feedback)
 * Emails (commented out)
  * To re-enable emails, uncomment the bottom section of settings.py
  * This will require the accounts.txt file next to your settings.py file, which means that your travisCI builds will fail since accounts.txt isn't part of the github repo.
-* reviewslist endpoint is broken (look at Reviews class in views.py in backend to fix it. I'm pretty sure it's broken because submissions don't have attached reviewers)
-* The submissions endpoint suffers from the same problem, but the offending get method is commented out so the generic method takes precedence. 
 
 -----------
 
